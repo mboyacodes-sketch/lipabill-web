@@ -1,0 +1,42 @@
+# Dependencies and build output
+node_modules
+npm-debug.log*
+.next
+out
+build
+coverage
+dist
+
+# Git / IDE / local
+.git
+.github
+.cursor
+.vscode
+.idea
+*.md
+!README.md
+.gitignore
+.dockerignore
+AGENTS.md
+CLAUDE.md
+
+# Source dump only — shipped assets live under public/screenshots
+/screenshots
+.DS_Store
+
+# Env and secrets — inject at runtime via Kamal
+.env
+.env.*
+!.env.example
+*.local
+*.pem
+
+# Tests and tooling not needed in the image
+eslint.config.mjs
+**/__tests__
+
+# Kamal / Ruby tooling
+.kamal/secrets
+.kamal/secrets-common
+.bundle
+vendor/bundle

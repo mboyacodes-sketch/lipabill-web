@@ -1,26 +1,179 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --ink: #0f1c33;
+  --ink-soft: #3a4a66;
+  --mute: #6b7a94;
+  --blue: #2f6bff;
+  --blue-deep: #1a3f9c;
+  --sky: #dcebff;
+  --sky-soft: #eef5ff;
+  --paper: #ffffff;
+  --line: #d8e2f0;
+  --bar: #12233f;
+  --mist: #f4f7fc;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-ink: var(--ink);
+  --color-ink-soft: var(--ink-soft);
+  --color-mute: var(--mute);
+  --color-blue: var(--blue);
+  --color-blue-deep: var(--blue-deep);
+  --color-sky: var(--sky);
+  --color-sky-soft: var(--sky-soft);
+  --color-paper: var(--paper);
+  --color-line: var(--line);
+  --color-bar: var(--bar);
+  --color-mist: var(--mist);
+  --font-sans: var(--font-sans), system-ui, sans-serif;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+  background: var(--mist);
+  color: var(--ink);
+  font-family: var(--font-sans), system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background: color-mix(in srgb, var(--blue) 28%, white);
+  color: var(--ink);
+}
+
+.hero-soft {
+  background:
+    radial-gradient(
+      ellipse 70% 85% at 50% 52%,
+      rgba(47, 107, 255, 0.18) 0%,
+      rgba(47, 107, 255, 0.1) 28%,
+      rgba(180, 205, 255, 0.12) 48%,
+      transparent 72%
+    ),
+    radial-gradient(80% 55% at 50% 0%, #d9e8ff 0%, transparent 55%),
+    radial-gradient(50% 45% at 0% 100%, rgba(47, 107, 255, 0.06) 0%, transparent 55%),
+    radial-gradient(50% 45% at 100% 100%, rgba(47, 107, 255, 0.06) 0%, transparent 55%),
+    #f4f7fc;
+}
+
+.bg-halo {
+  pointer-events: none;
+  position: absolute;
+  left: 50%;
+  top: 52%;
+  z-index: 0;
+  width: min(140vw, 90rem);
+  height: min(140vw, 90rem);
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background: radial-gradient(
+    circle closest-side,
+    rgba(47, 107, 255, 0.2) 0%,
+    rgba(47, 107, 255, 0.1) 35%,
+    rgba(200, 220, 255, 0.08) 60%,
+    transparent 100%
+  );
+}
+
+.watermark {
+  font-weight: 600;
+  letter-spacing: -0.06em;
+  color: color-mix(in srgb, var(--blue) 18%, transparent);
+  user-select: none;
+  pointer-events: none;
+  line-height: 0.85;
+}
+
+.float-card {
+  background: #fff;
+  border-radius: 1.35rem;
+  box-shadow:
+    0 4px 6px -2px rgba(15, 28, 51, 0.04),
+    0 24px 48px -20px rgba(15, 28, 51, 0.28);
+  transform-origin: center center;
+}
+
+.dash-line {
+  stroke: color-mix(in srgb, var(--blue) 40%, white);
+  stroke-dasharray: 5 7;
+  fill: none;
+}
+
+/* Float + keep card tilt */
+@keyframes float-tilt {
+  0%,
+  100% {
+    transform: rotate(var(--tilt, 0deg)) translateY(0);
+  }
+  50% {
+    transform: rotate(var(--tilt, 0deg)) translateY(-0.65rem);
+  }
+}
+
+.tilt {
+  --tilt: 0deg;
+  transform: rotate(var(--tilt));
+  animation: float-tilt 7s ease-in-out infinite;
+}
+
+.tilt-delay {
+  animation-delay: 0.85s;
+}
+
+.tilt-slow {
+  animation-delay: 0.35s;
+  animation-duration: 8.2s;
+}
+
+.phone-tilt {
+  transform: rotate(var(--phone-tilt, -4deg));
+  transform-origin: center center;
+  transition: transform 0.4s ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tilt,
+  .tilt-delay,
+  .tilt-slow {
+    animation: none !important;
+    transform: rotate(var(--tilt, 0deg));
+  }
+}
+
+.prose-lipa h2 {
+  margin: 0 0 0.75rem;
+  font-size: 1.25rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+}
+
+.prose-lipa ul {
+  margin: 0.5rem 0 0;
+  padding-left: 1.25rem;
+}
+
+.prose-lipa li {
+  margin: 0.4rem 0;
+}
+
+.prose-lipa a {
+  font-weight: 500;
+  color: var(--blue);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.prose-lipa strong {
+  color: var(--ink);
+  font-weight: 600;
 }

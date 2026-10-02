@@ -1,36 +1,53 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# LipaBill
 
-## Getting Started
+Marketing site for **LipaBill** — M-Pesa on this phone.
 
-First, run the development server:
+Public URL (production): [https://lipabill.mboya.dev](https://lipabill.mboya.dev)
+
+## Develop
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Product screenshots live in `public/screenshots/` (source dump also in `screenshots/`).
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Docker
 
-## Learn More
+```bash
+docker build -t lipabill .
+docker run --rm -p 3000:3000 lipabill
+```
 
-To learn more about Next.js, take a look at the following resources:
+## Deploy (Kamal → lipabill.mboya.dev)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Same pattern as `mbulu.mboya.dev`: Kamal builds/pushes the image, `kamal-proxy` listens on localhost, Caddy terminates TLS for the subdomain.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+1. Copy secrets:
 
-## Deploy on Vercel
+   ```bash
+   cp .kamal/secrets.example .kamal/secrets
+   # put KAMAL_REGISTRY_PASSWORD=ghp_... in .env.local
+   ```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+2. On the deploy host, add `config/Caddyfile.lipabill` into the main Caddyfile and reload Caddy. Ensure DNS for `lipabill.mboya.dev` points at the host.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+3. First-time / ship:
+
+   ```bash
+   bundle install   # optional if using project Gemfile
+   kamal setup      # first time only
+   kamal deploy
+   ```
+
+Useful:
+
+```bash
+kamal logs
+kamal app exec -i --reuse sh
+```
+
+Proxy: shared kamal-proxy on **3010** (with mbulu; Host-header routing). bashenga uses `3001`.

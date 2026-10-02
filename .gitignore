@@ -33,6 +33,16 @@ yarn-error.log*
 # env files (can opt-in for committing if needed)
 .env*
 
+# Kamal — keep only the example secrets file in git
+.kamal/secrets
+.kamal/secrets-common
+.kamal/secrets.*
+!.kamal/secrets.example
+
+# Bundler (Kamal Gemfile tooling)
+.bundle/
+/vendor/bundle
+
 # vercel
 .vercel
 
