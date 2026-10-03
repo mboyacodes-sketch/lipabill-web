@@ -52,6 +52,8 @@ env:
     NODE_ENV: production
     HOSTNAME: 0.0.0.0
     PORT: "3000"
+  secret:
+    - GOOGLE_SHEETS_WEBHOOK_URL
 
 # Keep Next.js hashed static assets available across rolling deploys.
 # Requires GNU cp on the host PATH (OrbStack Mac: ln -sf $(brew --prefix coreutils)/bin/gcp /usr/local/bin/cp).
