@@ -101,7 +101,7 @@ export default function SupportPage() {
             />
             <Faq
               q="When can I download it?"
-              a="We’re preparing the Android launch. Check back here, or email us if you’d like to be notified."
+              a="We’re preparing the Android launch. Leave your email on the homepage and we’ll write when it’s ready."
             />
           </div>
         </section>
