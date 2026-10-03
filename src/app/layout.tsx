@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import { Montserrat } from "next/font/google";
+import { JsonLd } from "@/components/JsonLd";
+import { absoluteUrl, site } from "@/lib/site";
 import "./globals.css";
 
 const sans = Montserrat({
@@ -9,9 +11,43 @@ const sans = Montserrat({
 });
 
 export const metadata: Metadata = {
-  title: "LipaBill — Offline-first wallet",
-  description:
-    "No internet? No problem. Send money, pay, track spending, and keep your tickets — even offline.",
+  metadataBase: new URL(site.url),
+  title: {
+    default: site.title,
+    template: "%s — LipaBill",
+  },
+  description: site.description,
+  applicationName: site.name,
+  authors: [{ name: site.name, url: site.url }],
+  creator: site.name,
+  keywords: [
+    "LipaBill",
+    "M-Pesa",
+    "offline wallet",
+    "Android",
+    "Paybill",
+    "Till",
+    "SGR tickets",
+    "Kenya",
+  ],
+  category: "finance",
+  alternates: {
+    canonical: "/",
+    types: {
+      "text/plain": "/llms.txt",
+    },
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
+    },
+  },
   icons: {
     icon: [
       { url: "/favicon.ico" },
@@ -23,12 +59,45 @@ export const metadata: Metadata = {
     apple: [{ url: "/apple-touch-icon.png", sizes: "180x180" }],
   },
   openGraph: {
-    title: "LipaBill",
-    description:
-      "Offline-first wallet for money, payments, and tickets — on this phone.",
     type: "website",
-    images: [{ url: "/brand/lipabill-icon.png", width: 512, height: 512 }],
+    locale: site.locale,
+    url: "/",
+    siteName: site.name,
+    title: site.title,
+    description: site.description,
   },
+  twitter: {
+    card: "summary_large_image",
+    title: site.title,
+    description: site.shortDescription,
+  },
+};
+
+const identity = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": absoluteUrl("/#organization"),
+      name: site.name,
+      url: site.url,
+      logo: absoluteUrl("/icon-512.png"),
+      email: site.email,
+      address: {
+        "@type": "PostalAddress",
+        addressCountry: "KE",
+      },
+    },
+    {
+      "@type": "WebSite",
+      "@id": absoluteUrl("/#website"),
+      url: site.url,
+      name: site.name,
+      description: site.description,
+      inLanguage: "en-KE",
+      publisher: { "@id": absoluteUrl("/#organization") },
+    },
+  ],
 };
 
 export default function RootLayout({
@@ -37,8 +106,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${sans.variable} h-full antialiased`}>
+    <html lang="en-KE" className={`${sans.variable} h-full antialiased`}>
       <body className="min-h-full flex flex-col font-sans text-ink">
+        <JsonLd data={identity} />
         {children}
       </body>
     </html>

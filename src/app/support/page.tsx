@@ -1,11 +1,24 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { JsonLd } from "@/components/JsonLd";
 import { SiteFooter, SiteHeader } from "@/components/SiteChrome";
+import { absoluteUrl, faqs } from "@/lib/site";
+
+const description =
+  "Get help with LipaBill, the offline-first Android wallet for Safaricom M-Pesa. Contact, what the app is for, and common questions.";
 
 export const metadata: Metadata = {
-  title: "Support — LipaBill",
-  description:
-    "Get help with LipaBill — the offline-first wallet for money, payments, and tickets.",
+  title: "Support",
+  description,
+  alternates: {
+    canonical: "/support",
+    types: { "text/plain": "/llms.txt" },
+  },
+  openGraph: {
+    title: "Support — LipaBill",
+    description,
+    url: "/support",
+  },
 };
 
 export default function SupportPage() {
@@ -15,6 +28,22 @@ export default function SupportPage() {
         <SiteHeader solid />
       </div>
 
+      <JsonLd
+        data={{
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          url: absoluteUrl("/support"),
+          isPartOf: { "@id": absoluteUrl("/#website") },
+          mainEntity: faqs.map((item) => ({
+            "@type": "Question",
+            name: item.question,
+            acceptedAnswer: {
+              "@type": "Answer",
+              text: item.answer,
+            },
+          })),
+        }}
+      />
       <article className="mx-auto max-w-3xl px-5 py-14 sm:px-8 sm:py-16">
         <p className="text-xs font-medium uppercase tracking-[0.18em] text-blue">
           Support
@@ -87,22 +116,9 @@ export default function SupportPage() {
             Common questions
           </h2>
           <div className="mt-6 space-y-6">
-            <Faq
-              q="Is LipaBill a bank or Safaricom?"
-              a="No. LipaBill is an independent app that helps you manage M-Pesa activity and tickets on your phone. M-Pesa is a trademark of Safaricom PLC."
-            />
-            <Faq
-              q="Does my data live in the cloud?"
-              a="Your transaction history and tickets stay on your device. We don’t create a LipaBill cloud account for your ledger. Read more in our privacy policy."
-            />
-            <Faq
-              q="Do I have to allow every permission?"
-              a="No. SMS, contacts, camera, and similar permissions are optional. You can deny any of them and still use the parts of the app that don’t need them."
-            />
-            <Faq
-              q="When can I download it?"
-              a="We’re preparing the Android launch. Leave your email on the homepage and we’ll write when it’s ready."
-            />
+            {faqs.map((item) => (
+              <Faq key={item.question} q={item.question} a={item.answer} />
+            ))}
           </div>
         </section>
 

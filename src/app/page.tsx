@@ -5,12 +5,38 @@ import {
   OrbitScale,
   OrbitScaleProvider,
 } from "@/components/InverseBrowserZoom";
+import { JsonLd } from "@/components/JsonLd";
 import { NotifyForm } from "@/components/NotifyForm";
 import { SiteFooter, SiteHeader } from "@/components/SiteChrome";
+import { absoluteUrl, site } from "@/lib/site";
 
 export default function Home() {
   return (
     <main className="flex-1">
+      <JsonLd
+        data={{
+          "@context": "https://schema.org",
+          "@type": "SoftwareApplication",
+          name: site.name,
+          applicationCategory: "FinanceApplication",
+          operatingSystem: "Android",
+          url: site.url,
+          description: site.description,
+          image: absoluteUrl("/icon-512.png"),
+          featureList: [
+            "Send money and pay Paybill, Till, and Pochi",
+            "Balance and history from M-Pesa confirmation SMS",
+            "Spending insights stored on the phone",
+            "Event and SGR tickets available offline",
+          ],
+          offers: {
+            "@type": "Offer",
+            availability: "https://schema.org/PreOrder",
+            url: absoluteUrl("/#notify"),
+          },
+          publisher: { "@id": absoluteUrl("/#organization") },
+        }}
+      />
       <OrbitScaleProvider>
       <section className="hero-soft relative min-h-[100svh] w-full overflow-x-clip">
         <div className="absolute inset-x-0 top-0 z-40">

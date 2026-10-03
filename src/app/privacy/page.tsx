@@ -1,11 +1,24 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { JsonLd } from "@/components/JsonLd";
 import { SiteFooter, SiteHeader } from "@/components/SiteChrome";
+import { absoluteUrl } from "@/lib/site";
+
+const description =
+  "How LipaBill keeps M-Pesa history, messages, and tickets on your phone, and which permissions are optional.";
 
 export const metadata: Metadata = {
-  title: "Privacy — LipaBill",
-  description:
-    "How LipaBill protects your payments, messages, and tickets on your phone.",
+  title: "Privacy",
+  description,
+  alternates: {
+    canonical: "/privacy",
+    types: { "text/plain": "/llms.txt" },
+  },
+  openGraph: {
+    title: "Privacy — LipaBill",
+    description,
+    url: "/privacy",
+  },
 };
 
 export default function PrivacyPage() {
@@ -15,6 +28,17 @@ export default function PrivacyPage() {
         <SiteHeader solid />
       </div>
 
+      <JsonLd
+        data={{
+          "@context": "https://schema.org",
+          "@type": "WebPage",
+          name: "Privacy — LipaBill",
+          url: absoluteUrl("/privacy"),
+          description,
+          dateModified: "2026-10-02",
+          isPartOf: { "@id": absoluteUrl("/#website") },
+        }}
+      />
       <article className="mx-auto max-w-3xl px-5 py-14 sm:px-8 sm:py-16">
         <p className="text-xs font-medium uppercase tracking-[0.18em] text-blue">
           Privacy
