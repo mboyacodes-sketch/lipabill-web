@@ -5,6 +5,7 @@ import {
   OrbitScale,
   OrbitScaleProvider,
 } from "@/components/InverseBrowserZoom";
+import { NotifyForm } from "@/components/NotifyForm";
 import { SiteFooter, SiteHeader } from "@/components/SiteChrome";
 
 export default function Home() {
@@ -217,10 +218,8 @@ export default function Home() {
           <p className="mt-2 text-ink-soft">
             Your wallet still works — balance, history, and tickets on this phone.
           </p>
-          <div className="mt-5 flex flex-wrap items-center justify-center gap-4">
-            <span className="inline-flex rounded-xl bg-blue px-6 py-3 text-sm font-medium text-white">
-              Launching soon
-            </span>
+          <div className="mt-5 flex justify-center">
+            <NotifyForm />
           </div>
         </div>
 
@@ -246,9 +245,9 @@ export default function Home() {
             <p className="mx-auto mt-2 max-w-sm text-sm leading-relaxed text-ink-soft">
               Balance, history, and tickets — on this phone.
             </p>
-            <span className="mt-5 inline-flex rounded-xl bg-blue px-5 py-3 text-sm font-medium text-white">
-              Launching soon
-            </span>
+            <div className="mt-5 flex justify-center">
+              <NotifyForm />
+            </div>
           </div>
 
           <div className="mx-auto mt-10 grid w-full max-w-md gap-3">
@@ -388,16 +387,16 @@ export default function Home() {
           LipaBill is launching soon.
         </h2>
         <p className="mx-auto mt-4 max-w-md text-ink-soft">
-          We&apos;ll share the download link here when it&apos;s ready. Questions
-          now?{" "}
+          Leave your email and we&apos;ll send the download link when it&apos;s
+          ready. Questions now?{" "}
           <Link href="/support" className="font-medium text-blue hover:underline">
             Get support
           </Link>
           .
         </p>
-        <span className="mt-8 inline-flex rounded-xl bg-blue px-7 py-3.5 text-sm font-medium text-white">
-          Launching soon
-        </span>
+        <div id="notify" className="mt-8 flex justify-center">
+          <NotifyForm />
+        </div>
       </section>
 
       <SiteFooter />
