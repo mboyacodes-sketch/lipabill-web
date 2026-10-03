@@ -29,9 +29,12 @@ export function SiteHeader({ solid = false }: { solid?: boolean }) {
         <Link href="/support" className="hover:text-ink">
           Support
         </Link>
-        <span className="rounded-xl bg-blue/10 px-4 py-2.5 text-sm font-medium text-blue">
-          Launching soon
-        </span>
+        <Link
+          href="/#notify"
+          className="rounded-xl bg-blue/10 px-4 py-2.5 text-sm font-medium text-blue"
+        >
+          Early access
+        </Link>
       </nav>
     </header>
   );
@@ -50,9 +53,12 @@ export function SiteFooter() {
               Money, payments &amp; tickets — on this phone.
             </h2>
           </div>
-          <span className="inline-flex shrink-0 items-center justify-center rounded-xl bg-white/10 px-6 py-3.5 text-sm font-medium text-white">
-            Launching soon
-          </span>
+          <Link
+            href="/#notify"
+            className="inline-flex shrink-0 items-center justify-center rounded-xl bg-white px-6 py-3.5 text-sm font-medium text-bar"
+          >
+            Early access
+          </Link>
         </div>
       </section>
 
