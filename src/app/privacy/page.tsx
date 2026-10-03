@@ -22,7 +22,7 @@ export default function PrivacyPage() {
         <h1 className="mt-3 text-3xl font-semibold tracking-tight text-ink sm:text-4xl">
           Your money stays on your phone
         </h1>
-        <p className="mt-3 text-sm text-mute">Last updated: 25 September 2026</p>
+        <p className="mt-3 text-sm text-mute">Last updated: 2 October 2026</p>
 
         <div className="prose-lipa mt-10 space-y-8 text-[1.05rem] leading-relaxed text-ink-soft">
           <p>
@@ -81,6 +81,17 @@ export default function PrivacyPage() {
                 <strong>Notifications</strong> — for payment status updates.
               </li>
             </ul>
+          </section>
+
+          <section>
+            <h2>Launch list</h2>
+            <p>
+              If you leave your email on this website, we store that address in
+              a Google Sheet so we can tell you when the Android app is
+              available. We don&apos;t use it for anything else. Email{" "}
+              <a href="mailto:mboya.codes@gmail.com">mboya.codes@gmail.com</a> to
+              be removed.
+            </p>
           </section>
 
           <section>
