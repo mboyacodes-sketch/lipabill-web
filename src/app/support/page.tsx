@@ -5,7 +5,7 @@ import { SiteFooter, SiteHeader } from "@/components/SiteChrome";
 import { absoluteUrl, faqs } from "@/lib/site";
 
 const description =
-  "Get help with LipaBill, the offline-first Android wallet for Safaricom M-Pesa. Contact, what the app is for, and common questions.";
+  "Get help with LipaBill, the Offline-First Transaction Wallet for Android. Contact, what the app is for, and common questions.";
 
 export const metadata: Metadata = {
   title: "Support",
@@ -52,8 +52,8 @@ export default function SupportPage() {
           We’re here to help
         </h1>
         <p className="mt-4 text-[1.05rem] leading-relaxed text-ink-soft">
-          LipaBill is launching soon. In the meantime, here’s how to reach us
-          and what the app is for.
+          LipaBill is an Offline-First Transaction Wallet, launching soon. Send
+          and Pay come first. Here’s how to reach us.
         </p>
 
         <section className="mt-12 rounded-2xl border border-line bg-sky-soft/50 p-6">
@@ -88,7 +88,7 @@ export default function SupportPage() {
           </h2>
           <ul className="mt-4 space-y-4 text-ink-soft">
             <li>
-              <strong className="text-ink">Send &amp; pay</strong>
+              <strong className="text-ink">Send &amp; Pay</strong>
               <p className="mt-1">
                 Move money to people and businesses you choose, with a clear
                 confirm step before anything goes out.

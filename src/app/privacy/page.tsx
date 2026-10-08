@@ -5,7 +5,7 @@ import { SiteFooter, SiteHeader } from "@/components/SiteChrome";
 import { absoluteUrl } from "@/lib/site";
 
 const description =
-  "How LipaBill keeps M-Pesa history, messages, and tickets on your phone, and which permissions are optional.";
+  "How LipaBill keeps your transactions, messages, and tickets on your phone, and which permissions are optional.";
 
 export const metadata: Metadata = {
   title: "Privacy",
@@ -35,7 +35,7 @@ export default function PrivacyPage() {
           name: "Privacy — LipaBill",
           url: absoluteUrl("/privacy"),
           description,
-          dateModified: "2026-10-02",
+          dateModified: "2026-10-03",
           isPartOf: { "@id": absoluteUrl("/#website") },
         }}
       />
@@ -46,7 +46,7 @@ export default function PrivacyPage() {
         <h1 className="mt-3 text-3xl font-semibold tracking-tight text-ink sm:text-4xl">
           Your money stays on your phone
         </h1>
-        <p className="mt-3 text-sm text-mute">Last updated: 2 October 2026</p>
+        <p className="mt-3 text-sm text-mute">Last updated: 3 October 2026</p>
 
         <div className="prose-lipa mt-10 space-y-8 text-[1.05rem] leading-relaxed text-ink-soft">
           <p>
@@ -58,9 +58,9 @@ export default function PrivacyPage() {
           <section>
             <h2>What stays on your device</h2>
             <p>
-              With your permission, LipaBill can read Safaricom M-Pesa
-              confirmation messages to show your balance and history. That
-              information is stored encrypted on your phone.
+              With your permission, LipaBill can read payment confirmation
+              messages to show your balance and history. That information is
+              stored encrypted on your phone.
             </p>
             <p>
               Tickets you add — photos, PDFs, passes, or booking details — also
@@ -81,9 +81,9 @@ export default function PrivacyPage() {
             </p>
             <ul>
               <li>
-                <strong>SMS</strong> — optional. Used to build your local M-Pesa
-                history from confirmation messages. Other messages aren’t kept
-                as your ledger.
+                <strong>SMS</strong> — optional. Used to build your local
+                transaction history from payment confirmation messages. Other
+                messages aren’t kept as your ledger.
               </li>
               <li>
                 <strong>Phone</strong> — used when you start a payment you
@@ -125,7 +125,7 @@ export default function PrivacyPage() {
               product analytics (for example which screens are opened) and crash
               reports. That information is processed by Google and may include
               device and app details needed for diagnostics. It does not include
-              your M-Pesa amounts, recipients, or PIN. Advertising ID collection
+              your payment amounts, recipients, or PIN. Advertising ID collection
               is turned off.
             </p>
           </section>
@@ -134,8 +134,8 @@ export default function PrivacyPage() {
             <h2>What we never do</h2>
             <ul>
               <li>Sell your personal data</li>
-              <li>Use your M-Pesa history for advertising</li>
-              <li>Store or send your M-Pesa PIN</li>
+              <li>Use your transaction history for advertising</li>
+              <li>Store or send your payment PIN</li>
               <li>Upload your full SMS inbox</li>
             </ul>
           </section>

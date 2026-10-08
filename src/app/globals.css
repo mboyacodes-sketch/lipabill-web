@@ -87,7 +87,7 @@ body {
 .watermark {
   font-weight: 600;
   letter-spacing: -0.06em;
-  color: color-mix(in srgb, var(--blue) 18%, transparent);
+  color: color-mix(in srgb, var(--blue) 26%, transparent);
   user-select: none;
   pointer-events: none;
   line-height: 0.85;

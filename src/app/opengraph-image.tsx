@@ -2,12 +2,12 @@ import { ImageResponse } from "next/og";
 import { readFile } from "node:fs/promises";
 import { join } from "node:path";
 
-export const alt = "LipaBill — offline-first M-Pesa wallet for Android";
+export const alt = "LipaBill — Offline-First Transaction Wallet for Android";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
 export default async function OpenGraphImage() {
-  const icon = await readFile(join(process.cwd(), "public/brand/lipabill-icon.png"));
+  const icon = await readFile(join(process.cwd(), "public/brand/lipabill-logo.png"));
 
   return new ImageResponse(
     (
@@ -55,7 +55,7 @@ export default async function OpenGraphImage() {
               color: "#3a4a66",
             }}
           >
-            Offline-first M-Pesa wallet for Android
+            Offline-First Transaction Wallet for Android
           </div>
         </div>
         <div style={{ display: "flex", fontSize: 24, fontWeight: 600, color: "#2f6bff" }}>

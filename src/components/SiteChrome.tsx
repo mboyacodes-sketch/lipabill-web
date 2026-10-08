@@ -13,7 +13,7 @@ export function SiteHeader({ solid = false }: { solid?: boolean }) {
         className="flex items-center gap-2.5 text-lg font-semibold tracking-tight text-ink"
       >
         <Image
-          src="/brand/lipabill-icon.png"
+          src="/brand/lipabill-logo.png"
           alt=""
           width={36}
           height={36}
@@ -23,15 +23,15 @@ export function SiteHeader({ solid = false }: { solid?: boolean }) {
         LipaBill
       </Link>
       <nav className="flex items-center gap-4 text-sm text-ink-soft sm:gap-6">
-        <Link href="/privacy" className="hover:text-ink">
+        <Link href="/privacy" className="hidden hover:text-ink sm:inline">
           Privacy
         </Link>
-        <Link href="/support" className="hover:text-ink">
+        <Link href="/support" className="hidden hover:text-ink sm:inline">
           Support
         </Link>
         <Link
           href="/#notify"
-          className="rounded-xl bg-blue/10 px-4 py-2.5 text-sm font-medium text-blue"
+          className="whitespace-nowrap rounded-xl bg-blue/10 px-3.5 py-2 text-sm font-medium text-blue sm:px-4 sm:py-2.5"
         >
           Early access
         </Link>
@@ -47,7 +47,7 @@ export function SiteFooter() {
         <div className="mx-auto flex max-w-6xl flex-col items-start justify-between gap-6 px-5 py-12 sm:flex-row sm:items-center sm:px-8 sm:py-14">
           <div>
             <p className="text-xs font-medium uppercase tracking-[0.18em] text-sky">
-              Offline-first wallet
+              Offline-First Transaction Wallet
             </p>
             <h2 className="mt-2 text-2xl font-semibold tracking-tight sm:text-3xl">
               Money, payments &amp; tickets — on this phone.
@@ -66,7 +66,7 @@ export function SiteFooter() {
         <div className="mx-auto flex max-w-6xl flex-col gap-4 px-5 text-sm sm:flex-row sm:items-center sm:justify-between sm:px-8">
           <p className="flex items-center gap-2 font-medium text-white/90">
             <Image
-              src="/brand/lipabill-icon.png"
+              src="/brand/lipabill-logo.png"
               alt=""
               width={28}
               height={28}
@@ -83,8 +83,7 @@ export function SiteFooter() {
             </Link>
           </div>
           <p className="text-sky/70">
-            © {new Date().getFullYear()} LipaBill. M-Pesa is a trademark of
-            Safaricom PLC.
+            © {new Date().getFullYear()} LipaBill.
           </p>
         </div>
       </footer>

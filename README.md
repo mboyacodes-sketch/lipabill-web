@@ -1,6 +1,6 @@
 # LipaBill
 
-Marketing site for **LipaBill** — M-Pesa on this phone.
+Marketing site for **LipaBill** — an Offline-First Transaction Wallet.
 
 Public URL (production): [https://lipabill.mboya.dev](https://lipabill.mboya.dev)
 

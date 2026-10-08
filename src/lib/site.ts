@@ -3,18 +3,26 @@ export const site = {
   url: "https://lipabill.mboya.dev",
   email: "mboya.codes@gmail.com",
   locale: "en_KE",
-  title: "LipaBill — Offline-first M-Pesa wallet",
+  title: "LipaBill — Offline-First Transaction Wallet",
   description:
-    "LipaBill is an offline-first Android wallet for Safaricom M-Pesa. Send money, pay Paybill and Till, see spending from confirmation SMS, and keep tickets on your phone — even without internet.",
+    "LipaBill is an Offline-First Transaction Wallet for Android. Send and Pay come first, the ledger stays on your phone, and more Payment Providers can be added over time.",
   shortDescription:
-    "Offline-first Android wallet for Safaricom M-Pesa. Money, payments, and tickets stay on your phone.",
+    "Offline-First Transaction Wallet for Android. Send and Pay on your phone, even without internet.",
+} as const;
+
+/** Close of 12 October 2026, East Africa Time. */
+export const launchAt = "2026-10-13T00:00:00+03:00";
+
+export const playStore = {
+  url: "https://play.google.com/store/apps/details?id=com.lipabill.app",
+  enabled: false,
 } as const;
 
 export const faqs = [
   {
-    question: "Is LipaBill a bank or Safaricom?",
+    question: "What is LipaBill?",
     answer:
-      "No. LipaBill is an independent app that helps you manage M-Pesa activity and tickets on your phone. M-Pesa is a trademark of Safaricom PLC.",
+      "An Offline-First Transaction Wallet for Android. Send and Pay come first, and more Payment Providers can be added over time. LipaBill is not a bank.",
   },
   {
     question: "Does my data live in the cloud?",
@@ -29,7 +37,7 @@ export const faqs = [
   {
     question: "When can I download it?",
     answer:
-      "We’re preparing the Android launch. Leave your email on the homepage and we’ll write when it’s ready.",
+      "Android launch is 12 October 2026. The Play Store button stays off until then. Leave your email on the homepage and we’ll write when it’s ready.",
   },
 ] as const;
 
@@ -40,9 +48,9 @@ export function absoluteUrl(path = "/") {
 export function llmsTxt() {
   return `# ${site.name}
 
-> ${site.shortDescription} It is not a bank and not Safaricom. The Android app is not on the Play Store yet.
+> ${site.shortDescription} The Android app is not on the Play Store yet.
 
-LipaBill helps you send money, pay merchants, follow spending, and keep tickets on the phone. Payment history and tickets stay on the device. There is no LipaBill cloud account for that ledger.
+LipaBill is a Transaction Wallet: Send and Pay first, with the ledger on the phone. More Payment Providers can be added over time. There is no LipaBill cloud account for that ledger.
 
 ## Early access
 
@@ -70,13 +78,12 @@ export function llmsFullTxt() {
 
 > ${site.description}
 
-This file is a factual summary of the marketing site at ${site.url}. LipaBill is an independent Android app built around Safaricom M-Pesa. It is not a bank, not a Safaricom product, and not on the Play Store yet.
+This file is a factual summary of the marketing site at ${site.url}. LipaBill is an Offline-First Transaction Wallet for Android. Send and Pay come first. More Payment Providers can be added over time. It is not a bank, and it is not on the Play Store yet.
 
 ## What it does
 
-- Send money to people you choose, and pay Paybill, Till, and Pochi. LipaBill prepares the payment. You confirm the amount and recipient before it leaves.
-- With optional SMS permission, read M-Pesa confirmation messages to show available balance and a local transaction list. The ledger stays encrypted on the device.
-- Show charts and totals for income and spending from the history already on the phone, including when the signal is weak.
+- Send and Pay to people you choose, and to businesses. LipaBill prepares the payment. You confirm the amount and recipient before it leaves.
+- With optional SMS permission, read payment confirmation messages to show available balance and a local transaction list. The ledger stays encrypted on the device.
 - Keep event tickets and SGR boarding passes on the phone. Scan a code or pull booking details, then open the pass offline.
 
 ## What stays on the phone
@@ -85,7 +92,7 @@ Payment history, tickets, and settings stay on the device under fingerprint, fac
 
 Optional permissions (SMS, contacts, camera, phone, accessibility, notifications) only unlock the features that need them. You can deny any of them.
 
-To keep the app stable, LipaBill uses Google Firebase for product analytics and crash reports. That does not include M-Pesa amounts, recipients, or your PIN. Advertising ID collection is turned off.
+To keep the app stable, LipaBill uses Google Firebase for product analytics and crash reports. That does not include payment amounts, recipients, or your PIN. Advertising ID collection is turned off.
 
 ## Early access
 
