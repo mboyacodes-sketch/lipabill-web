@@ -1,7 +1,7 @@
 "use client";
 
 import { useSyncExternalStore } from "react";
-import { launchAt, playStore } from "@/lib/site";
+import { launchAt, launchDayLabel, playStore } from "@/lib/site";
 
 const LAUNCH_MS = Date.parse(launchAt);
 
@@ -59,13 +59,13 @@ export function LaunchPromo({ className = "" }: { className?: string }) {
       <div
         className="mt-4 grid w-full max-w-xs grid-cols-3 gap-2"
         role="timer"
-        aria-label="Countdown to 12 October 2026"
+        aria-label={`Countdown to ${launchDayLabel()}`}
       >
         <Tick value={remaining ? pad(remaining.hours) : "—"} label="Hours" />
         <Tick value={remaining ? pad(remaining.minutes) : "—"} label="Min" />
         <Tick value={remaining ? pad(remaining.seconds) : "—"} label="Sec" />
       </div>
-      <p className="mt-3 text-xs text-mute">12 October 2026</p>
+      <p className="mt-3 text-xs text-mute">{launchDayLabel()}</p>
       <PlayStoreButton className="mt-5" />
     </div>
   );

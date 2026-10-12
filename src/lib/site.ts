@@ -10,8 +10,19 @@ export const site = {
     "Offline-First Transaction Wallet for Android. Send and Pay on your phone, even without internet.",
 } as const;
 
-/** Close of 12 October 2026, East Africa Time. */
-export const launchAt = "2026-10-13T00:00:00+03:00";
+/** Close of 13 October 2026, East Africa Time. One day after the original close. */
+export const launchAt = "2026-10-14T00:00:00+03:00";
+
+/** Calendar day the countdown is counting down to, in East Africa Time. */
+export function launchDayLabel() {
+  const endOfLaunchDay = new Date(Date.parse(launchAt) - 1);
+  return new Intl.DateTimeFormat("en-GB", {
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+    timeZone: "Africa/Nairobi",
+  }).format(endOfLaunchDay);
+}
 
 export const playStore = {
   url: "https://play.google.com/store/apps/details?id=com.lipabill.app",
@@ -37,7 +48,7 @@ export const faqs = [
   {
     question: "When can I download it?",
     answer:
-      "Android launch is 12 October 2026. The Play Store button stays off until then. Leave your email on the homepage and we’ll write when it’s ready.",
+      "Android launch is 13 October 2026. The Play Store button stays off until then. Leave your email on the homepage and we’ll write when it’s ready.",
   },
 ] as const;
 

@@ -1,6 +1,29 @@
 import Image from "next/image";
 import Link from "next/link";
 
+export function FreezeBanner() {
+  return (
+    <div className="relative overflow-hidden bg-[linear-gradient(100deg,#ffe08a_0%,#ffb020_38%,#ff7a18_100%)] text-[#2a1600]">
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-y-0 -left-8 w-24 -skew-x-12 bg-white/35"
+      />
+      <div className="relative mx-auto flex max-w-[90rem] flex-col items-center gap-2 px-5 py-2.5 text-center sm:flex-row sm:justify-center sm:gap-3 sm:px-8 sm:py-3 sm:text-left">
+        <span className="shrink-0 rounded-full bg-[#2a1600] px-2.5 py-1 text-[0.65rem] font-bold uppercase tracking-[0.16em] text-[#ffe08a]">
+          Promo
+        </span>
+        <p className="text-sm font-semibold leading-snug sm:text-[0.95rem]">
+          Engineering code freeze.
+          <span className="font-medium">
+            {" "}
+            The deploy button is on a beach holiday and did not pack a laptop. Launch gets one extra day so “one tiny fix” stays a folk tale.
+          </span>
+        </p>
+      </div>
+    </div>
+  );
+}
+
 export function SiteHeader({ solid = false }: { solid?: boolean }) {
   return (
     <header
