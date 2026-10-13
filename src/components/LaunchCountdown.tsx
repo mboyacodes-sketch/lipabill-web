@@ -1,25 +1,11 @@
 "use client";
 
-import { useSyncExternalStore } from "react";
+import { useEffect, useState } from "react";
 import { launchAt, launchDayLabel, playStore } from "@/lib/site";
 
 const LAUNCH_MS = Date.parse(launchAt);
 
-function subscribe(onStoreChange: () => void) {
-  const id = window.setInterval(onStoreChange, 1000);
-  return () => window.clearInterval(id);
-}
-
-function getSnapshot() {
-  return Date.now();
-}
-
-function getServerSnapshot() {
-  return 0;
-}
-
 function splitRemaining(now: number) {
-  if (now === 0) return null;
   const ms = Math.max(0, LAUNCH_MS - now);
   const totalSeconds = Math.floor(ms / 1000);
   return {
@@ -36,8 +22,18 @@ function pad(value: number) {
 }
 
 export function LaunchPromo({ className = "" }: { className?: string }) {
-  const now = useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot);
-  const remaining = splitRemaining(now);
+  // Stay null until mount so the server HTML and the first client render match.
+  // A fresh Date.now() inside render never compares equal and React tears the page down.
+  const [now, setNow] = useState<number | null>(null);
+
+  useEffect(() => {
+    const tick = () => setNow(Date.now());
+    tick();
+    const id = window.setInterval(tick, 1000);
+    return () => window.clearInterval(id);
+  }, []);
+
+  const remaining = now == null ? null : splitRemaining(now);
   const headline = !remaining
     ? "Days to go"
     : remaining.done
