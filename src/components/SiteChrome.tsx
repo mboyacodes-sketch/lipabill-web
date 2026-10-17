@@ -10,13 +10,13 @@ export function FreezeBanner() {
       />
       <div className="relative mx-auto flex max-w-[90rem] flex-col items-center gap-2 px-5 py-2.5 text-center sm:flex-row sm:justify-center sm:gap-3 sm:px-8 sm:py-3 sm:text-left">
         <span className="shrink-0 rounded-full bg-[#2a1600] px-2.5 py-1 text-[0.65rem] font-bold uppercase tracking-[0.16em] text-[#ffe08a]">
-          Applied for production
+          Awaiting production review
         </span>
         <p className="text-sm font-semibold leading-snug sm:text-[0.95rem]">
-          Engineering code freeze.
+          Submitted to the Play Store.
           <span className="font-medium">
             {" "}
-            The deploy button is on a beach holiday and did not pack a laptop. Eight more days, so “one tiny fix” stays a folk tale.
+            Review is in progress — the download button stays offline until Google clears it.
           </span>
         </p>
       </div>
