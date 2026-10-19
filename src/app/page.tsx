@@ -24,8 +24,8 @@ const steps = [
   },
   {
     n: "03",
-    title: "Send, pay, board",
-    body: "Move money — and keep tickets ready offline.",
+    title: "Send, pay, show a pass",
+    body: "Move money — and open QR or barcode passes offline.",
   },
 ];
 
@@ -48,7 +48,7 @@ export default function Home() {
             "Receive with a shareable pay link or QR",
             "Balance and history from M-Pesa confirmation SMS on this phone",
             "Spending insights stored on the phone",
-            "Event, SGR, and flight passes offline, with reminders",
+            "QR and barcode passes for events, SGR, and flights — offline, with reminders",
             "Optional no-spend challenges and weekly check-in",
             "App lock with fingerprint, face, or phone PIN",
           ],
@@ -184,8 +184,8 @@ export default function Home() {
                         className="tilt tilt-slow"
                         tilt="-5deg"
                         n="3"
-                        title="Send, pay, board"
-                        body="Move money — keep tickets ready offline."
+                        title="Send, pay, show a pass"
+                        body="Move money — open QR or barcode passes offline."
                       />
                     </div>
                   </OrbitScale>
@@ -230,10 +230,11 @@ export default function Home() {
                       style={{ ["--tilt" as string]: "5deg" }}
                     >
                       <p className="text-base font-semibold text-ink">
-                        Your ticket wallet
+                        Passes &amp; QR codes
                       </p>
                       <p className="mt-1.5 text-sm leading-relaxed text-mute">
-                        Events, SGR, and flights — show your pass when it counts.
+                        Event, SGR, and flight QR or barcode passes — scan or
+                        import, then show offline at the gate.
                       </p>
                       <TicketIllustration />
                     </div>
@@ -285,6 +286,11 @@ export default function Home() {
               body="Send to people you choose, or pay Paybill, till, or Pochi. LipaBill prepares the payment — you confirm the amount and recipient before it leaves. Paste paybill details when you have them, and pick your Safaricom SIM on dual-SIM phones."
             />
             <Feature
+              label="Passes &amp; QR"
+              title="Show the code at the gate"
+              body="Keep event tickets, SGR / Madaraka Express, and flight boarding passes as QR or barcodes next to your wallet. Scan a code, paste details, import a PKPass or e-ticket, or pull a booking SMS — then open the pass offline. Reminders before you travel."
+            />
+            <Feature
               label="Repeat &amp; Receive"
               title="Again — or get paid"
               body="Repeat a past payment with automatic M-Pesa screen fill, or copy the details instead. Share a Receive QR or pay link for your phone, till, or paybill so someone else can pay you."
@@ -298,11 +304,6 @@ export default function Home() {
               label="Insights &amp; Habits"
               title="See where money went"
               body="Charts and totals from history already on your phone. Optional no-spend challenges and a short weekly check-in help you notice patterns — still offline-first."
-            />
-            <Feature
-              label="Tickets"
-              title="Passes ready at the gate"
-              body="Event tickets, SGR / Madaraka Express, and flight bookings with boarding passes. Scan, paste, PKPass, e-ticket, or booking SMS — then open the pass offline. Reminders before you travel."
             />
             <Feature
               label="On this phone"
