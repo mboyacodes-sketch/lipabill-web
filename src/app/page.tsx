@@ -8,6 +8,7 @@ import {
 import { JsonLd } from "@/components/JsonLd";
 import { LaunchPromo } from "@/components/LaunchCountdown";
 import { NotifyForm } from "@/components/NotifyForm";
+import { PassesShowcase } from "@/components/PassesShowcase";
 import { SiteFooter, SiteHeader } from "@/components/SiteChrome";
 import { absoluteUrl, site } from "@/lib/site";
 
@@ -150,13 +151,21 @@ export default function Home() {
                         </div>
                       </div>
                       <div className="mt-3 grid grid-cols-3 gap-1.5">
-                        {["Send", "Pay", "Receive", "Tickets"].map((label) => (
-                          <div
-                            key={label}
-                            className="rounded-lg bg-sky-soft px-1 py-2 text-center text-[0.55rem] font-medium text-blue-deep"
+                        {(
+                          [
+                            { label: "Send", href: "/#notify" },
+                            { label: "Pay", href: "/#notify" },
+                            { label: "Receive", href: "/#passes" },
+                            { label: "Passes", href: "/#passes" },
+                          ] as const
+                        ).map((item) => (
+                          <Link
+                            key={item.label}
+                            href={item.href}
+                            className="rounded-lg bg-sky-soft px-1 py-2 text-center text-[0.55rem] font-medium text-blue-deep hover:bg-sky"
                           >
-                            {label}
-                          </div>
+                            {item.label}
+                          </Link>
                         ))}
                       </div>
                     </div>
@@ -314,7 +323,9 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="border-t border-line/70 bg-paper px-5 py-16 sm:px-8 sm:py-20">
+      <PassesShowcase />
+
+      <section className="border-t border-line/70 bg-mist px-5 py-16 sm:px-8 sm:py-20">
         <div className="mx-auto max-w-3xl">
           <p className="text-xs font-medium uppercase tracking-[0.18em] text-blue">
             On this phone
