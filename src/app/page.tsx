@@ -43,11 +43,14 @@ export default function Home() {
           description: site.description,
           image: absoluteUrl("/icon-512.png"),
           featureList: [
-            "Send and Pay, confirmed before the money moves",
-            "Balance and history from payment confirmation messages",
-            "More Payment Providers over time",
+            "Send money and Pay Paybill, till, or Pochi — confirmed before the money moves",
+            "Repeat a past payment",
+            "Receive with a shareable pay link or QR",
+            "Balance and history from M-Pesa confirmation SMS on this phone",
             "Spending insights stored on the phone",
-            "Event and SGR tickets available offline",
+            "Event, SGR, and flight passes offline, with reminders",
+            "Optional no-spend challenges and weekly check-in",
+            "App lock with fingerprint, face, or phone PIN",
           ],
           offers: {
             "@type": "Offer",
@@ -147,10 +150,10 @@ export default function Home() {
                         </div>
                       </div>
                       <div className="mt-3 grid grid-cols-3 gap-1.5">
-                        {["Send", "Pay", "Tickets"].map((label) => (
+                        {["Send", "Pay", "Receive", "Tickets"].map((label) => (
                           <div
                             key={label}
-                            className="rounded-lg bg-sky-soft px-1 py-2 text-center text-[0.6rem] font-medium text-blue-deep"
+                            className="rounded-lg bg-sky-soft px-1 py-2 text-center text-[0.55rem] font-medium text-blue-deep"
                           >
                             {label}
                           </div>
@@ -230,7 +233,7 @@ export default function Home() {
                         Your ticket wallet
                       </p>
                       <p className="mt-1.5 text-sm leading-relaxed text-mute">
-                        Events, SGR, and more — show your pass when it counts.
+                        Events, SGR, and flights — show your pass when it counts.
                       </p>
                       <TicketIllustration />
                     </div>
@@ -271,29 +274,40 @@ export default function Home() {
           </h2>
           <p className="mt-4 max-w-2xl text-[1.05rem] leading-relaxed text-ink-soft">
             LipaBill is Offline-First, and Send and Pay come first. You confirm
-            who gets paid before the money moves. The ledger stays on the phone,
-            and more Payment Providers can be added over time.
+            who gets paid before the money moves. Receive, Repeat, history,
+            tickets, and habits stay on the phone — with more Payment Providers
+            possible over time.
           </p>
           <div className="mt-14 grid gap-x-16 gap-y-12 sm:grid-cols-2">
             <Feature
               label="Send &amp; Pay"
               title="Confirm before anything goes out"
-              body="Send to people you choose, or pay a business. LipaBill prepares the payment — you confirm the amount and recipient before it leaves."
+              body="Send to people you choose, or pay Paybill, till, or Pochi. LipaBill prepares the payment — you confirm the amount and recipient before it leaves. Paste paybill details when you have them, and pick your Safaricom SIM on dual-SIM phones."
+            />
+            <Feature
+              label="Repeat &amp; Receive"
+              title="Again — or get paid"
+              body="Repeat a past payment with automatic M-Pesa screen fill, or copy the details instead. Share a Receive QR or pay link for your phone, till, or paybill so someone else can pay you."
             />
             <Feature
               label="History"
               title="Balance from confirmation SMS"
-              body="With optional SMS permission, LipaBill reads payment confirmation messages to show available balance and a local transaction list. Your ledger stays encrypted on the device."
+              body="With optional SMS permission, LipaBill reads Safaricom M-Pesa confirmation messages to show available balance and a local ledger — including Fuliza, savings, and airtime. Encrypted on this device."
             />
             <Feature
-              label="Insights"
+              label="Insights &amp; Habits"
               title="See where money went"
-              body="Charts and totals for income and spending over the dates you care about — built from the history already on your phone, even when signal is weak."
+              body="Charts and totals from history already on your phone. Optional no-spend challenges and a short weekly check-in help you notice patterns — still offline-first."
             />
             <Feature
               label="Tickets"
               title="Passes ready at the gate"
-              body="Keep event tickets and SGR boarding passes next to your wallet. Scan a code or pull booking details, then open the pass offline when you need it."
+              body="Event tickets, SGR / Madaraka Express, and flight bookings with boarding passes. Scan, paste, PKPass, e-ticket, or booking SMS — then open the pass offline. Reminders before you travel."
+            />
+            <Feature
+              label="On this phone"
+              title="Locked to you"
+              body="Fingerprint, face, or your phone PIN. Favourites on the home screen, hide balance until you tap, and no LipaBill cloud account for your ledger."
             />
           </div>
         </div>

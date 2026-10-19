@@ -35,7 +35,7 @@ export default function PrivacyPage() {
           name: "Privacy — LipaBill",
           url: absoluteUrl("/privacy"),
           description,
-          dateModified: "2026-10-03",
+          dateModified: "2026-10-19",
           isPartOf: { "@id": absoluteUrl("/#website") },
         }}
       />
@@ -46,7 +46,7 @@ export default function PrivacyPage() {
         <h1 className="mt-3 text-3xl font-semibold tracking-tight text-ink sm:text-4xl">
           Your money stays on your phone
         </h1>
-        <p className="mt-3 text-sm text-mute">Last updated: 3 October 2026</p>
+        <p className="mt-3 text-sm text-mute">Last updated: 19 October 2026</p>
 
         <div className="prose-lipa mt-10 space-y-8 text-[1.05rem] leading-relaxed text-ink-soft">
           <p>
@@ -86,8 +86,9 @@ export default function PrivacyPage() {
                 messages aren’t kept as your ledger.
               </li>
               <li>
-                <strong>Phone</strong> — used when you start a payment you
-                confirm in the app.
+                <strong>Phone</strong> — used when you start a Send, Pay, or
+                Repeat payment you confirm in the app (including choosing a
+                Safaricom SIM on dual-SIM phones).
               </li>
               <li>
                 <strong>Contacts</strong> — optional. Helps you find people you
@@ -97,9 +98,16 @@ export default function PrivacyPage() {
                 <strong>Camera</strong> — optional. For scanning ticket codes.
               </li>
               <li>
-                <strong>Accessibility</strong> — optional. Helps complete
-                payment steps you have already confirmed. It doesn’t run in the
-                background for other apps when you’re not paying.
+                <strong>AccessibilityService API</strong> — optional. Used only
+                to help complete Safaricom M-Pesa USSD steps for Send, Pay, and
+                Repeat payments you start and confirm in the app. After you
+                confirm and enter your PIN on LipaBill’s keypad, the service may
+                read on-screen USSD prompts and fill the next step for that
+                payment session only. It doesn’t read SMS, doesn’t change system
+                settings, and doesn’t control unrelated apps when you’re not
+                paying. LipaBill is not an accessibility tool for disabilities.
+                You can turn “LipaBill Repeat Payment” off in Android
+                Accessibility settings anytime.
               </li>
               <li>
                 <strong>Notifications</strong> — for payment status updates.

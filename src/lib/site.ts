@@ -1,13 +1,13 @@
 export const site = {
   name: "LipaBill",
-  url: "https://lipabill.mboya.dev",
+  url: "https://lipabill.app",
   email: "mboya.codes@gmail.com",
   locale: "en_KE",
   title: "LipaBill — Offline-First Transaction Wallet",
   description:
-    "LipaBill is an Offline-First Transaction Wallet for Android. Send and Pay come first, the ledger stays on your phone, and more Payment Providers can be added over time.",
+    "LipaBill is an Offline-First Transaction Wallet for Android. Send, Pay, Repeat, and Receive on M-Pesa; history, insights, tickets, and habits stay on your phone.",
   shortDescription:
-    "Offline-First Transaction Wallet for Android. Send and Pay on your phone, even without internet.",
+    "Offline-First Transaction Wallet for Android. Send, Pay, Receive, and tickets on your phone — even without internet.",
 } as const;
 
 /** Close of 21 October 2026, East Africa Time. Eight days after the previous close. */
@@ -33,7 +33,7 @@ export const faqs = [
   {
     question: "What is LipaBill?",
     answer:
-      "An Offline-First Transaction Wallet for Android. Send and Pay come first, and more Payment Providers can be added over time. LipaBill is not a bank.",
+      "An Offline-First Transaction Wallet for Android. Send, Pay, Repeat, and Receive on M-Pesa come first, with history, tickets, and habits on the phone. LipaBill is not a bank.",
   },
   {
     question: "Does my data live in the cloud?",
@@ -61,7 +61,7 @@ export function llmsTxt() {
 
 > ${site.shortDescription} The Android app is not on the Play Store yet.
 
-LipaBill is a Transaction Wallet: Send and Pay first, with the ledger on the phone. More Payment Providers can be added over time. There is no LipaBill cloud account for that ledger.
+LipaBill is a Transaction Wallet: Send, Pay, Repeat, and Receive first, with the ledger, tickets, and habits on the phone. More Payment Providers can be added over time. There is no LipaBill cloud account for that ledger.
 
 ## Early access
 
@@ -93,15 +93,19 @@ This file is a factual summary of the marketing site at ${site.url}. LipaBill is
 
 ## What it does
 
-- Send and Pay to people you choose, and to businesses. LipaBill prepares the payment. You confirm the amount and recipient before it leaves.
-- With optional SMS permission, read payment confirmation messages to show available balance and a local transaction list. The ledger stays encrypted on the device.
-- Keep event tickets and SGR boarding passes on the phone. Scan a code or pull booking details, then open the pass offline.
+- Send money to people, and Pay Paybill, till, or Pochi. Confirm amount and recipient before the money moves. Dual-SIM phones can choose the Safaricom line.
+- Repeat a past payment (automatic M-Pesa USSD screen fill via AccessibilityService after Confirm, or copy details).
+- Receive — share a QR or pay link for your phone, till, or paybill.
+- With optional SMS permission, read Safaricom M-Pesa confirmation messages for balance and an encrypted local ledger (including Fuliza, savings, airtime).
+- Insights charts from that history; optional no-spend challenges and a weekly check-in.
+- Tickets: events, SGR / Madaraka Express, and flights with boarding passes (scan, paste, PKPass, e-ticket, booking SMS), plus pass reminders.
+- Favourites on home; hide balance until you tap; app lock with fingerprint, face, or phone PIN.
 
 ## What stays on the phone
 
 Payment history, tickets, and settings stay on the device under fingerprint, face, or the phone PIN. LipaBill does not run a server that holds your ledger or SMS. Clearing app storage or uninstalling the app removes that on-device data.
 
-Optional permissions (SMS, contacts, camera, phone, accessibility, notifications) only unlock the features that need them. You can deny any of them.
+Optional permissions (SMS, contacts, camera, phone, AccessibilityService, notifications) only unlock the features that need them. You can deny any of them.
 
 To keep the app stable, LipaBill uses Google Firebase for product analytics and crash reports. That does not include payment amounts, recipients, or your PIN. Advertising ID collection is turned off.
 

@@ -88,24 +88,26 @@ export default function SupportPage() {
           </h2>
           <ul className="mt-4 space-y-4 text-ink-soft">
             <li>
-              <strong className="text-ink">Send &amp; Pay</strong>
+              <strong className="text-ink">Send, Pay, Repeat &amp; Receive</strong>
               <p className="mt-1">
-                Move money to people and businesses you choose, with a clear
-                confirm step before anything goes out.
+                Send to people; pay Paybill, till, or Pochi; repeat a past
+                payment; or share a Receive QR / pay link — always with a clear
+                confirm step before money leaves.
               </p>
             </li>
             <li>
-              <strong className="text-ink">See your spending</strong>
+              <strong className="text-ink">History, insights &amp; habits</strong>
               <p className="mt-1">
-                Keep history and insights on this phone so you know where money
-                went — even with little or no internet.
+                Optional SMS builds a local ledger and balance. Charts, no-spend
+                challenges, and a weekly check-in stay on this phone — even with
+                little or no internet.
               </p>
             </li>
             <li>
               <strong className="text-ink">Tickets in one place</strong>
               <p className="mt-1">
-                Hold event and travel passes next to your wallet and show them
-                when you need to.
+                Event passes, SGR, and flight boarding passes next to your
+                wallet, with reminders before you travel.
               </p>
             </li>
           </ul>
