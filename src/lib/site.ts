@@ -98,7 +98,7 @@ This file is a factual summary of the marketing site at ${site.url}. LipaBill is
 - Receive — share a QR or pay link for your phone, till, or paybill.
 - With optional SMS permission, read Safaricom M-Pesa confirmation messages for balance and an encrypted local ledger (including Fuliza, savings, airtime).
 - Insights charts from that history; optional no-spend challenges and a weekly check-in.
-- Tickets: events, SGR / Madaraka Express, and flights with boarding passes (scan, paste, PKPass, e-ticket, booking SMS), plus pass reminders.
+- Tickets: events and SGR / Madaraka Express (scan, paste, PKPass, e-ticket, booking SMS), plus pass reminders. Flight boarding passes are coming soon.
 - Favourites on home; hide balance until you tap; app lock with fingerprint, face, or phone PIN.
 
 ## What stays on the phone

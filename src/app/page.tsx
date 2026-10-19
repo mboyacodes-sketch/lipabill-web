@@ -49,7 +49,7 @@ export default function Home() {
             "Receive with a shareable pay link or QR",
             "Balance and history from M-Pesa confirmation SMS on this phone",
             "Spending insights stored on the phone",
-            "QR and barcode passes for events, SGR, and flights — offline, with reminders",
+            "QR and barcode passes for events and SGR — offline, with reminders; flight boarding coming soon",
             "Optional no-spend challenges and weekly check-in",
             "App lock with fingerprint, face, or phone PIN",
           ],
@@ -242,8 +242,9 @@ export default function Home() {
                         Passes &amp; QR codes
                       </p>
                       <p className="mt-1.5 text-sm leading-relaxed text-mute">
-                        Event, SGR, and flight QR or barcode passes — scan or
-                        import, then show offline at the gate.
+                        Event and SGR QR or barcode passes — scan or import,
+                        then show offline at the gate. Flight boarding coming
+                        soon.
                       </p>
                       <TicketIllustration />
                     </div>
@@ -297,7 +298,7 @@ export default function Home() {
             <Feature
               label="Passes &amp; QR"
               title="Show the code at the gate"
-              body="Keep event tickets, SGR / Madaraka Express, and flight boarding passes as QR or barcodes next to your wallet. Scan a code, paste details, import a PKPass or e-ticket, or pull a booking SMS — then open the pass offline. Reminders before you travel."
+              body="Keep event tickets and SGR / Madaraka Express as QR or barcodes next to your wallet. Scan a code, paste details, import a PKPass or e-ticket, or pull a booking SMS — then open the pass offline. Reminders before you travel. Flight boarding passes are coming soon."
             />
             <Feature
               label="Repeat &amp; Receive"

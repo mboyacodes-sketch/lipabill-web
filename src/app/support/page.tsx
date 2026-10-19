@@ -106,9 +106,9 @@ export default function SupportPage() {
             <li>
               <strong className="text-ink">Passes &amp; QR codes</strong>
               <p className="mt-1">
-                Event, SGR, and flight boarding passes as QR or barcodes next to
-                your wallet — scan or import, show offline, with reminders
-                before you travel.
+                Event and SGR passes as QR or barcodes next to your wallet —
+                scan or import, show offline, with reminders before you travel.
+                Flight boarding is coming soon.
               </p>
             </li>
           </ul>
