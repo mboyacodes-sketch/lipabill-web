@@ -10,8 +10,8 @@ export const site = {
     "Offline-First Transaction Wallet for Android. Send, Pay, Receive, and tickets on your phone — even without internet.",
 } as const;
 
-/** Close of 21 October 2026, East Africa Time. Eight days after the previous close. */
-export const launchAt = "2026-10-22T00:00:00+03:00";
+/** Close of 29 October 2026, East Africa Time. Eight days after the previous close. */
+export const launchAt = "2026-10-30T00:00:00+03:00";
 
 /** Calendar day the countdown is counting down to, in East Africa Time. */
 export function launchDayLabel() {
