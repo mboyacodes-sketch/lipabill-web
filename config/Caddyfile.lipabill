@@ -1,9 +1,8 @@
-# Add to /Users/mizu/server/Caddyfile on the deploy host, then reload Caddy.
-# Shares kamal-proxy with mbulu on :3010 (Host-header routing). bashenga = :3001.
+# Permanent redirect only — no LipaBill app on the deploy host.
+# Install into /Users/mizu/server/Caddyfile, then:
+#   docker exec server-caddy-1 caddy reload --config /etc/caddy/Caddyfile
+# (Cloudflare tunnel home_mac → docker Caddy on 127.0.0.1:8080)
 
 http://lipabill.mboya.dev {
-	reverse_proxy host.docker.internal:3010 {
-		header_up Host {host}
-		header_up X-Forwarded-Proto https
-	}
+	redir https://lipabill.app{uri} permanent
 }

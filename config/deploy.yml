@@ -4,30 +4,29 @@ service: lipabill
 # Name of the container image (pushed to the registry below).
 image: mboyacodes-sketch/lipabill
 
-# Deploy to these servers (SSH).
+# RETIRED from the home Mac (10.7.0.1): no Kamal app, no auto-restart.
+# Canonical site is https://lipabill.app (Vercel).
+# lipabill.mboya.dev is a Caddy 301 only — see config/Caddyfile.lipabill.
+# To redeploy on a host again, add servers.web.hosts and restore the proxy block.
 servers:
   web:
-    hosts:
-      - 10.7.0.1
+    hosts: []
 
-# Keep kamal-proxy for zero-downtime deploys, but do NOT take ports 80/443 —
-# Caddy already terminates TLS for *.mboya.dev. Bind HTTP only on localhost;
-# Caddy reverse_proxies to it (see config/Caddyfile.lipabill).
-proxy:
-  ssl: false
-  host: lipabill.mboya.dev
-  app_port: 3000
-  forward_headers: true
-  healthcheck:
-    path: /up
-    interval: 3
-    timeout: 5
-  run:
-    # Shared kamal-proxy with mbulu (Host-header routing). Caddy → :3010.
-    http_port: 3010
-    https_port: 3011
-    bind_ips:
-      - 127.0.0.1
+# Proxy disabled while retired (was: shared kamal-proxy :3010, host lipabill.mboya.dev).
+# proxy:
+#   ssl: false
+#   host: lipabill.mboya.dev
+#   app_port: 3000
+#   forward_headers: true
+#   healthcheck:
+#     path: /up
+#     interval: 3
+#     timeout: 5
+#   run:
+#     http_port: 3010
+#     https_port: 3011
+#     bind_ips:
+#       - 127.0.0.1
 
 # GitHub Container Registry (GHCR).
 # Login username must be your personal GitHub user (PAT owner).

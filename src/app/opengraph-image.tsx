@@ -59,7 +59,7 @@ export default async function OpenGraphImage() {
           </div>
         </div>
         <div style={{ display: "flex", fontSize: 24, fontWeight: 600, color: "#2f6bff" }}>
-          lipabill.mboya.dev
+          lipabill.app
         </div>
       </div>
     ),
