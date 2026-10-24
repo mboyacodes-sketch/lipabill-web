@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { JsonLd } from "@/components/JsonLd";
 import { SiteFooter, SiteHeader } from "@/components/SiteChrome";
-import { absoluteUrl } from "@/lib/site";
+import { absoluteUrl, site } from "@/lib/site";
 
 const description =
   "How LipaBill keeps your transactions, messages, and tickets on your phone, and which permissions are optional.";
@@ -131,7 +131,7 @@ export default function PrivacyPage() {
               If you leave your email on this website, we store that address in
               a Google Sheet so we can tell you when the Android app is
               available. We don&apos;t use it for anything else. Email{" "}
-              <a href="mailto:mboya.codes@gmail.com">mboya.codes@gmail.com</a> to
+              <a href={`mailto:${site.email}`}>{site.email}</a> to
               be removed.
             </p>
           </section>
@@ -175,7 +175,7 @@ export default function PrivacyPage() {
             <h2>Questions</h2>
             <p>
               Reach us at{" "}
-              <a href="mailto:mboya.codes@gmail.com">mboya.codes@gmail.com</a> or
+              <a href={`mailto:${site.email}`}>{site.email}</a> or
               visit our{" "}
               <Link href="/support">support page</Link>.
             </p>

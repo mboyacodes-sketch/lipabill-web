@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { JsonLd } from "@/components/JsonLd";
 import { SiteFooter, SiteHeader } from "@/components/SiteChrome";
-import { absoluteUrl, faqs } from "@/lib/site";
+import { absoluteUrl, faqs, site } from "@/lib/site";
 
 const description =
   "Get help with LipaBill, the Offline-First Transaction Wallet for Android. Contact, what the app is for, and common questions.";
@@ -73,9 +73,9 @@ export default function SupportPage() {
             Email{" "}
             <a
               className="font-medium text-blue hover:underline"
-              href="mailto:mboya.codes@gmail.com"
+              href={`mailto:${site.email}`}
             >
-              mboya.codes@gmail.com
+              {site.email}
             </a>
             . Tell us your device model and Android version if you’re reporting
             a problem — it helps us respond faster.

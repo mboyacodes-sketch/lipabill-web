@@ -1,7 +1,7 @@
 export const site = {
   name: "LipaBill",
   url: "https://lipabill.app",
-  email: "mboya.codes@gmail.com",
+  email: "support@lipabill.app",
   locale: "en_KE",
   title: "LipaBill — Offline-First Transaction Wallet",
   description:
