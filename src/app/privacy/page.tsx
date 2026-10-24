@@ -35,7 +35,7 @@ export default function PrivacyPage() {
           name: "Privacy — LipaBill",
           url: absoluteUrl("/privacy"),
           description,
-          dateModified: "2026-10-19",
+          dateModified: "2026-10-24",
           isPartOf: { "@id": absoluteUrl("/#website") },
         }}
       />
@@ -46,25 +46,33 @@ export default function PrivacyPage() {
         <h1 className="mt-3 text-3xl font-semibold tracking-tight text-ink sm:text-4xl">
           Your money stays on your phone
         </h1>
-        <p className="mt-3 text-sm text-mute">Last updated: 19 October 2026</p>
+        <p className="mt-3 text-sm text-mute">Last updated: 24 October 2026</p>
 
         <div className="prose-lipa mt-10 space-y-8 text-[1.05rem] leading-relaxed text-ink-soft">
           <p>
             LipaBill is built so your payments, history, and tickets live on
             this device — not in a LipaBill cloud account. This page explains
             what the app uses, what it doesn’t, and the choices you control.
+            Data that never leaves your phone (including M-Pesa SMS and your
+            ledger) is not “collected” under Google Play’s Data Safety
+            definition. Product analytics and crash reports sent to Google are.
           </p>
 
           <section>
             <h2>What stays on your device</h2>
             <p>
-              With your permission, LipaBill can read payment confirmation
-              messages to show your balance and history. That information is
-              stored encrypted on your phone.
+              LipaBill’s core money-management feature reads Safaricom M-Pesa
+              confirmation SMS (sender MPESA), with your permission, to build
+              an encrypted transaction history, available balance, and spending
+              overview on this phone. SMS content is processed and stored only
+              on the device. It is not uploaded to LipaBill (there is no
+              LipaBill cloud ledger) and is not sent to Google Firebase.
             </p>
             <p>
               Tickets you add — photos, PDFs, passes, or booking details — also
-              stay on the device so you can open them offline.
+              stay on the device so you can open them offline. Contacts and
+              camera, if you allow them, are used on the phone and not
+              uploaded.
             </p>
             <p>
               We don’t run a LipaBill server that holds your ledger or SMS. If
@@ -81,9 +89,11 @@ export default function PrivacyPage() {
             </p>
             <ul>
               <li>
-                <strong>SMS</strong> — optional. Used to build your local
-                transaction history from payment confirmation messages. Other
-                messages aren’t kept as your ledger.
+                <strong>SMS</strong> — used to build your local M-Pesa
+                money-management ledger from Safaricom confirmation messages
+                (sender MPESA). Other messages, including OTPs, are not kept as
+                your ledger. You can deny SMS; history, balance, and insights
+                then stay empty.
               </li>
               <li>
                 <strong>Phone</strong> — used when you start a Send, Pay, or
@@ -106,7 +116,7 @@ export default function PrivacyPage() {
                 payment session only. It doesn’t read SMS, doesn’t change system
                 settings, and doesn’t control unrelated apps when you’re not
                 paying. LipaBill is not an accessibility tool for disabilities.
-                You can turn “LipaBill Repeat Payment” off in Android
+                You can turn “LipaBill M-Pesa payments” off in Android
                 Accessibility settings anytime.
               </li>
               <li>
@@ -129,12 +139,14 @@ export default function PrivacyPage() {
           <section>
             <h2>Improving the app</h2>
             <p>
-              To keep LipaBill stable and useful, we use Google Firebase for
-              product analytics (for example which screens are opened) and crash
-              reports. That information is processed by Google and may include
-              device and app details needed for diagnostics. It does not include
-              your payment amounts, recipients, or PIN. Advertising ID collection
-              is turned off.
+              To keep LipaBill stable and useful, the play build sends product
+              analytics (for example which screens are opened, whether SMS
+              permission was granted, and payment flow type such as
+              send/pay/repeat) and crash reports to Google Firebase. That is
+              the data Google Play treats as collected and shared. It may
+              include device and app details needed for diagnostics. It does
+              not include your M-Pesa SMS bodies, ledger amounts, recipients,
+              or PIN. Advertising ID collection is turned off.
             </p>
           </section>
 
@@ -144,7 +156,7 @@ export default function PrivacyPage() {
               <li>Sell your personal data</li>
               <li>Use your transaction history for advertising</li>
               <li>Store or send your payment PIN</li>
-              <li>Upload your full SMS inbox</li>
+              <li>Upload your M-Pesa SMS, ledger, or full inbox off this phone</li>
             </ul>
           </section>
 
