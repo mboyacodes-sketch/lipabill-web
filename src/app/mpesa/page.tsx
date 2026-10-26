@@ -6,7 +6,7 @@ import { absoluteUrl, launchDayLabel } from "@/lib/site";
 
 const title = "M-Pesa money management on Android";
 const description =
-  "LipaBill reads Safaricom M-Pesa confirmation SMS on this phone to build an encrypted ledger and balance, then Send, Pay, and Repeat without putting your history in the cloud.";
+  "See your M-Pesa history and balance on this phone. Send and pay when data is weak. Built from the confirmation texts you already get.";
 
 export const metadata: Metadata = {
   title,
@@ -53,9 +53,9 @@ export default function MpesaPage() {
           M-Pesa history, Send &amp; Pay — on this phone
         </h1>
         <p className="mt-4 text-[1.05rem] leading-relaxed text-ink-soft">
-          LipaBill is an M-Pesa money-management app for Android in Kenya.
-          Confirmation SMS stay on the device. Send and Pay still work when
-          data is weak, because they use M-Pesa USSD after you confirm.
+          LipaBill is where your M-Pesa lives on this phone. It is not a bank,
+          and it is not Safaricom. History comes from the confirmation texts
+          you already get. Send and Pay still work when data is weak.
         </p>
 
         <section className="mt-12">
@@ -63,12 +63,11 @@ export default function MpesaPage() {
             SMS for money management — not OTPs
           </h2>
           <p className="mt-3 leading-relaxed text-ink-soft">
-            With SMS allowed, LipaBill reads Safaricom confirmation messages
-            (sender MPESA) and builds an encrypted ledger, available balance,
-            and spending overview. Fuliza, savings, and airtime sit in that
-            same history. Promo messages and OTPs are not kept as your ledger.
-            LipaBill does not send SMS and is not your default messaging app.
-            Deny SMS and history stays empty.
+            If you allow SMS, LipaBill reads Safaricom confirmation texts
+            (sender MPESA) to show your balance and what you spent. Fuliza,
+            savings, and airtime sit in that same history. Other messages,
+            including OTPs, are not kept. LipaBill does not send SMS. If you
+            turn SMS off, history stays empty.
           </p>
         </section>
 
@@ -78,16 +77,15 @@ export default function MpesaPage() {
           </h2>
           <p className="mt-3 leading-relaxed text-ink-soft">
             Send to a person. Pay Paybill, till, or Pochi. Repeat a past
-            payment. You confirm the amount and recipient in LipaBill, enter
-            your PIN on LipaBill’s keypad (it is not stored), then M-Pesa USSD
-            runs on the Safaricom line you pick. Accessibility Service is
-            optional and only fills that payment session.
+            payment. You confirm the amount and who gets paid, enter your PIN
+            on LipaBill’s keypad (it is not stored), then M-Pesa runs on the
+            Safaricom line you pick.
           </p>
         </section>
 
         <section className="mt-12">
           <h2 className="text-xl font-semibold text-ink">
-            Nothing leaves as a LipaBill cloud ledger
+            Your history stays on this phone
           </h2>
           <p className="mt-3 leading-relaxed text-ink-soft">
             There is no LipaBill account for your history. Uninstall or clear

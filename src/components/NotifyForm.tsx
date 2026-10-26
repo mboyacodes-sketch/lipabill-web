@@ -83,11 +83,11 @@ export function NotifyForm({ className = "" }: { className?: string }) {
           disabled={status === "sending"}
           className="shrink-0 rounded-xl bg-blue px-6 py-3 text-sm font-medium text-white disabled:opacity-60"
         >
-          {status === "sending" ? "Saving…" : "Early access"}
+          {status === "sending" ? "Saving…" : "Notify me"}
         </button>
       </form>
       <p className="mt-2 text-xs text-mute">
-        Email only. We&apos;ll use it to tell you when the Android app launches.
+        Email only. We&apos;ll write when LipaBill is on Google Play.
       </p>
       {status === "error" ? (
         <p className="mt-2 text-sm text-ink" role="alert">

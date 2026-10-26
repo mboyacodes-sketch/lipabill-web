@@ -51,14 +51,13 @@ export function PassesShowcase() {
               Passes &amp; QR
             </p>
             <h2 className="mt-2 max-w-2xl text-2xl font-semibold tracking-tight text-ink sm:text-3xl">
-              How passes look in LipaBill
+              Tickets next to your wallet
             </h2>
           </div>
         </div>
         <p className="mt-4 max-w-2xl text-[1.05rem] leading-relaxed text-ink-soft">
-          Mockups based on the in-app ticket and Receive screens — event QR
-          stubs, SGR barcodes, and a shareable pay QR. Sample data only. Flight
-          boarding is marked coming soon.
+          SGR and event tickets sit beside your M-Pesa history. Open them at
+          the gate even without data. Flight boarding is coming later.
         </p>
 
         <div className="mt-12 grid gap-8 sm:grid-cols-2 xl:grid-cols-4">

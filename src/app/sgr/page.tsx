@@ -84,7 +84,7 @@ export default function SgrPage() {
             Same app as your M-Pesa history
           </h2>
           <p className="mt-3 leading-relaxed text-ink-soft">
-            Passes sit beside Send, Pay, and your encrypted M-Pesa ledger.
+            Passes sit beside Send, Pay, and your M-Pesa history.
             Read how money management works on the{" "}
             <Link href="/mpesa" className="font-medium text-blue hover:underline">
               M-Pesa page

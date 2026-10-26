@@ -3,11 +3,11 @@ export const site = {
   url: "https://lipabill.app",
   email: "support@lipabill.app",
   locale: "en_KE",
-  title: "LipaBill — M-Pesa history, Send & Pay on Android in Kenya",
+  title: "LipaBill — Your M-Pesa, on this phone",
   description:
-    "M-Pesa money management for Kenya. LipaBill reads Safaricom confirmation SMS for an encrypted ledger and balance on this phone, then Send, Pay, Repeat, and keep SGR or event passes offline.",
+    "See your M-Pesa history and balance on this Android. Send and pay when data is weak. Keep SGR and event tickets next to your wallet. Kenya.",
   shortDescription:
-    "M-Pesa money management on Android in Kenya — history, Send & Pay, and passes on this phone, even offline.",
+    "Your M-Pesa, on this phone — history, Send & Pay, and tickets. Kenya.",
   keywords: [
     "LipaBill",
     "M-Pesa app Kenya",
@@ -41,31 +41,37 @@ export const playStore = {
   enabled: false,
 } as const;
 
-export const faqs = [
+/** Homepage — customer questions only. */
+export const homeFaqs = [
   {
     question: "What is LipaBill?",
     answer:
-      "LipaBill is an M-Pesa money-management app for Android in Kenya. Send, Pay, Repeat, and Receive come first, with history, SGR or event passes, and habits on the phone. It is not a bank.",
+      "LipaBill is where your M-Pesa lives on this phone. See what you spent, send and pay, and keep SGR or event tickets next to your wallet. It is not a bank, and it is not Safaricom.",
   },
   {
-    question: "Does LipaBill work without internet?",
+    question: "Does it work when data is weak?",
     answer:
-      "Yes. Send and Pay use M-Pesa USSD on this phone. Your ledger, balance, and passes stay on the device, so they still open offline.",
+      "Yes. Your history, balance, and tickets stay on the phone, so they still open. Send and Pay still go through M-Pesa on this device, even when the internet is slow.",
   },
+  {
+    question: "Can I keep SGR tickets in it?",
+    answer:
+      "Yes. Event tickets and SGR / Madaraka Express sit next to your wallet. Show them at the gate even without data.",
+  },
+  {
+    question: "When can I download it?",
+    answer:
+      `LipaBill comes to Android on ${launchDayLabel()}. Leave your email on this page and we’ll write when it’s on Google Play.`,
+  },
+] as const;
+
+/** Support — includes how SMS and permissions work. */
+export const supportFaqs = [
+  ...homeFaqs,
   {
     question: "Does LipaBill read all my SMS?",
     answer:
-      "No. With SMS allowed, it reads Safaricom M-Pesa confirmation SMS (sender MPESA) to build an encrypted ledger and balance. It does not send SMS, does not read OTPs, and is not your default messaging app.",
-  },
-  {
-    question: "Does my data live in the cloud?",
-    answer:
-      "Your transaction history and tickets stay on your device. We don’t create a LipaBill cloud account for your ledger. Read more in our privacy policy.",
-  },
-  {
-    question: "Can I keep SGR tickets in LipaBill?",
-    answer:
-      "Yes. Event tickets and SGR / Madaraka Express passes sit next to your wallet as QR or barcodes. Show them offline at the gate. Flight boarding passes are coming soon.",
+      "No. If you allow SMS, it reads Safaricom M-Pesa confirmation texts (sender MPESA) to build your history and balance. It does not send SMS, does not read OTPs, and is not your default messaging app.",
   },
   {
     question: "Do I have to allow every permission?",
@@ -73,11 +79,14 @@ export const faqs = [
       "No. First launch only asks for SMS, phone, and Accessibility. Contacts, camera, and notifications wait until you need them. You can deny any of them.",
   },
   {
-    question: "When can I download it?",
+    question: "Does my data live in the cloud?",
     answer:
-      `Android launch is ${launchDayLabel()}. The Play Store button stays off until then. Leave your email on the homepage and we’ll write when it’s ready.`,
+      "Your history and tickets stay on this phone. There is no LipaBill account that holds your M-Pesa picture. Read more in our privacy policy.",
   },
 ] as const;
+
+/** @deprecated use homeFaqs or supportFaqs */
+export const faqs = homeFaqs;
 
 export function absoluteUrl(path = "/") {
   return new URL(path, site.url).toString();
@@ -88,7 +97,7 @@ export function faqJsonLd() {
     "@type": "FAQPage",
     "@id": absoluteUrl("/#faq"),
     url: absoluteUrl("/"),
-    mainEntity: faqs.map((item) => ({
+    mainEntity: homeFaqs.map((item) => ({
       "@type": "Question",
       name: item.question,
       acceptedAnswer: {
@@ -118,7 +127,7 @@ export function softwareApplicationJsonLd() {
     countriesSupported: ["KE"],
     releaseDate: launchDayIso,
     featureList: [
-      "M-Pesa confirmation SMS → encrypted ledger and balance on this phone",
+      "M-Pesa confirmation texts → history and balance on this phone",
       "Send money and Pay Paybill, till, or Pochi — confirmed before the money moves",
       "Repeat a past payment",
       "Receive with a shareable pay link or QR",
@@ -143,7 +152,7 @@ export function llmsTxt() {
 
 > ${site.shortDescription} The Android app is not on the Play Store yet.
 
-LipaBill is a Transaction Wallet: Send, Pay, Repeat, and Receive first, with the ledger, tickets, and habits on the phone. More Payment Providers can be added over time. There is no LipaBill cloud account for that ledger.
+LipaBill is where your M-Pesa lives on this phone: history and balance first, then Send and Pay, then SGR or event tickets. It is not a bank and it is not Safaricom. There is no LipaBill account that holds your history.
 
 ## Early access
 
@@ -165,7 +174,7 @@ Email ${site.email}
 }
 
 export function llmsFullTxt() {
-  const faq = faqs
+  const faq = supportFaqs
     .map((item) => `### ${item.question}\n\n${item.answer}`)
     .join("\n\n");
 
@@ -173,7 +182,7 @@ export function llmsFullTxt() {
 
 > ${site.description}
 
-This file is a factual summary of the marketing site at ${site.url}. LipaBill is an Offline-First Transaction Wallet for Android. Send and Pay come first. More Payment Providers can be added over time. It is not a bank, and it is not on the Play Store yet.
+This file is a factual summary of the marketing site at ${site.url}. LipaBill is where your M-Pesa lives on this Android: history and balance first, then Send and Pay, then SGR or event tickets. It is not a bank, it is not Safaricom, and it is not on the Play Store yet.
 
 ## What it does
 

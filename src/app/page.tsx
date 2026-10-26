@@ -10,23 +10,23 @@ import { LaunchPromo } from "@/components/LaunchCountdown";
 import { NotifyForm } from "@/components/NotifyForm";
 import { PassesShowcase } from "@/components/PassesShowcase";
 import { SiteFooter, SiteHeader } from "@/components/SiteChrome";
-import { faqJsonLd, faqs, softwareApplicationJsonLd } from "@/lib/site";
+import { faqJsonLd, homeFaqs, softwareApplicationJsonLd } from "@/lib/site";
 
 const steps = [
   {
     n: "01",
-    title: "Unlock your way",
-    body: "Fingerprint, face, or your phone PIN.",
+    title: "See your money",
+    body: "Balance and history from the M-Pesa texts you already get.",
   },
   {
     n: "02",
-    title: "See your money",
-    body: "Balance and history from payment confirmations.",
+    title: "Send and pay",
+    body: "Even when data is weak. You confirm before anything leaves.",
   },
   {
     n: "03",
-    title: "Send, pay, show a pass",
-    body: "Move money — and open QR or barcode passes offline.",
+    title: "Show a pass",
+    body: "SGR and event tickets, ready at the gate.",
   },
 ];
 
@@ -55,16 +55,20 @@ export default function Home() {
           <div className="mx-auto grid max-w-[90rem] items-center gap-12 px-5 pb-16 pt-6 sm:px-8 xl:grid-cols-[minmax(22rem,32rem)_minmax(0,1fr)] xl:gap-8 xl:px-10 xl:pb-16 xl:pt-4">
             <div className="relative z-20 mx-auto flex w-full max-w-xl flex-col items-center text-center lg:mx-0 lg:max-w-none lg:items-start lg:text-left">
               <p className="text-xs font-medium uppercase tracking-[0.18em] text-blue">
-                M-Pesa money management · Kenya
+                For M-Pesa on Android in Kenya
               </p>
               <h1 className="mt-3 text-[clamp(2.4rem,1.5rem+2.6vw,3.75rem)] font-semibold leading-[1.05] tracking-tight text-ink">
-                No internet?
+                Your M-Pesa,
                 <br />
-                <span className="text-blue">No problem.</span>
+                <span className="text-blue">on this phone.</span>
               </h1>
               <p className="mt-4 max-w-md text-lg leading-relaxed text-ink-soft">
-                Send and Pay on M-Pesa still work — history, balance, and SGR or
-                event passes on this phone, even offline.
+                See what you spent. Send and pay when data is weak. Keep SGR
+                tickets next to your wallet.
+              </p>
+              <p className="mt-3 max-w-md text-sm leading-relaxed text-mute">
+                Built from the M-Pesa confirmation texts you already get. They
+                stay on this phone.
               </p>
               <LaunchPromo className="mt-8" />
               <div id="notify" className="mt-6 w-full max-w-md scroll-mt-24">
@@ -158,22 +162,22 @@ export default function Home() {
                         className="tilt tilt-delay"
                         tilt="-4deg"
                         n="1"
-                        title="Unlock your way"
-                        body="Fingerprint, face, or your phone PIN."
+                        title="See your money"
+                        body="History from the M-Pesa texts you already get."
                       />
                       <StepCard
                         className="tilt"
                         tilt="3deg"
                         n="2"
-                        title="See your money"
-                        body="Balance and history from payment confirmations."
+                        title="Send and pay"
+                        body="Even when data is weak. You confirm first."
                       />
                       <StepCard
                         className="tilt tilt-slow"
                         tilt="-5deg"
                         n="3"
-                        title="Send, pay, show a pass"
-                        body="Move money — open QR or barcode passes offline."
+                        title="Show a pass"
+                        body="SGR and event tickets, ready at the gate."
                       />
                     </div>
                   </OrbitScale>
@@ -260,47 +264,46 @@ export default function Home() {
             What LipaBill does
           </p>
           <h2 className="mt-3 max-w-xl text-2xl font-semibold tracking-tight text-ink sm:text-3xl">
-            A Transaction Wallet that lives on your phone.
+            Your M-Pesa picture, on this phone.
           </h2>
           <p className="mt-4 max-w-2xl text-[1.05rem] leading-relaxed text-ink-soft">
-            LipaBill is Offline-First, and Send and Pay come first. You confirm
-            who gets paid before the money moves. Receive, Repeat, history,
-            tickets, and habits stay on the phone — with more Payment Providers
-            possible over time.
+            LipaBill is not a new bank, and it is not Safaricom. It is where
+            your M-Pesa history lives on this phone — so you can see what went
+            out, send and pay, and keep tickets next to your wallet.
           </p>
           <div className="mt-14 grid gap-x-16 gap-y-12 sm:grid-cols-2">
             <Feature
-              label="Send &amp; Pay"
-              title="Confirm before anything goes out"
-              body="Send to people you choose, or pay Paybill, till, or Pochi. LipaBill prepares the payment — you confirm the amount and recipient before it leaves. Paste paybill details when you have them, and pick your Safaricom SIM on dual-SIM phones."
+              label="History"
+              title="See what you spent"
+              body="Built from the M-Pesa confirmation texts you already get. Balance, history, Fuliza, savings, and airtime — on this phone, not in a LipaBill account."
               href="/mpesa"
             />
             <Feature
-              label="Passes &amp; QR"
+              label="Send &amp; Pay"
+              title="Confirm before anything goes out"
+              body="Send to a person, or pay Paybill, till, or Pochi. You confirm the amount and who gets paid. Then M-Pesa runs on this phone — even when data is weak."
+              href="/mpesa"
+            />
+            <Feature
+              label="Passes"
               title="Show the code at the gate"
-              body="Keep event tickets and SGR / Madaraka Express as QR or barcodes next to your wallet. Scan a code, paste details, import a PKPass or e-ticket, or pull a booking SMS — then open the pass offline. Reminders before you travel. Flight boarding passes are coming soon."
+              body="Keep event tickets and SGR / Madaraka Express next to your wallet. Open them at the gate even without data. Reminders before you travel."
               href="/sgr"
             />
             <Feature
-              label="Repeat &amp; Receive"
-              title="Again — or get paid"
-              body="Repeat a past payment with automatic M-Pesa screen fill, or copy the details instead. Share a Receive QR or pay link for your phone, till, or paybill so someone else can pay you."
+              label="Again — or get paid"
+              title="Repeat a payment, or share a QR"
+              body="Run a past payment again, or share a QR so someone can pay your phone, till, or paybill."
             />
             <Feature
-              label="History"
-              title="Balance from confirmation SMS"
-              body="With optional SMS permission, LipaBill reads Safaricom M-Pesa confirmation messages to show available balance and a local ledger — including Fuliza, savings, and airtime. Encrypted on this device."
-              href="/mpesa"
-            />
-            <Feature
-              label="Insights &amp; Habits"
+              label="Insights"
               title="See where money went"
-              body="Charts and totals from history already on your phone. Optional no-spend challenges and a short weekly check-in help you notice patterns — still offline-first."
+              body="Charts from history already on your phone. Optional no-spend challenges if you want them."
             />
             <Feature
               label="On this phone"
               title="Locked to you"
-              body="Fingerprint, face, or your phone PIN. Favourites on the home screen, hide balance until you tap, and no LipaBill cloud account for your ledger."
+              body="Fingerprint, face, or your phone PIN. Hide the balance until you tap. Uninstall, and that history leaves with the app."
             />
           </div>
         </div>
@@ -317,10 +320,10 @@ export default function Home() {
             Questions
           </p>
           <h2 className="mt-3 text-2xl font-semibold tracking-tight text-ink sm:text-3xl">
-            M-Pesa on this phone, not in a LipaBill cloud.
+            Straight answers
           </h2>
           <div className="mt-10 space-y-8">
-            {faqs.map((item) => (
+            {homeFaqs.map((item) => (
               <div key={item.question}>
                 <h3 className="font-semibold text-ink">{item.question}</h3>
                 <p className="mt-2 leading-relaxed text-ink-soft">{item.answer}</p>
@@ -336,13 +339,12 @@ export default function Home() {
             On this phone
           </p>
           <h2 className="mt-3 text-2xl font-semibold tracking-tight text-ink sm:text-3xl">
-            No LipaBill cloud account for your ledger.
+            Your history stays on this phone.
           </h2>
           <p className="mt-4 text-[1.05rem] leading-relaxed text-ink-soft">
-            Payments history, tickets, and settings stay on the device under lock —
-            fingerprint, face, or your phone PIN. Clear app storage or uninstall and
-            that on-device data goes with it. Optional permissions (SMS, contacts,
-            camera) only unlock the features that need them.
+            Payments, tickets, and settings live under your fingerprint, face,
+            or phone PIN. There is no LipaBill account that holds your M-Pesa
+            picture. Uninstall, and it leaves with the app.
           </p>
           <p className="mt-6 text-sm text-mute">
             Details in our{" "}

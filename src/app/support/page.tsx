@@ -2,10 +2,10 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { JsonLd } from "@/components/JsonLd";
 import { SiteFooter, SiteHeader } from "@/components/SiteChrome";
-import { absoluteUrl, faqs, launchDayLabel, site } from "@/lib/site";
+import { absoluteUrl, launchDayLabel, site, supportFaqs } from "@/lib/site";
 
 const description =
-  "Get help with LipaBill, the Offline-First Transaction Wallet for Android. Contact, what the app is for, and common questions.";
+  "Get help with LipaBill — your M-Pesa on this phone. Contact, what the app is for, and common questions.";
 
 export const metadata: Metadata = {
   title: "Support",
@@ -34,7 +34,7 @@ export default function SupportPage() {
           "@type": "FAQPage",
           url: absoluteUrl("/support"),
           isPartOf: { "@id": absoluteUrl("/#website") },
-          mainEntity: faqs.map((item) => ({
+          mainEntity: supportFaqs.map((item) => ({
             "@type": "Question",
             name: item.question,
             acceptedAnswer: {
@@ -52,9 +52,8 @@ export default function SupportPage() {
           We’re here to help
         </h1>
         <p className="mt-4 text-[1.05rem] leading-relaxed text-ink-soft">
-          LipaBill is an M-Pesa money-management app for Android in Kenya,
-          launching {launchDayLabel()}. Send and Pay come first. Here’s how to
-          reach us.
+          LipaBill is where your M-Pesa lives on this phone. Launching{" "}
+          {launchDayLabel()}. Here’s how to reach us.
         </p>
 
         <section className="mt-12 rounded-2xl border border-line bg-sky-soft/50 p-6">
@@ -65,8 +64,8 @@ export default function SupportPage() {
             Launching {launchDayLabel()}
           </p>
           <p className="mt-2 text-ink-soft">
-            LipaBill isn’t on the Play Store yet. We’ll share the download link
-            here when Google clears review.
+            LipaBill isn’t on Google Play yet. We’ll share the download link
+            here when it is.
           </p>
         </section>
 
@@ -91,19 +90,18 @@ export default function SupportPage() {
           </h2>
           <ul className="mt-4 space-y-4 text-ink-soft">
             <li>
-              <strong className="text-ink">Send, Pay, Repeat &amp; Receive</strong>
+              <strong className="text-ink">History</strong>
               <p className="mt-1">
-                Send to people; pay Paybill, till, or Pochi; repeat a past
-                payment; or share a Receive QR / pay link — always with a clear
-                confirm step before money leaves.
+                See your M-Pesa balance and what you spent, from the
+                confirmation texts you already get. Charts stay on this phone.
               </p>
             </li>
             <li>
-              <strong className="text-ink">History, insights &amp; habits</strong>
+              <strong className="text-ink">Send, Pay, Repeat &amp; Receive</strong>
               <p className="mt-1">
-                Optional SMS builds a local ledger and balance. Charts, no-spend
-                challenges, and a weekly check-in stay on this phone — even with
-                little or no internet.
+                Send to people; pay Paybill, till, or Pochi; repeat a past
+                payment; or share a QR so someone can pay you. You confirm
+                before money leaves.
               </p>
             </li>
             <li>
@@ -122,7 +120,7 @@ export default function SupportPage() {
             Common questions
           </h2>
           <div className="mt-6 space-y-6">
-            {faqs.map((item) => (
+            {supportFaqs.map((item) => (
               <Faq key={item.question} q={item.question} a={item.answer} />
             ))}
           </div>

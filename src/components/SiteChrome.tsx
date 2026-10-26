@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { launchDayLabel } from "@/lib/site";
 
 export function FreezeBanner() {
   return (
@@ -10,13 +11,13 @@ export function FreezeBanner() {
       />
       <div className="relative mx-auto flex max-w-[90rem] flex-col items-center gap-2 px-5 py-2.5 text-center sm:flex-row sm:justify-center sm:gap-3 sm:px-8 sm:py-3 sm:text-left">
         <span className="shrink-0 rounded-full bg-[#2a1600] px-2.5 py-1 text-[0.65rem] font-bold uppercase tracking-[0.16em] text-[#ffe08a]">
-          Awaiting production review
+          Coming {launchDayLabel()}
         </span>
         <p className="text-sm font-semibold leading-snug sm:text-[0.95rem]">
-          Submitted to the Play Store.
+          LipaBill is on its way to Google Play.
           <span className="font-medium">
             {" "}
-            Review is in progress — the download button stays offline until Google clears it.
+            Leave your email and we’ll tell you when you can download it.
           </span>
         </p>
       </div>
@@ -56,7 +57,7 @@ export function SiteHeader({ solid = false }: { solid?: boolean }) {
           href="/#notify"
           className="whitespace-nowrap rounded-xl bg-blue/10 px-3.5 py-2 text-sm font-medium text-blue sm:px-4 sm:py-2.5"
         >
-          Early access
+          Get notified
         </Link>
       </nav>
     </header>
@@ -70,17 +71,17 @@ export function SiteFooter() {
         <div className="mx-auto flex max-w-6xl flex-col items-start justify-between gap-6 px-5 py-12 sm:flex-row sm:items-center sm:px-8 sm:py-14">
           <div>
             <p className="text-xs font-medium uppercase tracking-[0.18em] text-sky">
-              Offline-First Transaction Wallet
+              M-Pesa on this phone
             </p>
             <h2 className="mt-2 text-2xl font-semibold tracking-tight sm:text-3xl">
-              Money, payments &amp; tickets — on this phone.
+              See what you spent. Send, pay, keep your tickets.
             </h2>
           </div>
           <Link
             href="/#notify"
             className="inline-flex shrink-0 items-center justify-center rounded-xl bg-white px-6 py-3.5 text-sm font-medium text-bar"
           >
-            Early access
+            Get notified
           </Link>
         </div>
       </section>

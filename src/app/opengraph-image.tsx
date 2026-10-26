@@ -2,7 +2,7 @@ import { ImageResponse } from "next/og";
 import { readFile } from "node:fs/promises";
 import { join } from "node:path";
 
-export const alt = "LipaBill — Offline-First Transaction Wallet for Android";
+export const alt = "LipaBill — Your M-Pesa, on this phone";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -45,7 +45,7 @@ export default async function OpenGraphImage() {
               lineHeight: 1.05,
             }}
           >
-            No internet? No problem.
+            Your M-Pesa, on this phone.
           </div>
           <div
             style={{
@@ -55,7 +55,7 @@ export default async function OpenGraphImage() {
               color: "#3a4a66",
             }}
           >
-            Offline-First Transaction Wallet for Android
+            History, Send & Pay, and tickets — Kenya
           </div>
         </div>
         <div style={{ display: "flex", fontSize: 24, fontWeight: 600, color: "#2f6bff" }}>
