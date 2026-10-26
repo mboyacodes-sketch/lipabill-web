@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { JsonLd } from "@/components/JsonLd";
 import { SiteFooter, SiteHeader } from "@/components/SiteChrome";
-import { absoluteUrl, faqs, site } from "@/lib/site";
+import { absoluteUrl, faqs, launchDayLabel, site } from "@/lib/site";
 
 const description =
   "Get help with LipaBill, the Offline-First Transaction Wallet for Android. Contact, what the app is for, and common questions.";
@@ -52,18 +52,21 @@ export default function SupportPage() {
           We’re here to help
         </h1>
         <p className="mt-4 text-[1.05rem] leading-relaxed text-ink-soft">
-          LipaBill is an Offline-First Transaction Wallet, launching soon. Send
-          and Pay come first. Here’s how to reach us.
+          LipaBill is an M-Pesa money-management app for Android in Kenya,
+          launching {launchDayLabel()}. Send and Pay come first. Here’s how to
+          reach us.
         </p>
 
         <section className="mt-12 rounded-2xl border border-line bg-sky-soft/50 p-6">
           <p className="text-xs font-medium uppercase tracking-[0.16em] text-blue">
             Status
           </p>
-          <p className="mt-2 text-xl font-semibold text-ink">Launching soon</p>
+          <p className="mt-2 text-xl font-semibold text-ink">
+            Launching {launchDayLabel()}
+          </p>
           <p className="mt-2 text-ink-soft">
             LipaBill isn’t on the Play Store yet. We’ll share the download link
-            here when it’s ready.
+            here when Google clears review.
           </p>
         </section>
 

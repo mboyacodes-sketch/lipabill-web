@@ -10,7 +10,7 @@ import { LaunchPromo } from "@/components/LaunchCountdown";
 import { NotifyForm } from "@/components/NotifyForm";
 import { PassesShowcase } from "@/components/PassesShowcase";
 import { SiteFooter, SiteHeader } from "@/components/SiteChrome";
-import { absoluteUrl, site } from "@/lib/site";
+import { faqJsonLd, faqs, softwareApplicationJsonLd } from "@/lib/site";
 
 const steps = [
   {
@@ -36,29 +36,7 @@ export default function Home() {
       <JsonLd
         data={{
           "@context": "https://schema.org",
-          "@type": "SoftwareApplication",
-          name: site.name,
-          applicationCategory: "FinanceApplication",
-          operatingSystem: "Android",
-          url: site.url,
-          description: site.description,
-          image: absoluteUrl("/icon-512.png"),
-          featureList: [
-            "Send money and Pay Paybill, till, or Pochi — confirmed before the money moves",
-            "Repeat a past payment",
-            "Receive with a shareable pay link or QR",
-            "Balance and history from M-Pesa confirmation SMS on this phone",
-            "Spending insights stored on the phone",
-            "QR and barcode passes for events and SGR — offline, with reminders; flight boarding coming soon",
-            "Optional no-spend challenges and weekly check-in",
-            "App lock with fingerprint, face, or phone PIN",
-          ],
-          offers: {
-            "@type": "Offer",
-            availability: "https://schema.org/PreOrder",
-            url: absoluteUrl("/#notify"),
-          },
-          publisher: { "@id": absoluteUrl("/#organization") },
+          "@graph": [softwareApplicationJsonLd(), faqJsonLd()],
         }}
       />
 
@@ -77,7 +55,7 @@ export default function Home() {
           <div className="mx-auto grid max-w-[90rem] items-center gap-12 px-5 pb-16 pt-6 sm:px-8 xl:grid-cols-[minmax(22rem,32rem)_minmax(0,1fr)] xl:gap-8 xl:px-10 xl:pb-16 xl:pt-4">
             <div className="relative z-20 mx-auto flex w-full max-w-xl flex-col items-center text-center lg:mx-0 lg:max-w-none lg:items-start lg:text-left">
               <p className="text-xs font-medium uppercase tracking-[0.18em] text-blue">
-                Coming to Android
+                M-Pesa money management · Kenya
               </p>
               <h1 className="mt-3 text-[clamp(2.4rem,1.5rem+2.6vw,3.75rem)] font-semibold leading-[1.05] tracking-tight text-ink">
                 No internet?
@@ -85,7 +63,8 @@ export default function Home() {
                 <span className="text-blue">No problem.</span>
               </h1>
               <p className="mt-4 max-w-md text-lg leading-relaxed text-ink-soft">
-                Send and Pay still work — on this phone, even offline.
+                Send and Pay on M-Pesa still work — history, balance, and SGR or
+                event passes on this phone, even offline.
               </p>
               <LaunchPromo className="mt-8" />
               <div id="notify" className="mt-6 w-full max-w-md scroll-mt-24">
@@ -294,11 +273,13 @@ export default function Home() {
               label="Send &amp; Pay"
               title="Confirm before anything goes out"
               body="Send to people you choose, or pay Paybill, till, or Pochi. LipaBill prepares the payment — you confirm the amount and recipient before it leaves. Paste paybill details when you have them, and pick your Safaricom SIM on dual-SIM phones."
+              href="/mpesa"
             />
             <Feature
               label="Passes &amp; QR"
               title="Show the code at the gate"
               body="Keep event tickets and SGR / Madaraka Express as QR or barcodes next to your wallet. Scan a code, paste details, import a PKPass or e-ticket, or pull a booking SMS — then open the pass offline. Reminders before you travel. Flight boarding passes are coming soon."
+              href="/sgr"
             />
             <Feature
               label="Repeat &amp; Receive"
@@ -309,6 +290,7 @@ export default function Home() {
               label="History"
               title="Balance from confirmation SMS"
               body="With optional SMS permission, LipaBill reads Safaricom M-Pesa confirmation messages to show available balance and a local ledger — including Fuliza, savings, and airtime. Encrypted on this device."
+              href="/mpesa"
             />
             <Feature
               label="Insights &amp; Habits"
@@ -325,6 +307,28 @@ export default function Home() {
       </section>
 
       <PassesShowcase />
+
+      <section
+        id="faq"
+        className="border-t border-line/70 bg-paper px-5 py-16 sm:px-8 sm:py-20"
+      >
+        <div className="mx-auto max-w-3xl">
+          <p className="text-xs font-medium uppercase tracking-[0.18em] text-blue">
+            Questions
+          </p>
+          <h2 className="mt-3 text-2xl font-semibold tracking-tight text-ink sm:text-3xl">
+            M-Pesa on this phone, not in a LipaBill cloud.
+          </h2>
+          <div className="mt-10 space-y-8">
+            {faqs.map((item) => (
+              <div key={item.question}>
+                <h3 className="font-semibold text-ink">{item.question}</h3>
+                <p className="mt-2 leading-relaxed text-ink-soft">{item.answer}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
 
       <section className="border-t border-line/70 bg-mist px-5 py-16 sm:px-8 sm:py-20">
         <div className="mx-auto max-w-3xl">
@@ -359,10 +363,12 @@ function Feature({
   label,
   title,
   body,
+  href,
 }: {
   label: string;
   title: string;
   body: string;
+  href?: string;
 }) {
   return (
     <div>
@@ -371,6 +377,14 @@ function Feature({
       </p>
       <h3 className="mt-2 text-xl font-semibold tracking-tight text-ink">{title}</h3>
       <p className="mt-3 leading-relaxed text-ink-soft">{body}</p>
+      {href ? (
+        <Link
+          href={href}
+          className="mt-3 inline-block text-sm font-medium text-blue hover:underline"
+        >
+          Read more
+        </Link>
+      ) : null}
     </div>
   );
 }

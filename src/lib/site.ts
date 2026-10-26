@@ -3,15 +3,27 @@ export const site = {
   url: "https://lipabill.app",
   email: "support@lipabill.app",
   locale: "en_KE",
-  title: "LipaBill — Offline-First Transaction Wallet",
+  title: "LipaBill — M-Pesa history, Send & Pay on Android in Kenya",
   description:
-    "LipaBill is an Offline-First Transaction Wallet for Android. Send, Pay, Repeat, and Receive on M-Pesa; history, insights, tickets, and habits stay on your phone.",
+    "M-Pesa money management for Kenya. LipaBill reads Safaricom confirmation SMS for an encrypted ledger and balance on this phone, then Send, Pay, Repeat, and keep SGR or event passes offline.",
   shortDescription:
-    "Offline-First Transaction Wallet for Android. Send, Pay, Receive, and tickets on your phone — even without internet.",
+    "M-Pesa money management on Android in Kenya — history, Send & Pay, and passes on this phone, even offline.",
+  keywords: [
+    "LipaBill",
+    "M-Pesa app Kenya",
+    "M-Pesa transaction history",
+    "M-Pesa SMS",
+    "Send money Android Kenya",
+    "Paybill till Pochi",
+    "SGR ticket QR",
+    "Madaraka Express ticket",
+    "offline M-Pesa wallet",
+  ],
 } as const;
 
-/** Close of 29 October 2026, East Africa Time. Eight days after the previous close. */
-export const launchAt = "2026-10-30T00:00:00+03:00";
+/** Close of 6 November 2026, East Africa Time. Eight days after 29 October. */
+export const launchAt = "2026-11-07T00:00:00+03:00";
+export const launchDayIso = "2026-11-06";
 
 /** Calendar day the countdown is counting down to, in East Africa Time. */
 export function launchDayLabel() {
@@ -33,7 +45,17 @@ export const faqs = [
   {
     question: "What is LipaBill?",
     answer:
-      "An Offline-First Transaction Wallet for Android. Send, Pay, Repeat, and Receive on M-Pesa come first, with history, tickets, and habits on the phone. LipaBill is not a bank.",
+      "LipaBill is an M-Pesa money-management app for Android in Kenya. Send, Pay, Repeat, and Receive come first, with history, SGR or event passes, and habits on the phone. It is not a bank.",
+  },
+  {
+    question: "Does LipaBill work without internet?",
+    answer:
+      "Yes. Send and Pay use M-Pesa USSD on this phone. Your ledger, balance, and passes stay on the device, so they still open offline.",
+  },
+  {
+    question: "Does LipaBill read all my SMS?",
+    answer:
+      "No. With SMS allowed, it reads Safaricom M-Pesa confirmation SMS (sender MPESA) to build an encrypted ledger and balance. It does not send SMS, does not read OTPs, and is not your default messaging app.",
   },
   {
     question: "Does my data live in the cloud?",
@@ -41,9 +63,14 @@ export const faqs = [
       "Your transaction history and tickets stay on your device. We don’t create a LipaBill cloud account for your ledger. Read more in our privacy policy.",
   },
   {
+    question: "Can I keep SGR tickets in LipaBill?",
+    answer:
+      "Yes. Event tickets and SGR / Madaraka Express passes sit next to your wallet as QR or barcodes. Show them offline at the gate. Flight boarding passes are coming soon.",
+  },
+  {
     question: "Do I have to allow every permission?",
     answer:
-      "No. SMS, contacts, camera, and similar permissions are optional. You can deny any of them and still use the parts of the app that don’t need them.",
+      "No. First launch only asks for SMS, phone, and Accessibility. Contacts, camera, and notifications wait until you need them. You can deny any of them.",
   },
   {
     question: "When can I download it?",
@@ -54,6 +81,61 @@ export const faqs = [
 
 export function absoluteUrl(path = "/") {
   return new URL(path, site.url).toString();
+}
+
+export function faqJsonLd() {
+  return {
+    "@type": "FAQPage",
+    "@id": absoluteUrl("/#faq"),
+    url: absoluteUrl("/"),
+    mainEntity: faqs.map((item) => ({
+      "@type": "Question",
+      name: item.question,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: item.answer,
+      },
+    })),
+  };
+}
+
+export function softwareApplicationJsonLd() {
+  return {
+    "@type": "SoftwareApplication",
+    "@id": absoluteUrl("/#app"),
+    name: site.name,
+    applicationCategory: "FinanceApplication",
+    operatingSystem: "Android",
+    url: site.url,
+    description: site.description,
+    image: absoluteUrl("/icon-512.png"),
+    screenshot: [
+      absoluteUrl("/screenshots/home.jpg"),
+      absoluteUrl("/screenshots/send.jpg"),
+      absoluteUrl("/screenshots/sgr.jpg"),
+    ],
+    inLanguage: "en-KE",
+    countriesSupported: ["KE"],
+    releaseDate: launchDayIso,
+    featureList: [
+      "M-Pesa confirmation SMS → encrypted ledger and balance on this phone",
+      "Send money and Pay Paybill, till, or Pochi — confirmed before the money moves",
+      "Repeat a past payment",
+      "Receive with a shareable pay link or QR",
+      "Spending insights stored on the phone",
+      "QR and barcode passes for events and SGR — offline, with reminders",
+      "Optional no-spend challenges and weekly check-in",
+      "App lock with fingerprint, face, or phone PIN",
+    ],
+    offers: {
+      "@type": "Offer",
+      price: "0",
+      priceCurrency: "KES",
+      availability: "https://schema.org/PreOrder",
+      url: absoluteUrl("/#notify"),
+    },
+    publisher: { "@id": absoluteUrl("/#organization") },
+  };
 }
 
 export function llmsTxt() {
@@ -70,6 +152,8 @@ Leave an email on the homepage to be told when the Android download is ready: ${
 ## Pages
 
 - [Home](${absoluteUrl("/")}): product overview and early-access form
+- [M-Pesa](${absoluteUrl("/mpesa")}): SMS money management, Send, Pay, Repeat
+- [SGR passes](${absoluteUrl("/sgr")}): Madaraka Express and event tickets offline
 - [Support](${absoluteUrl("/support")}): what the app is for, contact, and common questions
 - [Privacy](${absoluteUrl("/privacy")}): what stays on the device and which permissions are optional
 - [Full summary](${absoluteUrl("/llms-full.txt")}): longer factual description for language models

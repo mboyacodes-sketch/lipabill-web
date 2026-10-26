@@ -2,9 +2,21 @@ import type { MetadataRoute } from "next";
 import { absoluteUrl } from "@/lib/site";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const lastModified = new Date("2026-10-03");
+  const lastModified = new Date("2026-10-26");
   return [
     { url: absoluteUrl("/"), lastModified, changeFrequency: "weekly", priority: 1 },
+    {
+      url: absoluteUrl("/mpesa"),
+      lastModified,
+      changeFrequency: "weekly",
+      priority: 0.9,
+    },
+    {
+      url: absoluteUrl("/sgr"),
+      lastModified,
+      changeFrequency: "weekly",
+      priority: 0.8,
+    },
     {
       url: absoluteUrl("/support"),
       lastModified,

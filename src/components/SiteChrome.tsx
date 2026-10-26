@@ -98,6 +98,12 @@ export function SiteFooter() {
             LipaBill
           </p>
           <div className="flex flex-wrap gap-x-5 gap-y-2">
+            <Link href="/mpesa" className="hover:text-white">
+              M-Pesa
+            </Link>
+            <Link href="/sgr" className="hover:text-white">
+              SGR
+            </Link>
             <Link href="/privacy" className="hover:text-white">
               Privacy
             </Link>

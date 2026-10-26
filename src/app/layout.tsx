@@ -21,18 +21,11 @@ export const metadata: Metadata = {
   applicationName: site.name,
   authors: [{ name: site.name, url: site.url }],
   creator: site.name,
-  keywords: [
-    "LipaBill",
-    "Transaction Wallet",
-    "offline payments",
-    "Android",
-    "send money",
-    "SGR tickets",
-    "Kenya",
-  ],
+  keywords: [...site.keywords],
   category: "finance",
   alternates: {
     canonical: "/",
+    languages: { "en-KE": "/", en: "/" },
     types: {
       "text/plain": "/llms.txt",
     },
