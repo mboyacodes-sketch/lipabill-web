@@ -1,10 +1,11 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, type ReactNode } from "react";
 import {
   launchAt,
   launchCountdownPaused,
   launchDayLabel,
+  launchPauseCopy,
   playStore,
 } from "@/lib/site";
 
@@ -60,25 +61,58 @@ export function LaunchPromo({ className = "" }: { className?: string }) {
       <p className="mt-2 text-[clamp(1.85rem,1.2rem+1.5vw,2.35rem)] font-semibold tracking-tight text-ink">
         {headline}
       </p>
-      <div
-        className="mt-4 grid w-full max-w-xs grid-cols-3 gap-2"
-        role={launchCountdownPaused ? "status" : "timer"}
-        aria-label={
-          launchCountdownPaused
-            ? "Launch countdown paused"
-            : `Countdown to ${launchDayLabel()}`
-        }
-      >
-        <Tick value={remaining ? pad(remaining.hours) : "—"} label="Hours" />
-        <Tick value={remaining ? pad(remaining.minutes) : "—"} label="Min" />
-        <Tick value={remaining ? pad(remaining.seconds) : "—"} label="Sec" />
-      </div>
-      <p className="mt-3 text-xs text-mute">
-        {launchCountdownPaused
-          ? "We’ll start the clock again when it’s ready."
-          : launchDayLabel()}
-      </p>
+      {launchCountdownPaused ? (
+        <CrimeSceneClock>
+          <div
+            className="grid grid-cols-3 gap-2 opacity-45"
+            role="status"
+            aria-label="Launch countdown paused"
+          >
+            <Tick value="—" label="Hours" />
+            <Tick value="—" label="Min" />
+            <Tick value="—" label="Sec" />
+          </div>
+          <p className="relative z-20 mt-8 text-xs text-mute">
+            We’ll start the clock again when it’s ready.
+          </p>
+        </CrimeSceneClock>
+      ) : (
+        <>
+          <div
+            className="mt-4 grid w-full max-w-xs grid-cols-3 gap-2"
+            role="timer"
+            aria-label={`Countdown to ${launchDayLabel()}`}
+          >
+            <Tick value={remaining ? pad(remaining.hours) : "—"} label="Hours" />
+            <Tick value={remaining ? pad(remaining.minutes) : "—"} label="Min" />
+            <Tick value={remaining ? pad(remaining.seconds) : "—"} label="Sec" />
+          </div>
+          <p className="mt-3 text-xs text-mute">{launchDayLabel()}</p>
+        </>
+      )}
       <PlayStoreButton className="mt-5" />
+    </div>
+  );
+}
+
+function CrimeSceneClock({ children }: { children: ReactNode }) {
+  return (
+    <div className="relative mt-4 w-full max-w-xs">
+      <div className="police-tape p-[7px] shadow-[0_12px_28px_-16px_rgba(0,0,0,0.55)]">
+        <div className="relative overflow-hidden bg-paper px-3 pb-4 pt-3">
+          {children}
+          <div
+            aria-hidden
+            className="pointer-events-none absolute inset-x-[-22%] top-[38%] -rotate-[12deg] shadow-[0_6px_18px_-8px_rgba(0,0,0,0.45)]"
+          >
+            <div className="police-tape h-1.5" />
+            <p className="bg-[#f5c400] py-[3px] text-center text-[0.62rem] font-bold uppercase tracking-[0.22em] text-[#111]">
+              {launchPauseCopy.badge}
+            </p>
+            <div className="police-tape h-1.5" />
+          </div>
+        </div>
+      </div>
     </div>
   );
 }

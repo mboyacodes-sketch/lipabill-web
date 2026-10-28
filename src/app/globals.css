@@ -108,6 +108,10 @@ body {
   fill: none;
 }
 
+.police-tape {
+  background: repeating-linear-gradient(-45deg, #111 0 11px, #f5c400 11px 22px);
+}
+
 /* Float + keep card tilt */
 @keyframes float-tilt {
   0%,
