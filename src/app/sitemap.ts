@@ -30,6 +30,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.4,
     },
     {
+      url: absoluteUrl("/delete"),
+      lastModified: new Date("2026-10-28"),
+      changeFrequency: "yearly",
+      priority: 0.4,
+    },
+    {
       url: absoluteUrl("/llms.txt"),
       lastModified,
       changeFrequency: "monthly",

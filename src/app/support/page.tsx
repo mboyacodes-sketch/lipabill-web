@@ -144,6 +144,10 @@ export default function SupportPage() {
           <Link href="/privacy" className="font-medium text-blue hover:underline">
             lipabill privacy policy
           </Link>
+          . Delete data:{" "}
+          <Link href="/delete" className="font-medium text-blue hover:underline">
+            lipabill.app/delete
+          </Link>
           .
         </p>
       </article>

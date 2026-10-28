@@ -50,6 +50,9 @@ export const playStore = {
   enabled: false,
 } as const;
 
+/** Play Console “Delete data URL” — https://lipabill.app/delete */
+export const deleteDataPath = "/delete";
+
 /** Homepage — customer questions only. */
 export const homeFaqs = [
   {
@@ -92,6 +95,11 @@ export const supportFaqs = [
     question: "Does my data live in the cloud?",
     answer:
       "Your history and tickets stay on this phone. There is no LipaBill account that holds your money story. Read more in our privacy policy.",
+  },
+  {
+    question: "How do I delete my LipaBill data?",
+    answer:
+      "Uninstall LipaBill or clear its storage to remove the on-device picture. If you left an email on this website, write to support@lipabill.app. Full steps: lipabill.app/delete.",
   },
 ] as const;
 
@@ -175,6 +183,7 @@ Leave an email on the homepage to be told when the Android download is ready: ${
 - [Passes](${absoluteUrl("/sgr")}): the trip or night you already paid for, plus a QR so someone can pay you
 - [Support](${absoluteUrl("/support")}): what the app is for, contact, and common questions
 - [Privacy](${absoluteUrl("/privacy")}): what stays on the device and which permissions are optional
+- [Delete data](${absoluteUrl("/delete")}): how to remove LipaBill data on the phone and from this website
 - [Full summary](${absoluteUrl("/llms-full.txt")}): longer factual description for language models
 
 ## Contact
@@ -225,5 +234,6 @@ ${faq}
 Email ${site.email}
 Support: ${absoluteUrl("/support")}
 Privacy: ${absoluteUrl("/privacy")}
+Delete data: ${absoluteUrl("/delete")}
 `;
 }

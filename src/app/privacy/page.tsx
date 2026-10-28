@@ -167,7 +167,9 @@ export default function PrivacyPage() {
               or uninstall the app to remove payment history and tickets kept on
               the device. We don’t keep a LipaBill cloud copy of that ledger.
               Analytics and crash data held by Google follow Google’s deletion
-              processes where they apply.
+              processes where they apply. Step-by-step deletion, including the
+              launch-list email:{" "}
+              <Link href="/delete">Delete LipaBill data</Link>.
             </p>
           </section>
 

@@ -137,6 +137,9 @@ export function SiteFooter() {
             <Link href="/privacy" className="hover:text-white">
               Privacy
             </Link>
+            <Link href="/delete" className="hover:text-white">
+              Delete data
+            </Link>
             <Link href="/support" className="hover:text-white">
               Support
             </Link>

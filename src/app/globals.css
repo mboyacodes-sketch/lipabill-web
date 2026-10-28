@@ -161,7 +161,8 @@ body {
   color: var(--ink);
 }
 
-.prose-lipa ul {
+.prose-lipa ul,
+.prose-lipa ol {
   margin: 0.5rem 0 0;
   padding-left: 1.25rem;
 }
