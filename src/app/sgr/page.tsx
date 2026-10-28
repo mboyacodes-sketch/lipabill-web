@@ -4,9 +4,9 @@ import { JsonLd } from "@/components/JsonLd";
 import { SiteFooter, SiteHeader } from "@/components/SiteChrome";
 import { absoluteUrl, launchDayLabel } from "@/lib/site";
 
-const title = "SGR and event tickets on your phone";
+const title = "Tickets and QR codes on this phone";
 const description =
-  "Keep SGR / Madaraka Express and event tickets as QR or barcodes in LipaBill. Show them offline at the gate, with reminders before you travel.";
+  "SGR, event tickets, and a pay QR live in the same LipaBill wallet as your history. Show them at the gate even without data.";
 
 export const metadata: Metadata = {
   title,
@@ -46,16 +46,17 @@ export default function SgrPage() {
 
       <article className="mx-auto max-w-3xl px-5 py-14 sm:px-8 sm:py-16">
         <p className="text-xs font-medium uppercase tracking-[0.18em] text-blue">
-          Passes · Kenya
+          Money on this phone
         </p>
         <h1 className="mt-3 text-3xl font-semibold tracking-tight text-ink sm:text-4xl">
-          SGR and event tickets, next to your wallet
+          The ticket sits with the payment
         </h1>
         <p className="mt-4 text-[1.05rem] leading-relaxed text-ink-soft">
-          LipaBill keeps QR and barcode passes on this phone so you can open
-          them at the gate without waiting on data. Event tickets and SGR /
-          Madaraka Express are available now. Flight boarding passes are
-          coming soon.
+          You already paid for the trip or the night out. LipaBill keeps that
+          QR on this phone next to Send, Pay, and your history — so you can
+          show it at the gate without another app or a data connection. Event
+          tickets and SGR / Madaraka Express are here now. Flight boarding is
+          coming.
         </p>
 
         <section className="mt-12">
@@ -81,13 +82,14 @@ export default function SgrPage() {
 
         <section className="mt-12">
           <h2 className="text-xl font-semibold text-ink">
-            Same app as your M-Pesa history
+            Same wallet as Send and Pay
           </h2>
           <p className="mt-3 leading-relaxed text-ink-soft">
-            Passes sit beside Send, Pay, and your M-Pesa history.
-            Read how money management works on the{" "}
+            A ticket is money already spent. A receive QR is money coming in.
+            Both belong with your history on this phone. Read how payments
+            work on the{" "}
             <Link href="/mpesa" className="font-medium text-blue hover:underline">
-              M-Pesa page
+              payments page
             </Link>
             .
           </p>

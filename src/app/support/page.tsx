@@ -5,7 +5,7 @@ import { SiteFooter, SiteHeader } from "@/components/SiteChrome";
 import { absoluteUrl, launchDayLabel, site, supportFaqs } from "@/lib/site";
 
 const description =
-  "Get help with LipaBill — your M-Pesa on this phone. Contact, what the app is for, and common questions.";
+  "Get help with LipaBill — your money on this phone. Contact, what the app is for, and common questions.";
 
 export const metadata: Metadata = {
   title: "Support",
@@ -52,7 +52,7 @@ export default function SupportPage() {
           We’re here to help
         </h1>
         <p className="mt-4 text-[1.05rem] leading-relaxed text-ink-soft">
-          LipaBill is where your M-Pesa lives on this phone. Launching{" "}
+          LipaBill is where your money lives on this phone. Launching{" "}
           {launchDayLabel()}. Here’s how to reach us.
         </p>
 
@@ -92,8 +92,8 @@ export default function SupportPage() {
             <li>
               <strong className="text-ink">History</strong>
               <p className="mt-1">
-                See your M-Pesa balance and what you spent, from the
-                confirmation texts you already get. Charts stay on this phone.
+                See your balance and what you spent, from the confirmation
+                texts you already get. Charts stay on this phone.
               </p>
             </li>
             <li>
@@ -105,11 +105,11 @@ export default function SupportPage() {
               </p>
             </li>
             <li>
-              <strong className="text-ink">Passes &amp; QR codes</strong>
+              <strong className="text-ink">Tickets and pay QR</strong>
               <p className="mt-1">
-                Event and SGR passes as QR or barcodes next to your wallet —
-                scan or import, show offline, with reminders before you travel.
-                Flight boarding is coming soon.
+                Same wallet: a ticket is money already spent; a receive QR is
+                money coming in. Event and SGR codes open offline, with
+                reminders before you travel. Flight boarding is coming soon.
               </p>
             </li>
           </ul>

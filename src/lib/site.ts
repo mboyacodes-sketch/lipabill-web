@@ -3,21 +3,21 @@ export const site = {
   url: "https://lipabill.app",
   email: "support@lipabill.app",
   locale: "en_KE",
-  title: "LipaBill — Your M-Pesa, on this phone",
+  title: "LipaBill — Your money, on this phone",
   description:
-    "See your M-Pesa history and balance on this Android. Send and pay when data is weak. Keep SGR and event tickets next to your wallet. Kenya.",
+    "See where your money went. Send, pay, or get paid. Open an SGR ticket or event QR from the same phone. Kenya first — M-Pesa today, more wallets next.",
   shortDescription:
-    "Your M-Pesa, on this phone — history, Send & Pay, and tickets. Kenya.",
+    "Your money, on this phone — history, payments, tickets, and pay QR. Kenya.",
   keywords: [
     "LipaBill",
-    "M-Pesa app Kenya",
-    "M-Pesa transaction history",
-    "M-Pesa SMS",
+    "mobile money Kenya",
+    "money management Android Kenya",
     "Send money Android Kenya",
     "Paybill till Pochi",
     "SGR ticket QR",
     "Madaraka Express ticket",
-    "offline M-Pesa wallet",
+    "offline mobile money wallet",
+    "M-Pesa app Kenya",
   ],
 } as const;
 
@@ -46,17 +46,17 @@ export const homeFaqs = [
   {
     question: "What is LipaBill?",
     answer:
-      "LipaBill is where your M-Pesa lives on this phone. See what you spent, send and pay, and keep SGR or event tickets next to your wallet. It is not a bank, and it is not Safaricom.",
+      "LipaBill is where your money lives on this phone: history, Send and Pay, a QR so someone can pay you, and the tickets you already bought. It is not a bank. Send and Pay run on M-Pesa today.",
   },
   {
     question: "Does it work when data is weak?",
     answer:
-      "Yes. Your history, balance, and tickets stay on the phone, so they still open. Send and Pay still go through M-Pesa on this device, even when the internet is slow.",
+      "Yes. Your history, balance, pay QR, and tickets stay on the phone, so they still open. Send and Pay still run on this device — even when the internet is slow.",
   },
   {
-    question: "Can I keep SGR tickets in it?",
+    question: "Are tickets and QR codes in LipaBill?",
     answer:
-      "Yes. Event tickets and SGR / Madaraka Express sit next to your wallet. Show them at the gate even without data.",
+      "Yes. A ticket is money you already spent; a receive QR is money coming in. Event passes, SGR / Madaraka Express, and a pay link live in the same wallet as your history. Show them at the gate even without data.",
   },
   {
     question: "When can I download it?",
@@ -81,7 +81,7 @@ export const supportFaqs = [
   {
     question: "Does my data live in the cloud?",
     answer:
-      "Your history and tickets stay on this phone. There is no LipaBill account that holds your M-Pesa picture. Read more in our privacy policy.",
+      "Your history and tickets stay on this phone. There is no LipaBill account that holds your money picture. Read more in our privacy policy.",
   },
 ] as const;
 
@@ -127,12 +127,12 @@ export function softwareApplicationJsonLd() {
     countriesSupported: ["KE"],
     releaseDate: launchDayIso,
     featureList: [
-      "M-Pesa confirmation texts → history and balance on this phone",
+      "Confirmation texts → history and balance on this phone",
       "Send money and Pay Paybill, till, or Pochi — confirmed before the money moves",
       "Repeat a past payment",
       "Receive with a shareable pay link or QR",
       "Spending insights stored on the phone",
-      "QR and barcode passes for events and SGR — offline, with reminders",
+      "Tickets and pay QR in the same on-phone wallet — events, SGR, receive codes, offline",
       "Optional no-spend challenges and weekly check-in",
       "App lock with fingerprint, face, or phone PIN",
     ],
@@ -152,7 +152,7 @@ export function llmsTxt() {
 
 > ${site.shortDescription} The Android app is not on the Play Store yet.
 
-LipaBill is where your M-Pesa lives on this phone: history and balance first, then Send and Pay, then SGR or event tickets. It is not a bank and it is not Safaricom. There is no LipaBill account that holds your history.
+LipaBill is where your money lives on this phone: history, Send and Pay, a QR so someone can pay you, and the tickets you already bought. It is not a bank. Send and Pay run on M-Pesa today. There is no LipaBill account that holds your history.
 
 ## Early access
 
@@ -161,8 +161,8 @@ Leave an email on the homepage to be told when the Android download is ready: ${
 ## Pages
 
 - [Home](${absoluteUrl("/")}): product overview and early-access form
-- [M-Pesa](${absoluteUrl("/mpesa")}): SMS money management, Send, Pay, Repeat
-- [SGR passes](${absoluteUrl("/sgr")}): Madaraka Express and event tickets offline
+- [Payments](${absoluteUrl("/mpesa")}): SMS money management, Send, Pay, Repeat (M-Pesa first)
+- [Passes](${absoluteUrl("/sgr")}): tickets and pay QR in the same on-phone wallet
 - [Support](${absoluteUrl("/support")}): what the app is for, contact, and common questions
 - [Privacy](${absoluteUrl("/privacy")}): what stays on the device and which permissions are optional
 - [Full summary](${absoluteUrl("/llms-full.txt")}): longer factual description for language models
@@ -182,7 +182,7 @@ export function llmsFullTxt() {
 
 > ${site.description}
 
-This file is a factual summary of the marketing site at ${site.url}. LipaBill is where your M-Pesa lives on this Android: history and balance first, then Send and Pay, then SGR or event tickets. It is not a bank, it is not Safaricom, and it is not on the Play Store yet.
+This file is a factual summary of the marketing site at ${site.url}. LipaBill is where your money lives on this Android: history, Send and Pay, a receive QR, and the tickets you already bought. It is not a bank. Send and Pay run on M-Pesa today. It is not on the Play Store yet.
 
 ## What it does
 
@@ -191,7 +191,7 @@ This file is a factual summary of the marketing site at ${site.url}. LipaBill is
 - Receive — share a QR or pay link for your phone, till, or paybill.
 - With optional SMS permission, read Safaricom M-Pesa confirmation messages for balance and an encrypted local ledger (including Fuliza, savings, airtime).
 - Insights charts from that history; optional no-spend challenges and a weekly check-in.
-- Tickets: events and SGR / Madaraka Express (scan, paste, PKPass, e-ticket, booking SMS), plus pass reminders. Flight boarding passes are coming soon.
+- Tickets and pay QR in the same wallet: events and SGR / Madaraka Express (scan, paste, PKPass, e-ticket, booking SMS), plus pass reminders; share a receive QR for phone, till, or paybill. Flight boarding passes are coming soon.
 - Favourites on home; hide balance until you tap; app lock with fingerprint, face, or phone PIN.
 
 ## What stays on the phone

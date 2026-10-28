@@ -71,10 +71,10 @@ export function SiteFooter() {
         <div className="mx-auto flex max-w-6xl flex-col items-start justify-between gap-6 px-5 py-12 sm:flex-row sm:items-center sm:px-8 sm:py-14">
           <div>
             <p className="text-xs font-medium uppercase tracking-[0.18em] text-sky">
-              M-Pesa on this phone
+              Money on this phone
             </p>
             <h2 className="mt-2 text-2xl font-semibold tracking-tight sm:text-3xl">
-              See what you spent. Send, pay, keep your tickets.
+              See it, move it, show the code — on this phone.
             </h2>
           </div>
           <Link
@@ -100,10 +100,10 @@ export function SiteFooter() {
           </p>
           <div className="flex flex-wrap gap-x-5 gap-y-2">
             <Link href="/mpesa" className="hover:text-white">
-              M-Pesa
+              Payments
             </Link>
             <Link href="/sgr" className="hover:text-white">
-              SGR
+              Passes
             </Link>
             <Link href="/privacy" className="hover:text-white">
               Privacy

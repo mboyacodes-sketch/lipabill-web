@@ -2,7 +2,7 @@ import { ImageResponse } from "next/og";
 import { readFile } from "node:fs/promises";
 import { join } from "node:path";
 
-export const alt = "LipaBill — Your M-Pesa, on this phone";
+export const alt = "LipaBill — Your money, on this phone";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -45,7 +45,7 @@ export default async function OpenGraphImage() {
               lineHeight: 1.05,
             }}
           >
-            Your M-Pesa, on this phone.
+            Your money, on this phone.
           </div>
           <div
             style={{
@@ -55,7 +55,7 @@ export default async function OpenGraphImage() {
               color: "#3a4a66",
             }}
           >
-            History, Send & Pay, and tickets — Kenya
+            History, payments, tickets, and pay QR — Kenya
           </div>
         </div>
         <div style={{ display: "flex", fontSize: 24, fontWeight: 600, color: "#2f6bff" }}>

@@ -4,19 +4,19 @@ import { JsonLd } from "@/components/JsonLd";
 import { SiteFooter, SiteHeader } from "@/components/SiteChrome";
 import { absoluteUrl, launchDayLabel } from "@/lib/site";
 
-const title = "M-Pesa money management on Android";
+const title = "See your money. Send and pay on this phone";
 const description =
-  "See your M-Pesa history and balance on this phone. Send and pay when data is weak. Built from the confirmation texts you already get.";
+  "History and balance from the confirmation texts you already get. Send and pay when data is weak. M-Pesa first — more wallets next.";
 
 export const metadata: Metadata = {
   title,
   description,
   keywords: [
-    "M-Pesa app Kenya",
-    "M-Pesa transaction history",
-    "M-Pesa SMS ledger",
+    "mobile money Kenya",
+    "money management Android Kenya",
     "Send money Android Kenya",
     "Paybill till Pochi",
+    "M-Pesa app Kenya",
   ],
   alternates: { canonical: "/mpesa" },
   openGraph: {
@@ -47,15 +47,15 @@ export default function MpesaPage() {
 
       <article className="mx-auto max-w-3xl px-5 py-14 sm:px-8 sm:py-16">
         <p className="text-xs font-medium uppercase tracking-[0.18em] text-blue">
-          Kenya · Safaricom M-Pesa
+          Kenya first · M-Pesa today
         </p>
         <h1 className="mt-3 text-3xl font-semibold tracking-tight text-ink sm:text-4xl">
-          M-Pesa history, Send &amp; Pay — on this phone
+          History, Send &amp; Pay — on this phone
         </h1>
         <p className="mt-4 text-[1.05rem] leading-relaxed text-ink-soft">
-          LipaBill is where your M-Pesa lives on this phone. It is not a bank,
-          and it is not Safaricom. History comes from the confirmation texts
-          you already get. Send and Pay still work when data is weak.
+          LipaBill is where your money lives on this phone. It is not a bank.
+          History comes from the confirmation texts you already get. Send and
+          Pay still work when data is weak. They run on M-Pesa today.
         </p>
 
         <section className="mt-12">
@@ -78,8 +78,14 @@ export default function MpesaPage() {
           <p className="mt-3 leading-relaxed text-ink-soft">
             Send to a person. Pay Paybill, till, or Pochi. Repeat a past
             payment. You confirm the amount and who gets paid, enter your PIN
-            on LipaBill’s keypad (it is not stored), then M-Pesa runs on the
-            Safaricom line you pick.
+            on LipaBill’s keypad (it is not stored), then the payment runs on
+            the Safaricom line you pick. Share a receive QR when you want
+            money in. Tickets you already paid for sit in the same wallet —
+            see{" "}
+            <Link href="/sgr" className="font-medium text-blue hover:underline">
+              passes
+            </Link>
+            .
           </p>
         </section>
 

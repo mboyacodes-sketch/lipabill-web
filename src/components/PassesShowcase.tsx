@@ -5,28 +5,28 @@ const passes = [
     src: "/passes/pass-event-qr.jpg",
     label: "Event pass",
     title: "QR at the stub",
-    body: "Event tickets tear at the perforation — the QR sits on the stub you show at the door.",
+    body: "The night out is already paid. Keep the stub QR here and show it at the door.",
     comingSoon: false,
   },
   {
     src: "/passes/pass-sgr.jpg",
     label: "SGR / Madaraka",
     title: "Rail barcode",
-    body: "Nairobi ↔ Mombasa bookings with coach, seat, and a scan-ready barcode stub.",
+    body: "The fare is already paid. Coach, seat, and barcode stay on this phone for the gate.",
     comingSoon: false,
   },
   {
     src: "/passes/pass-boarding.jpg",
     label: "Flight boarding",
     title: "Boarding QR",
-    body: "Flight boarding passes with route, seat, and gate QR — coming to LipaBill next.",
+    body: "Same idea as SGR: the boarding QR next to the rest of your money on this phone.",
     comingSoon: true,
   },
   {
     src: "/passes/pass-receive-qr.jpg",
     label: "Receive",
     title: "Pay-link QR",
-    body: "Share a QR or link for your phone, till, or paybill so someone else can pay you.",
+    body: "Money coming in: share a QR or link for your phone, till, or paybill.",
     comingSoon: false,
   },
 ] as const;
@@ -48,16 +48,17 @@ export function PassesShowcase() {
           />
           <div>
             <p className="text-xs font-medium uppercase tracking-[0.18em] text-blue">
-              Passes &amp; QR
+              Money on this phone
             </p>
             <h2 className="mt-2 max-w-2xl text-2xl font-semibold tracking-tight text-ink sm:text-3xl">
-              Tickets next to your wallet
+              Tickets and pay codes, same wallet
             </h2>
           </div>
         </div>
         <p className="mt-4 max-w-2xl text-[1.05rem] leading-relaxed text-ink-soft">
-          SGR and event tickets sit beside your M-Pesa history. Open them at
-          the gate even without data. Flight boarding is coming later.
+          A pass is money you already spent. A receive QR is money coming in.
+          Both live here with your history — open either at the gate, even
+          without data. Flight boarding is coming later.
         </p>
 
         <div className="mt-12 grid gap-8 sm:grid-cols-2 xl:grid-cols-4">
