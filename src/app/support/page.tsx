@@ -2,7 +2,13 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { JsonLd } from "@/components/JsonLd";
 import { SiteFooter, SiteHeader } from "@/components/SiteChrome";
-import { absoluteUrl, launchDayLabel, site, supportFaqs } from "@/lib/site";
+import {
+  absoluteUrl,
+  launchCountdownPaused,
+  launchDayLabel,
+  site,
+  supportFaqs,
+} from "@/lib/site";
 
 const description =
   "Get help with LipaBill — see your money story, then send, pay, or show the code. Contact, what the app is for, and common questions.";
@@ -52,8 +58,11 @@ export default function SupportPage() {
           We’re here to help
         </h1>
         <p className="mt-4 text-[1.05rem] leading-relaxed text-ink-soft">
-          LipaBill brings your money picture together. Launching{" "}
-          {launchDayLabel()}. Here’s how to reach us.
+          LipaBill brings your money picture together.{" "}
+          {launchCountdownPaused
+            ? "The launch clock is paused for a moment."
+            : `Launching ${launchDayLabel()}.`}{" "}
+          Here’s how to reach us.
         </p>
 
         <section className="mt-12 rounded-2xl border border-line bg-sky-soft/50 p-6">
@@ -61,11 +70,14 @@ export default function SupportPage() {
             Status
           </p>
           <p className="mt-2 text-xl font-semibold text-ink">
-            Launching {launchDayLabel()}
+            {launchCountdownPaused
+              ? "Paused for a moment"
+              : `Launching ${launchDayLabel()}`}
           </p>
           <p className="mt-2 text-ink-soft">
-            LipaBill isn’t on Google Play yet. We’ll share the download link
-            here when it is.
+            {launchCountdownPaused
+              ? "We’ll start the clock again when the picture is ready. Leave your email and we’ll write when it’s on Google Play."
+              : "LipaBill isn’t on Google Play yet. We’ll share the download link here when it is."}
           </p>
         </section>
 

@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { JsonLd } from "@/components/JsonLd";
 import { SiteFooter, SiteHeader } from "@/components/SiteChrome";
-import { absoluteUrl, launchDayLabel } from "@/lib/site";
+import { absoluteUrl, launchCountdownPaused, launchDayLabel } from "@/lib/site";
 
 const title = "See the picture. Then move.";
 const description =
@@ -104,7 +104,9 @@ export default function MpesaPage() {
         </section>
 
         <p className="mt-12 text-sm text-mute">
-          Android launch is {launchDayLabel()}.{" "}
+          {launchCountdownPaused
+            ? "Launch date to follow."
+            : `Android launch is ${launchDayLabel()}.`}{" "}
           <Link href="/#notify" className="font-medium text-blue hover:underline">
             Get early access
           </Link>

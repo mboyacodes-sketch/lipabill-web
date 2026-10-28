@@ -1,7 +1,12 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { launchAt, launchDayLabel, playStore } from "@/lib/site";
+import {
+  launchAt,
+  launchCountdownPaused,
+  launchDayLabel,
+  playStore,
+} from "@/lib/site";
 
 const LAUNCH_MS = Date.parse(launchAt);
 
@@ -27,6 +32,7 @@ export function LaunchPromo({ className = "" }: { className?: string }) {
   const [now, setNow] = useState<number | null>(null);
 
   useEffect(() => {
+    if (launchCountdownPaused) return;
     const tick = () => setNow(Date.now());
     tick();
     const id = window.setInterval(tick, 1000);
@@ -34,13 +40,15 @@ export function LaunchPromo({ className = "" }: { className?: string }) {
   }, []);
 
   const remaining = now == null ? null : splitRemaining(now);
-  const headline = !remaining
-    ? "Days to go"
-    : remaining.done
-      ? "Launch day"
-      : remaining.days === 0
-        ? "Launching today"
-        : `${remaining.days} ${remaining.days === 1 ? "day" : "days"} to go`;
+  const headline = launchCountdownPaused
+    ? "On pause"
+    : !remaining
+      ? "Days to go"
+      : remaining.done
+        ? "Launch day"
+        : remaining.days === 0
+          ? "Launching today"
+          : `${remaining.days} ${remaining.days === 1 ? "day" : "days"} to go`;
 
   return (
     <div
@@ -54,14 +62,22 @@ export function LaunchPromo({ className = "" }: { className?: string }) {
       </p>
       <div
         className="mt-4 grid w-full max-w-xs grid-cols-3 gap-2"
-        role="timer"
-        aria-label={`Countdown to ${launchDayLabel()}`}
+        role={launchCountdownPaused ? "status" : "timer"}
+        aria-label={
+          launchCountdownPaused
+            ? "Launch countdown paused"
+            : `Countdown to ${launchDayLabel()}`
+        }
       >
         <Tick value={remaining ? pad(remaining.hours) : "—"} label="Hours" />
         <Tick value={remaining ? pad(remaining.minutes) : "—"} label="Min" />
         <Tick value={remaining ? pad(remaining.seconds) : "—"} label="Sec" />
       </div>
-      <p className="mt-3 text-xs text-mute">{launchDayLabel()}</p>
+      <p className="mt-3 text-xs text-mute">
+        {launchCountdownPaused
+          ? "We’ll start the clock again when it’s ready."
+          : launchDayLabel()}
+      </p>
       <PlayStoreButton className="mt-5" />
     </div>
   );

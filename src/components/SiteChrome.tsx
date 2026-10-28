@@ -1,6 +1,38 @@
 import Image from "next/image";
 import Link from "next/link";
-import { launchDayLabel } from "@/lib/site";
+import {
+  launchCountdownPaused,
+  launchDayLabel,
+  launchPauseCopy,
+} from "@/lib/site";
+
+const policeTape =
+  "repeating-linear-gradient(-45deg, #111 0 11px, #f5c400 11px 22px)";
+
+export function SiteNotice() {
+  if (launchCountdownPaused) return <PauseBanner />;
+  return <FreezeBanner />;
+}
+
+export function PauseBanner() {
+  return (
+    <div role="status" className="relative overflow-hidden bg-[#111]">
+      <div aria-hidden className="h-2.5 w-full" style={{ background: policeTape }} />
+      <div className="bg-[#f5c400] text-[#111]">
+        <div className="relative mx-auto flex max-w-[90rem] flex-col items-center gap-2 px-5 py-2.5 text-center sm:flex-row sm:justify-center sm:gap-3 sm:px-8 sm:py-3 sm:text-left">
+          <span className="shrink-0 rounded-full bg-[#111] px-2.5 py-1 text-[0.65rem] font-bold uppercase tracking-[0.16em] text-[#f5c400]">
+            {launchPauseCopy.badge}
+          </span>
+          <p className="text-sm font-semibold leading-snug sm:text-[0.95rem]">
+            {launchPauseCopy.line}
+            <span className="font-medium"> {launchPauseCopy.detail}</span>
+          </p>
+        </div>
+      </div>
+      <div aria-hidden className="h-2.5 w-full" style={{ background: policeTape }} />
+    </div>
+  );
+}
 
 export function FreezeBanner() {
   return (

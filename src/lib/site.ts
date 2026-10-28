@@ -25,6 +25,15 @@ export const site = {
 export const launchAt = "2026-11-07T00:00:00+03:00";
 export const launchDayIso = "2026-11-06";
 
+/** When true, the homepage clock does not tick and a pause banner sits on top. */
+export const launchCountdownPaused = true;
+
+export const launchPauseCopy = {
+  badge: "Paused",
+  line: "The launch clock is paused for a moment.",
+  detail: "We’re still lining up the picture.",
+} as const;
+
 /** Calendar day the countdown is counting down to, in East Africa Time. */
 export function launchDayLabel() {
   const endOfLaunchDay = new Date(Date.parse(launchAt) - 1);
@@ -60,8 +69,9 @@ export const homeFaqs = [
   },
   {
     question: "When can I download it?",
-    answer:
-      `LipaBill comes to Android on ${launchDayLabel()}. Leave your email on this page and we’ll write when it’s on Google Play.`,
+    answer: launchCountdownPaused
+      ? "The launch clock is paused for a moment. Leave your email on this page and we’ll write when LipaBill is on Google Play."
+      : `LipaBill comes to Android on ${launchDayLabel()}. Leave your email on this page and we’ll write when it’s on Google Play.`,
   },
 ] as const;
 
