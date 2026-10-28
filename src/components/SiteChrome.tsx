@@ -71,10 +71,10 @@ export function SiteFooter() {
         <div className="mx-auto flex max-w-6xl flex-col items-start justify-between gap-6 px-5 py-12 sm:flex-row sm:items-center sm:px-8 sm:py-14">
           <div>
             <p className="text-xs font-medium uppercase tracking-[0.18em] text-sky">
-              Money on this phone
+              See, then move
             </p>
             <h2 className="mt-2 text-2xl font-semibold tracking-tight sm:text-3xl">
-              See it, move it, show the code — on this phone.
+              Understand the picture. Then send, pay, or show the code.
             </h2>
           </div>
           <Link

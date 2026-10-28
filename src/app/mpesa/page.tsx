@@ -4,9 +4,9 @@ import { JsonLd } from "@/components/JsonLd";
 import { SiteFooter, SiteHeader } from "@/components/SiteChrome";
 import { absoluteUrl, launchDayLabel } from "@/lib/site";
 
-const title = "See your money. Send and pay on this phone";
+const title = "See the picture. Then move.";
 const description =
-  "History and balance from the confirmation texts you already get. Send and pay when data is weak. M-Pesa first — more wallets next.";
+  "Where your money went, from the confirmation texts you already get. Then send or pay even when data is weak. M-Pesa is how it moves today.";
 
 export const metadata: Metadata = {
   title,
@@ -47,15 +47,15 @@ export default function MpesaPage() {
 
       <article className="mx-auto max-w-3xl px-5 py-14 sm:px-8 sm:py-16">
         <p className="text-xs font-medium uppercase tracking-[0.18em] text-blue">
-          Kenya first · M-Pesa today
+          See, then move · M-Pesa today
         </p>
         <h1 className="mt-3 text-3xl font-semibold tracking-tight text-ink sm:text-4xl">
-          History, Send &amp; Pay — on this phone
+          Where it went. Then the next payment.
         </h1>
         <p className="mt-4 text-[1.05rem] leading-relaxed text-ink-soft">
-          LipaBill is where your money lives on this phone. It is not a bank.
-          History comes from the confirmation texts you already get. Send and
-          Pay still work when data is weak. They run on M-Pesa today.
+          LipaBill is not a bank. It puts your money picture together from the
+          confirmation texts you already get — then you can send or pay even
+          when data is weak. M-Pesa is how money moves today.
         </p>
 
         <section className="mt-12">
@@ -79,9 +79,9 @@ export default function MpesaPage() {
             Send to a person. Pay Paybill, till, or Pochi. Repeat a past
             payment. You confirm the amount and who gets paid, enter your PIN
             on LipaBill’s keypad (it is not stored), then the payment runs on
-            the Safaricom line you pick. Share a receive QR when you want
-            money in. Tickets you already paid for sit in the same wallet —
-            see{" "}
+            the Safaricom line you pick. Share a receive QR when money is
+            coming to you. Tickets you already paid for are part of the same
+            picture — see{" "}
             <Link href="/sgr" className="font-medium text-blue hover:underline">
               passes
             </Link>
@@ -91,7 +91,7 @@ export default function MpesaPage() {
 
         <section className="mt-12">
           <h2 className="text-xl font-semibold text-ink">
-            Your history stays on this phone
+            That picture stays on this phone
           </h2>
           <p className="mt-3 leading-relaxed text-ink-soft">
             There is no LipaBill account for your history. Uninstall or clear

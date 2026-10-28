@@ -4,9 +4,9 @@ import { JsonLd } from "@/components/JsonLd";
 import { SiteFooter, SiteHeader } from "@/components/SiteChrome";
 import { absoluteUrl, launchDayLabel } from "@/lib/site";
 
-const title = "Tickets and QR codes on this phone";
+const title = "The trip you already paid for";
 const description =
-  "SGR, event tickets, and a pay QR live in the same LipaBill wallet as your history. Show them at the gate even without data.";
+  "SGR, event tickets, and a pay QR are part of your money picture — the thing the money already became, or money on its way in. Show them at the gate even without data.";
 
 export const metadata: Metadata = {
   title,
@@ -46,17 +46,16 @@ export default function SgrPage() {
 
       <article className="mx-auto max-w-3xl px-5 py-14 sm:px-8 sm:py-16">
         <p className="text-xs font-medium uppercase tracking-[0.18em] text-blue">
-          Money on this phone
+          What the money became
         </p>
         <h1 className="mt-3 text-3xl font-semibold tracking-tight text-ink sm:text-4xl">
-          The ticket sits with the payment
+          The trip you already paid for
         </h1>
         <p className="mt-4 text-[1.05rem] leading-relaxed text-ink-soft">
-          You already paid for the trip or the night out. LipaBill keeps that
-          QR on this phone next to Send, Pay, and your history — so you can
-          show it at the gate without another app or a data connection. Event
-          tickets and SGR / Madaraka Express are here now. Flight boarding is
-          coming.
+          The fare, the night out — that money already became something. LipaBill
+          keeps the QR with the rest of the picture, so you can show it at the
+          gate without another app or a data connection. Event tickets and SGR
+          / Madaraka Express are here now. Flight boarding is coming.
         </p>
 
         <section className="mt-12">
@@ -82,12 +81,12 @@ export default function SgrPage() {
 
         <section className="mt-12">
           <h2 className="text-xl font-semibold text-ink">
-            Same wallet as Send and Pay
+            Same picture as Send and Pay
           </h2>
           <p className="mt-3 leading-relaxed text-ink-soft">
-            A ticket is money already spent. A receive QR is money coming in.
-            Both belong with your history on this phone. Read how payments
-            work on the{" "}
+            A ticket is what the money already became. A receive QR is money
+            on its way in. Both belong with where your money went. Read how
+            money moves on the{" "}
             <Link href="/mpesa" className="font-medium text-blue hover:underline">
               payments page
             </Link>

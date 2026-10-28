@@ -15,18 +15,18 @@ import { faqJsonLd, homeFaqs, softwareApplicationJsonLd } from "@/lib/site";
 const steps = [
   {
     n: "01",
-    title: "See your money",
-    body: "Balance and history from the confirmation texts you already get.",
+    title: "See the story",
+    body: "Where it went — rent, family, a till — from the texts you already get.",
   },
   {
     n: "02",
-    title: "Send, pay, get paid",
-    body: "Move money, or share a QR so someone can pay you.",
+    title: "Do the next thing",
+    body: "Send, pay, or get paid. Even when data is weak.",
   },
   {
     n: "03",
-    title: "Show a code",
-    body: "SGR, event tickets, or a pay QR — on this phone at the gate.",
+    title: "What it became",
+    body: "The trip, the night out, a QR so someone can pay you.",
   },
 ];
 
@@ -55,20 +55,20 @@ export default function Home() {
           <div className="mx-auto grid max-w-[90rem] items-center gap-12 px-5 pb-16 pt-6 sm:px-8 xl:grid-cols-[minmax(22rem,32rem)_minmax(0,1fr)] xl:gap-8 xl:px-10 xl:pb-16 xl:pt-4">
             <div className="relative z-20 mx-auto flex w-full max-w-xl flex-col items-center text-center lg:mx-0 lg:max-w-none lg:items-start lg:text-left">
               <p className="text-xs font-medium uppercase tracking-[0.18em] text-blue">
-                Kenya first · money on this phone
+                Kenya first · how money actually moves
               </p>
               <h1 className="mt-3 text-[clamp(2.4rem,1.5rem+2.6vw,3.75rem)] font-semibold leading-[1.05] tracking-tight text-ink">
-                Your money,
+                Your money has a story.
                 <br />
-                <span className="text-blue">on this phone.</span>
+                <span className="text-blue">See it clearly.</span>
               </h1>
               <p className="mt-4 max-w-md text-lg leading-relaxed text-ink-soft">
-                See where it went. Send, pay, or get paid. Open an SGR ticket
-                or event QR from the same place — even when data is weak.
+                Rent, family, a night out, the train you already booked.
+                LipaBill brings that picture together — then you can send,
+                pay, or show the code, even when data is weak.
               </p>
               <p className="mt-3 max-w-md text-sm leading-relaxed text-mute">
-                Starts with M-Pesa on Android. History, pay codes, and tickets
-                stay on this phone.
+                History stays on this phone. Starts with M-Pesa.
               </p>
               <LaunchPromo className="mt-8" />
               <div id="notify" className="mt-6 w-full max-w-md scroll-mt-24">
@@ -117,7 +117,7 @@ export default function Home() {
                       style={{ ["--tilt" as string]: "-7deg" }}
                     >
                       <p className="text-[0.7rem] font-medium uppercase tracking-wide text-mute">
-                        Everything in one place
+                        The whole picture
                       </p>
                       <div className="mt-3 flex items-center gap-3">
                         <div
@@ -162,22 +162,22 @@ export default function Home() {
                         className="tilt tilt-delay"
                         tilt="-4deg"
                         n="1"
-                        title="See your money"
-                        body="History from the confirmation texts you already get."
+                        title="See the story"
+                        body="Where it went, from the texts you already get."
                       />
                       <StepCard
                         className="tilt"
                         tilt="3deg"
                         n="2"
-                        title="Send, pay, get paid"
-                        body="Move money, or share a QR so someone can pay you."
+                        title="Do the next thing"
+                        body="Send, pay, or get paid — even when data is weak."
                       />
                       <StepCard
                         className="tilt tilt-slow"
                         tilt="-5deg"
                         n="3"
-                        title="Show a code"
-                        body="Ticket or pay QR, ready on this phone."
+                        title="What it became"
+                        body="The trip, the night out, money on its way in."
                       />
                     </div>
                   </OrbitScale>
@@ -208,7 +208,7 @@ export default function Home() {
                         ))}
                       </div>
                       <p className="mt-3 text-xs text-ink-soft">
-                        See how you spend — at a glance
+                        What is shaping your money
                       </p>
                     </div>
                   </OrbitScale>
@@ -222,11 +222,11 @@ export default function Home() {
                       style={{ ["--tilt" as string]: "5deg" }}
                     >
                       <p className="text-base font-semibold text-ink">
-                        Codes on this phone
+                        What the money became
                       </p>
                       <p className="mt-1.5 text-sm leading-relaxed text-mute">
-                        A ticket you already paid for, or a QR so someone can
-                        pay you. Open either offline.
+                        The trip you booked. A night out. A QR so someone can
+                        pay you. Open either without data.
                       </p>
                       <TicketIllustration />
                     </div>
@@ -260,50 +260,50 @@ export default function Home() {
       <section className="border-t border-line/70 bg-mist px-5 py-16 sm:px-8 sm:py-20">
         <div className="mx-auto max-w-6xl">
           <p className="text-xs font-medium uppercase tracking-[0.18em] text-blue">
-            What LipaBill does
+            See, then move
           </p>
           <h2 className="mt-3 max-w-xl text-2xl font-semibold tracking-tight text-ink sm:text-3xl">
-            One wallet on this phone: money, pay codes, and tickets.
+            Seeing where it went is only the beginning.
           </h2>
           <p className="mt-4 max-w-2xl text-[1.05rem] leading-relaxed text-ink-soft">
-            LipaBill is not a new bank. It is where your money lives on this
-            phone — what went out, what can still move, a QR so someone can
-            pay you, and the ticket you already bought. Send and Pay run on
-            M-Pesa today. More wallets next.
+            Every confirmation is rent, family, a till, a ticket. LipaBill
+            puts that picture together so you can see what is shaping your
+            money — then send, pay, or show the code from here. It is not a
+            bank. M-Pesa is how money moves today.
           </p>
           <div className="mt-14 grid gap-x-16 gap-y-12 sm:grid-cols-2">
             <Feature
-              label="History"
-              title="See what you spent"
+              label="The picture"
+              title="Where it actually went"
               body="Built from the confirmation texts you already get. Balance, history, savings, and airtime — on this phone, not in a LipaBill account."
               href="/mpesa"
             />
             <Feature
-              label="Send &amp; Pay"
-              title="Confirm before anything goes out"
+              label="What keeps costing you"
+              title="See what is shaping your money"
+              body="Charts from history already on your phone. Optional no-spend challenges and a short weekly check-in if you want them."
+            />
+            <Feature
+              label="When it needs to move"
+              title="Confirm, then send or pay"
               body="Send to a person, or pay a bill, till, or Pochi. You confirm the amount and who gets paid. Then it runs on this phone — even when data is weak."
               href="/mpesa"
             />
             <Feature
-              label="Tickets"
-              title="Money you already spent, as a code"
-              body="An SGR or event ticket is a payment you already made. Keep the QR next to your history and open it at the gate even without data."
-              href="/sgr"
-            />
-            <Feature
-              label="Get paid"
-              title="A QR for money coming in"
+              label="Money coming in"
+              title="A QR so someone can pay you"
               body="Share a code or link for your phone, till, or paybill. Repeat a past payment when you need the same one again."
               href="/#passes"
             />
             <Feature
-              label="Insights"
-              title="See where money went"
-              body="Charts from history already on your phone. Optional no-spend challenges if you want them."
+              label="What it became"
+              title="The trip or night you already paid for"
+              body="An SGR seat or an event stub is the money already spent. Open the QR at the gate even without data."
+              href="/sgr"
             />
             <Feature
-              label="On this phone"
-              title="Locked to you"
+              label="Yours"
+              title="The picture stays with you"
               body="Fingerprint, face, or your phone PIN. Hide the balance until you tap. Uninstall, and that history leaves with the app."
             />
           </div>
@@ -337,15 +337,15 @@ export default function Home() {
       <section className="border-t border-line/70 bg-mist px-5 py-16 sm:px-8 sm:py-20">
         <div className="mx-auto max-w-3xl">
           <p className="text-xs font-medium uppercase tracking-[0.18em] text-blue">
-            On this phone
+            Yours
           </p>
           <h2 className="mt-3 text-2xl font-semibold tracking-tight text-ink sm:text-3xl">
-            History, tickets, and pay codes stay on this phone.
+            That picture stays on this phone.
           </h2>
           <p className="mt-4 text-[1.05rem] leading-relaxed text-ink-soft">
-            Payments, passes, and settings live under your fingerprint, face,
+            Payments, tickets, and settings live under your fingerprint, face,
             or phone PIN. There is no LipaBill account that holds your money
-            picture. Uninstall, and it leaves with the app.
+            story. Uninstall, and it leaves with the app.
           </p>
           <p className="mt-6 text-sm text-mute">
             Details in our{" "}
@@ -398,7 +398,7 @@ function PhoneShot() {
       <div className="relative aspect-[9/19.2]">
         <Image
           src="/screenshots/homepage.png"
-          alt="LipaBill home — balance, send, pay, tickets, and recent transactions"
+          alt="LipaBill home — where your money went, send, pay, and what it became"
           fill
           priority
           className="object-cover object-top"

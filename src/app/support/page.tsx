@@ -5,7 +5,7 @@ import { SiteFooter, SiteHeader } from "@/components/SiteChrome";
 import { absoluteUrl, launchDayLabel, site, supportFaqs } from "@/lib/site";
 
 const description =
-  "Get help with LipaBill — your money on this phone. Contact, what the app is for, and common questions.";
+  "Get help with LipaBill — see your money story, then send, pay, or show the code. Contact, what the app is for, and common questions.";
 
 export const metadata: Metadata = {
   title: "Support",
@@ -52,7 +52,7 @@ export default function SupportPage() {
           We’re here to help
         </h1>
         <p className="mt-4 text-[1.05rem] leading-relaxed text-ink-soft">
-          LipaBill is where your money lives on this phone. Launching{" "}
+          LipaBill brings your money picture together. Launching{" "}
           {launchDayLabel()}. Here’s how to reach us.
         </p>
 
@@ -90,14 +90,14 @@ export default function SupportPage() {
           </h2>
           <ul className="mt-4 space-y-4 text-ink-soft">
             <li>
-              <strong className="text-ink">History</strong>
+              <strong className="text-ink">The picture</strong>
               <p className="mt-1">
-                See your balance and what you spent, from the confirmation
-                texts you already get. Charts stay on this phone.
+                Where your money went, from the confirmation texts you already
+                get. Charts show what is shaping it.
               </p>
             </li>
             <li>
-              <strong className="text-ink">Send, Pay, Repeat &amp; Receive</strong>
+              <strong className="text-ink">The next move</strong>
               <p className="mt-1">
                 Send to people; pay Paybill, till, or Pochi; repeat a past
                 payment; or share a QR so someone can pay you. You confirm
@@ -105,11 +105,12 @@ export default function SupportPage() {
               </p>
             </li>
             <li>
-              <strong className="text-ink">Tickets and pay QR</strong>
+              <strong className="text-ink">What it became</strong>
               <p className="mt-1">
-                Same wallet: a ticket is money already spent; a receive QR is
-                money coming in. Event and SGR codes open offline, with
-                reminders before you travel. Flight boarding is coming soon.
+                A ticket is the trip or night you already paid for. A receive
+                QR is money on its way in. Event and SGR codes open offline,
+                with reminders before you travel. Flight boarding is coming
+                soon.
               </p>
             </li>
           </ul>

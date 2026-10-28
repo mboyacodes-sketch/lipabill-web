@@ -12,14 +12,14 @@ const passes = [
     src: "/passes/pass-sgr.jpg",
     label: "SGR / Madaraka",
     title: "Rail barcode",
-    body: "The fare is already paid. Coach, seat, and barcode stay on this phone for the gate.",
+    body: "The fare is already paid. Coach, seat, and barcode stay with the rest of the story for the gate.",
     comingSoon: false,
   },
   {
     src: "/passes/pass-boarding.jpg",
     label: "Flight boarding",
     title: "Boarding QR",
-    body: "Same idea as SGR: the boarding QR next to the rest of your money on this phone.",
+    body: "Same idea as SGR: the boarding QR next to the rest of your money story.",
     comingSoon: true,
   },
   {
@@ -48,17 +48,18 @@ export function PassesShowcase() {
           />
           <div>
             <p className="text-xs font-medium uppercase tracking-[0.18em] text-blue">
-              Money on this phone
+              What the money became
             </p>
             <h2 className="mt-2 max-w-2xl text-2xl font-semibold tracking-tight text-ink sm:text-3xl">
-              Tickets and pay codes, same wallet
+              The trip. The night out. Money on its way in.
             </h2>
           </div>
         </div>
         <p className="mt-4 max-w-2xl text-[1.05rem] leading-relaxed text-ink-soft">
-          A pass is money you already spent. A receive QR is money coming in.
-          Both live here with your history — open either at the gate, even
-          without data. Flight boarding is coming later.
+          An SGR seat is the fare you already paid. A receive QR is money
+          coming to you. Both belong in the same picture as where your money
+          went — open either at the gate, even without data. Flight boarding
+          is coming later.
         </p>
 
         <div className="mt-12 grid gap-8 sm:grid-cols-2 xl:grid-cols-4">
