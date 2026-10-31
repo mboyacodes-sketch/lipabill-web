@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 import { Montserrat } from "next/font/google";
 import { JsonLd } from "@/components/JsonLd";
+import { LiveBanner } from "@/components/LiveBanner";
 import { SiteNotice } from "@/components/SiteChrome";
-import { absoluteUrl, site } from "@/lib/site";
+import { absoluteUrl, isPlayLive, site } from "@/lib/site";
 import "./globals.css";
 
 const sans = Montserrat({
@@ -96,8 +97,9 @@ export default function RootLayout({
     <html lang="en-KE" className={`${sans.variable} h-full antialiased`}>
       <body className="min-h-full flex flex-col font-sans text-ink">
         <JsonLd data={identity} />
-        <SiteNotice />
+        {isPlayLive ? null : <SiteNotice />}
         {children}
+        {isPlayLive ? <LiveBanner /> : null}
       </body>
     </html>
   );
