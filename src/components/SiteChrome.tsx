@@ -1,12 +1,15 @@
 import Image from "next/image";
 import Link from "next/link";
 import {
+  isPlayLive,
   launchCountdownPaused,
   launchDayLabel,
   launchPauseCopy,
+  playStore,
 } from "@/lib/site";
 
 export function SiteNotice() {
+  if (isPlayLive) return null;
   if (launchCountdownPaused) return <PauseBanner />;
   return <FreezeBanner />;
 }
@@ -76,18 +79,32 @@ export function SiteHeader({ solid = false }: { solid?: boolean }) {
         LipaBill
       </Link>
       <nav className="flex items-center gap-4 text-sm text-ink-soft sm:gap-6">
+        <Link href="/#rails" className="hidden hover:text-ink sm:inline">
+          Countries
+        </Link>
         <Link href="/privacy" className="hidden hover:text-ink sm:inline">
           Privacy
         </Link>
         <Link href="/support" className="hidden hover:text-ink sm:inline">
           Support
         </Link>
-        <Link
-          href="/#notify"
-          className="whitespace-nowrap rounded-xl bg-blue/10 px-3.5 py-2 text-sm font-medium text-blue sm:px-4 sm:py-2.5"
-        >
-          Get notified
-        </Link>
+        {isPlayLive ? (
+          <a
+            href={playStore.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="whitespace-nowrap rounded-xl bg-blue px-3.5 py-2 text-sm font-medium text-white sm:px-4 sm:py-2.5"
+          >
+            Get the app
+          </a>
+        ) : (
+          <Link
+            href="/#notify"
+            className="whitespace-nowrap rounded-xl bg-blue/10 px-3.5 py-2 text-sm font-medium text-blue sm:px-4 sm:py-2.5"
+          >
+            Get notified
+          </Link>
+        )}
       </nav>
     </header>
   );
@@ -106,12 +123,23 @@ export function SiteFooter() {
               Understand the picture. Then send, pay, or show the code.
             </h2>
           </div>
-          <Link
-            href="/#notify"
-            className="inline-flex shrink-0 items-center justify-center rounded-xl bg-white px-6 py-3.5 text-sm font-medium text-bar"
-          >
-            Get notified
-          </Link>
+          {isPlayLive ? (
+            <a
+              href={playStore.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex shrink-0 items-center justify-center rounded-xl bg-white px-6 py-3.5 text-sm font-medium text-bar"
+            >
+              Get it on Google Play
+            </a>
+          ) : (
+            <Link
+              href="/#notify"
+              className="inline-flex shrink-0 items-center justify-center rounded-xl bg-white px-6 py-3.5 text-sm font-medium text-bar"
+            >
+              Get notified
+            </Link>
+          )}
         </div>
       </section>
 
@@ -128,6 +156,9 @@ export function SiteFooter() {
             LipaBill
           </p>
           <div className="flex flex-wrap gap-x-5 gap-y-2">
+            <Link href="/#rails" className="hover:text-white">
+              Countries
+            </Link>
             <Link href="/mpesa" className="hover:text-white">
               Payments
             </Link>
