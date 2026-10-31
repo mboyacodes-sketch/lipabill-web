@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { JsonLd } from "@/components/JsonLd";
 import { SiteFooter, SiteHeader } from "@/components/SiteChrome";
-import { absoluteUrl, launchCountdownPaused, launchDayLabel } from "@/lib/site";
+import { absoluteUrl, isPlayLive, playStore } from "@/lib/site";
 
 const title = "The trip you already paid for";
 const description =
@@ -95,13 +95,28 @@ export default function SgrPage() {
         </section>
 
         <p className="mt-12 text-sm text-mute">
-          {launchCountdownPaused
-            ? "Launch date to follow."
-            : `Android launch is ${launchDayLabel()}.`}{" "}
-          <Link href="/#notify" className="font-medium text-blue hover:underline">
-            Get early access
-          </Link>
-          .
+          {isPlayLive ? (
+            <>
+              LipaBill is on Google Play for Android in Kenya.{" "}
+              <a
+                href={playStore.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-medium text-blue hover:underline"
+              >
+                Get the app
+              </a>
+              .
+            </>
+          ) : (
+            <>
+              Android launch is coming.{" "}
+              <Link href="/#notify" className="font-medium text-blue hover:underline">
+                Get early access
+              </Link>
+              .
+            </>
+          )}
         </p>
       </article>
 
