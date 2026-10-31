@@ -4,8 +4,8 @@ import { JsonLd } from "@/components/JsonLd";
 import { SiteFooter, SiteHeader } from "@/components/SiteChrome";
 import {
   absoluteUrl,
-  launchCountdownPaused,
-  launchDayLabel,
+  isPlayLive,
+  playStore,
   site,
   supportFaqs,
 } from "@/lib/site";
@@ -59,9 +59,9 @@ export default function SupportPage() {
         </h1>
         <p className="mt-4 text-[1.05rem] leading-relaxed text-ink-soft">
           LipaBill brings your money picture together.{" "}
-          {launchCountdownPaused
-            ? "The launch clock is paused for a moment."
-            : `Launching ${launchDayLabel()}.`}{" "}
+          {isPlayLive
+            ? "The Android app is on Google Play for Kenya."
+            : "The Android app is on its way to Google Play."}{" "}
           Here’s how to reach us.
         </p>
 
@@ -70,14 +70,25 @@ export default function SupportPage() {
             Status
           </p>
           <p className="mt-2 text-xl font-semibold text-ink">
-            {launchCountdownPaused
-              ? "Paused for a moment"
-              : `Launching ${launchDayLabel()}`}
+            {isPlayLive ? "On Google Play" : "Not on Google Play yet"}
           </p>
           <p className="mt-2 text-ink-soft">
-            {launchCountdownPaused
-              ? "We’ll start the clock again when the picture is ready. Leave your email and we’ll write when it’s on Google Play."
-              : "LipaBill isn’t on Google Play yet. We’ll share the download link here when it is."}
+            {isPlayLive ? (
+              <>
+                Kenya is live. Tanzania, Uganda, and Rwanda are coming soon.{" "}
+                <a
+                  href={playStore.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="font-medium text-blue hover:underline"
+                >
+                  Open the listing
+                </a>
+                .
+              </>
+            ) : (
+              "LipaBill isn’t on Google Play yet. We’ll share the download link here when it is."
+            )}
           </p>
         </section>
 
@@ -104,16 +115,17 @@ export default function SupportPage() {
             <li>
               <strong className="text-ink">The picture</strong>
               <p className="mt-1">
-                Where your money went, from the confirmation texts you already
-                get. Charts show what is shaping it.
+                Where your money went, from the wallets and banks you pick
+                for your country. Charts show what is shaping it. The ledger
+                stays on this phone.
               </p>
             </li>
             <li>
               <strong className="text-ink">The next move</strong>
               <p className="mt-1">
-                Send to people; pay Paybill, till, or Pochi; repeat a past
-                payment; or share a QR so someone can pay you. You confirm
-                before money leaves.
+                In Kenya, send to people; pay Paybill, till, or Pochi; repeat
+                a past payment on M-Pesa; or share a QR so someone can pay
+                you. You confirm before money leaves.
               </p>
             </li>
             <li>
