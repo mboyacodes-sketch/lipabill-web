@@ -5,19 +5,21 @@ export const site = {
   locale: "en_KE",
   title: "LipaBill — Your money has a story. See it clearly.",
   description:
-    "Rent, family, a night out, the train you already booked. LipaBill brings that picture together — then you can send, pay, or show the code, even when data is weak. Kenya first. Starts with M-Pesa.",
+    "Rent, family, a night out, the train you already booked. LipaBill is a local-first money tracker for Kenya on Google Play — the ledger stays on this phone, then you can send, pay, or show the code even when data is weak. Tanzania, Uganda, and Rwanda are coming soon.",
   shortDescription:
     "Your money has a story. See it clearly — then send, pay, or show the code.",
   keywords: [
     "LipaBill",
-    "mobile money Kenya",
+    "East Africa money tracker",
+    "local first finance Android",
+    "mobile money Kenya Tanzania Uganda Rwanda",
     "money management Android Kenya",
     "Send money Android Kenya",
     "Paybill till Pochi",
     "SGR ticket QR",
     "Madaraka Express ticket",
     "see your money Kenya",
-    "M-Pesa app Kenya",
+    "M-Pesa Airtel Money KCB ledger",
   ],
 } as const;
 
@@ -47,7 +49,18 @@ export function launchDayLabel() {
 
 export const playStore = {
   url: "https://play.google.com/store/apps/details?id=com.lipabill.app",
-  enabled: false,
+  enabled: true,
+} as const;
+
+/** True once the Play listing is public. Countdown and waitlist-as-hero yield to this. */
+export const isPlayLive = playStore.enabled;
+
+export const launchLiveCopy = {
+  badge: "Live",
+  line: "LipaBill is on Google Play.",
+  detail:
+    "Kenya, Android, today. See where the money went on this phone — not in a LipaBill cloud. Tanzania, Uganda, and Rwanda are coming soon.",
+  cta: "Get the app",
 } as const;
 
 /** Play Console “Delete data URL” — https://lipabill.app/delete */
@@ -58,7 +71,7 @@ export const homeFaqs = [
   {
     question: "What is LipaBill?",
     answer:
-      "LipaBill brings your money picture together: where it went, what keeps costing you, and the next move — send, pay, get paid, or show the ticket you already bought. It is not a bank. Money moves on M-Pesa today.",
+      "LipaBill is a local-first money tracker: where it went, what keeps costing you, and the next move — send, pay, get paid, or show the ticket you already bought. It is not a bank. Kenya is live on Google Play. Tanzania, Uganda, and Rwanda are coming soon. Send and Pay still run on Kenya M-Pesa today.",
   },
   {
     question: "Does it work when data is weak?",
@@ -72,9 +85,11 @@ export const homeFaqs = [
   },
   {
     question: "When can I download it?",
-    answer: launchCountdownPaused
-      ? "The launch clock is paused for a moment. Leave your email on this page and we’ll write when LipaBill is on Google Play."
-      : `LipaBill comes to Android on ${launchDayLabel()}. Leave your email on this page and we’ll write when it’s on Google Play.`,
+    answer: isPlayLive
+      ? "LipaBill is on Google Play for Android in Kenya. Open the listing from this site. Tanzania, Uganda, and Rwanda are coming soon."
+      : launchCountdownPaused
+        ? "The launch clock is paused for a moment. Leave your email on this page and we’ll write when LipaBill is on Google Play."
+        : `LipaBill comes to Android on ${launchDayLabel()}. Leave your email on this page and we’ll write when it’s on Google Play.`,
   },
 ] as const;
 
@@ -84,7 +99,7 @@ export const supportFaqs = [
   {
     question: "Does LipaBill read all my SMS?",
     answer:
-      "No. If you allow SMS, it reads Safaricom M-Pesa confirmation texts (sender MPESA) to build your history and balance. It does not send SMS, does not read OTPs, and is not your default messaging app.",
+      "No. If you allow SMS, it reads confirmation texts from the wallets and banks you enable — M-Pesa, Airtel Money, KCB, and others in Kenya today. Tanzania, Uganda, and Rwanda are coming soon. It does not send SMS, does not keep OTPs, and is not your default messaging app.",
   },
   {
     question: "Do I have to allow every permission?",
@@ -133,7 +148,7 @@ export function softwareApplicationJsonLd() {
     name: site.name,
     applicationCategory: "FinanceApplication",
     operatingSystem: "Android",
-    url: site.url,
+    url: isPlayLive ? playStore.url : site.url,
     description: site.description,
     image: absoluteUrl("/icon-512.png"),
     screenshot: [
@@ -146,7 +161,8 @@ export function softwareApplicationJsonLd() {
     releaseDate: launchDayIso,
     featureList: [
       "See where your money actually went, from confirmation texts on this phone",
-      "Send money and Pay Paybill, till, or Pochi — confirmed before the money moves",
+      "Kenya wallets on the ledger now; Tanzania, Uganda, and Rwanda coming soon",
+      "Send money and Pay Paybill, till, or Pochi on Kenya M-Pesa — confirmed before the money moves",
       "Repeat a past payment",
       "Receive with a shareable pay link or QR",
       "See what is shaping your money — insights and optional habits",
@@ -158,8 +174,10 @@ export function softwareApplicationJsonLd() {
       "@type": "Offer",
       price: "0",
       priceCurrency: "KES",
-      availability: "https://schema.org/PreOrder",
-      url: absoluteUrl("/#notify"),
+      availability: isPlayLive
+        ? "https://schema.org/InStock"
+        : "https://schema.org/PreOrder",
+      url: isPlayLive ? playStore.url : absoluteUrl("/#notify"),
     },
     publisher: { "@id": absoluteUrl("/#organization") },
   };
@@ -168,18 +186,18 @@ export function softwareApplicationJsonLd() {
 export function llmsTxt() {
   return `# ${site.name}
 
-> ${site.shortDescription} The Android app is not on the Play Store yet.
+> ${site.shortDescription} Kenya is live on Google Play. Tanzania, Uganda, and Rwanda are coming soon.
 
-LipaBill brings your money picture together: where it went, what keeps costing you, then the next move — send, pay, get paid, or show the ticket you already bought. It is not a bank. Money moves on M-Pesa today. There is no LipaBill account that holds your history.
+LipaBill is a local-first money tracker: where it went, what keeps costing you, then the next move — send, pay, get paid, or show the ticket you already bought. It is not a bank. Kenya is live. Send and Pay still run on Kenya M-Pesa today. There is no LipaBill account that holds your history.
 
-## Early access
+## Download
 
-Leave an email on the homepage to be told when the Android download is ready: ${absoluteUrl("/#notify")}
+Google Play (Kenya): ${playStore.url}
 
 ## Pages
 
-- [Home](${absoluteUrl("/")}): product overview and early-access form
-- [Payments](${absoluteUrl("/mpesa")}): SMS money management, Send, Pay, Repeat (M-Pesa first)
+- [Home](${absoluteUrl("/")}): product overview and Google Play link
+- [Payments](${absoluteUrl("/mpesa")}): local ledger from the wallets you pick, then Kenya M-Pesa Send, Pay, Repeat
 - [Passes](${absoluteUrl("/sgr")}): the trip or night you already paid for, plus a QR so someone can pay you
 - [Support](${absoluteUrl("/support")}): what the app is for, contact, and common questions
 - [Privacy](${absoluteUrl("/privacy")}): what stays on the device and which permissions are optional
@@ -201,14 +219,14 @@ export function llmsFullTxt() {
 
 > ${site.description}
 
-This file is a factual summary of the marketing site at ${site.url}. LipaBill brings your money picture together on this Android: where it went, what keeps costing you, then send, pay, a receive QR, and the tickets you already bought. It is not a bank. Money moves on M-Pesa today. It is not on the Play Store yet.
+This file is a factual summary of the marketing site at ${site.url}. LipaBill is a local-first money tracker on Android: where it went, what keeps costing you, then send, pay, a receive QR, and the tickets you already bought. It is not a bank. Kenya is live on Google Play (${playStore.url}). Tanzania, Uganda, and Rwanda are coming soon. Send and Pay still run on Kenya M-Pesa today.
 
 ## What it does
 
-- Send money to people, and Pay Paybill, till, or Pochi. Confirm amount and recipient before the money moves. Dual-SIM phones can choose the Safaricom line.
+- Send money to people, and Pay Paybill, till, or Pochi on Kenya M-Pesa. Confirm amount and recipient before the money moves. Dual-SIM phones can choose the Safaricom line.
 - Repeat a past payment (automatic M-Pesa USSD screen fill via AccessibilityService after Confirm, or copy details).
 - Receive — share a QR or pay link for your phone, till, or paybill.
-- With optional SMS permission, read Safaricom M-Pesa confirmation messages for balance and an encrypted local ledger (including Fuliza, savings, airtime).
+- With optional SMS permission, read confirmation messages from the wallets and banks you enable in Kenya (M-Pesa, Airtel Money, KCB, and others) into an encrypted local ledger (including Fuliza, savings, airtime on Kenya M-Pesa). Other East African countries are coming soon.
 - Insights charts from that history; optional no-spend challenges and a weekly check-in.
 - Tickets as what the money became: events and SGR / Madaraka Express (scan, paste, PKPass, e-ticket, booking SMS), plus pass reminders; share a receive QR for phone, till, or paybill. Flight boarding passes are coming soon.
 - Favourites on home; hide balance until you tap; app lock with fingerprint, face, or phone PIN.
@@ -221,9 +239,9 @@ Optional permissions (SMS, contacts, camera, phone, AccessibilityService, notifi
 
 To keep the app stable, LipaBill uses Google Firebase for product analytics and crash reports. That does not include payment amounts, recipients, or your PIN. Advertising ID collection is turned off.
 
-## Early access
+## Download
 
-The download link is not published yet. Leave an email at ${absoluteUrl("/#notify")} and LipaBill will email when the Android app is ready. Those addresses are stored in a Google Sheet and used only for that launch email. Email ${site.email} to be removed.
+The Android app is on Google Play: ${playStore.url}. Kenya is live. Tanzania, Uganda, and Rwanda are coming soon. Emails collected on this site are only for optional product notes. Email ${site.email} to be removed.
 
 ## Common questions
 
