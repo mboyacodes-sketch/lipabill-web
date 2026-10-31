@@ -33,12 +33,31 @@ export function LaunchPromo({ className = "" }: { className?: string }) {
   const [now, setNow] = useState<number | null>(null);
 
   useEffect(() => {
-    if (launchCountdownPaused) return;
+    if (playStore.enabled || launchCountdownPaused) return;
     const tick = () => setNow(Date.now());
     tick();
     const id = window.setInterval(tick, 1000);
     return () => window.clearInterval(id);
   }, []);
+
+  if (playStore.enabled) {
+    return (
+      <div
+        className={`flex w-full max-w-md flex-col items-center text-center lg:items-start lg:text-left ${className}`}
+      >
+        <p className="text-[0.7rem] font-medium uppercase tracking-[0.18em] text-blue">
+          On Google Play
+        </p>
+        <p className="mt-2 text-[clamp(1.85rem,1.2rem+1.5vw,2.35rem)] font-semibold tracking-tight text-ink">
+          Kenya is live
+        </p>
+        <p className="mt-2 max-w-xs text-sm leading-relaxed text-mute">
+          Tanzania, Uganda, and Rwanda are coming soon.
+        </p>
+        <PlayStoreButton className="mt-5" />
+      </div>
+    );
+  }
 
   const remaining = now == null ? null : splitRemaining(now);
   const headline = launchCountdownPaused
