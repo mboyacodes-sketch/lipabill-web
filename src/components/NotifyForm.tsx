@@ -36,7 +36,9 @@ export function NotifyForm({ className = "" }: { className?: string }) {
 
       setEmail("");
       setStatus("done");
-      setMessage("You're on the list. We'll email you when LipaBill launches.");
+      setMessage(
+        "You're on the list. We'll email product notes — the app is already on Google Play."
+      );
     } catch {
       setStatus("error");
       setMessage("Couldn't save that. Try again.");
@@ -87,7 +89,7 @@ export function NotifyForm({ className = "" }: { className?: string }) {
         </button>
       </form>
       <p className="mt-2 text-xs text-mute">
-        Email only. We&apos;ll write when LipaBill is on Google Play.
+        Optional. The app is on Google Play — this is only for product notes.
       </p>
       {status === "error" ? (
         <p className="mt-2 text-sm text-ink" role="alert">
