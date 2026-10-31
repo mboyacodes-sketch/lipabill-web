@@ -69,7 +69,7 @@ export default function DeleteDataPage() {
               <strong>On your phone (this removes almost everything).</strong>{" "}
               Uninstall LipaBill, or go to Android Settings → Apps → LipaBill →
               Storage → Clear storage. That deletes your on-device ledger,
-              M-Pesa confirmation history, tickets, settings, and app lock on
+              confirmation history, tickets, settings, and app lock on
               that device. LipaBill does not keep a copy. This is immediate —
               there is no extra retention period.
             </li>
@@ -103,7 +103,7 @@ export default function DeleteDataPage() {
             <ul>
               <li>
                 <strong>On the phone, when you uninstall or clear storage:</strong>{" "}
-                encrypted M-Pesa ledger and balances, confirmation SMS LipaBill
+                encrypted ledger and balances, confirmation SMS LipaBill
                 stored, tickets and passes, Favourites, settings, and app lock.
                 Deleted immediately. Not kept by LipaBill.
               </li>
@@ -121,7 +121,7 @@ export default function DeleteDataPage() {
               Product analytics and crash reports (for example which screens
               opened, whether SMS permission was granted, payment flow type such
               as send/pay/repeat, and crash stacks) go to Google Firebase. They
-              do not include your M-Pesa SMS bodies, amounts, recipients, or PIN.
+              do not include your confirmation SMS bodies, amounts, recipients, or PIN.
               LipaBill does not keep a named account we can look up. We cannot
               delete a Google analytics profile we do not operate. Google’s own
               retention applies to those reports.
@@ -131,7 +131,7 @@ export default function DeleteDataPage() {
           <section>
             <h2>What we never had</h2>
             <p>
-              LipaBill does not store your M-Pesa PIN, does not upload your SMS
+              LipaBill does not store your payment PIN, does not upload your SMS
               inbox or ledger to a LipaBill server, and does not sell your data.
               Denying SMS in the app only stops new history; already imported
               rows stay until you clear storage or uninstall.
