@@ -35,7 +35,7 @@ export default function PrivacyPage() {
           name: "Privacy — LipaBill",
           url: absoluteUrl("/privacy"),
           description,
-          dateModified: "2026-10-24",
+          dateModified: "2026-10-30",
           isPartOf: { "@id": absoluteUrl("/#website") },
         }}
       />
@@ -46,27 +46,29 @@ export default function PrivacyPage() {
         <h1 className="mt-3 text-3xl font-semibold tracking-tight text-ink sm:text-4xl">
           Your money stays on your phone
         </h1>
-        <p className="mt-3 text-sm text-mute">Last updated: 24 October 2026</p>
+        <p className="mt-3 text-sm text-mute">Last updated: 30 October 2026</p>
 
         <div className="prose-lipa mt-10 space-y-8 text-[1.05rem] leading-relaxed text-ink-soft">
           <p>
             LipaBill is built so your payments, history, and tickets live on
             this device — not in a LipaBill cloud account. This page explains
             what the app uses, what it doesn’t, and the choices you control.
-            Data that never leaves your phone (including M-Pesa SMS and your
-            ledger) is not “collected” under Google Play’s Data Safety
+            Data that never leaves your phone (including confirmation SMS and
+            your ledger) is not “collected” under Google Play’s Data Safety
             definition. Product analytics and crash reports sent to Google are.
           </p>
 
           <section>
             <h2>What stays on your device</h2>
             <p>
-              LipaBill’s core money-management feature reads Safaricom M-Pesa
-              confirmation SMS (sender MPESA), with your permission, to build
-              an encrypted transaction history, available balance, and spending
-              overview on this phone. SMS content is processed and stored only
-              on the device. It is not uploaded to LipaBill (there is no
-              LipaBill cloud ledger) and is not sent to Google Firebase.
+              LipaBill’s core money-management feature reads confirmation SMS
+              from the wallets and banks you enable in Kenya — M-Pesa,
+              Airtel Money, KCB, and others — with your permission, to build an encrypted transaction
+              history, available balance, and spending overview on this phone.
+              Tanzania, Uganda, and Rwanda are coming soon.
+              SMS content is processed and stored only on the device. It is
+              not uploaded to LipaBill (there is no LipaBill cloud ledger) and
+              is not sent to Google Firebase.
             </p>
             <p>
               Tickets you add — photos, PDFs, passes, or booking details — also
@@ -89,11 +91,11 @@ export default function PrivacyPage() {
             </p>
             <ul>
               <li>
-                <strong>SMS</strong> — used to build your local M-Pesa
-                money-management ledger from Safaricom confirmation messages
-                (sender MPESA). Other messages, including OTPs, are not kept as
-                your ledger. You can deny SMS; history, balance, and insights
-                then stay empty.
+                <strong>SMS</strong> — used to build your local ledger from
+                confirmation messages for the wallets and banks you pick. Other
+                messages, including OTPs, are not kept as your ledger. You can
+                deny SMS; history, balance, and insights then stay empty. You
+                can add or remove providers later in Settings.
               </li>
               <li>
                 <strong>Phone</strong> — used when you start a Send, Pay, or
@@ -145,8 +147,8 @@ export default function PrivacyPage() {
               send/pay/repeat) and crash reports to Google Firebase. That is
               the data Google Play treats as collected and shared. It may
               include device and app details needed for diagnostics. It does
-              not include your M-Pesa SMS bodies, ledger amounts, recipients,
-              or PIN. Advertising ID collection is turned off.
+              not include your confirmation SMS bodies, ledger amounts,
+              recipients, or PIN. Advertising ID collection is turned off.
             </p>
           </section>
 
@@ -156,7 +158,7 @@ export default function PrivacyPage() {
               <li>Sell your personal data</li>
               <li>Use your transaction history for advertising</li>
               <li>Store or send your payment PIN</li>
-              <li>Upload your M-Pesa SMS, ledger, or full inbox off this phone</li>
+              <li>Upload your confirmation SMS, ledger, or full inbox off this phone</li>
             </ul>
           </section>
 
