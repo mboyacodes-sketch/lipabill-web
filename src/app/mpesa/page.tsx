@@ -66,9 +66,9 @@ export default function MpesaPage() {
             Your country, your wallets
           </h2>
           <p className="mt-3 leading-relaxed text-ink-soft">
-            Kenya is live on Google Play. Pick the wallets that belong on the
-            ledger — you can change that later in Settings. Tanzania, Uganda,
-            and Rwanda are coming soon.
+            Kenya, Tanzania, Uganda, and Rwanda are live on Google Play. Pick
+            the wallets that belong on the ledger — you can change that later
+            in Settings.
           </p>
         </section>
 
@@ -78,12 +78,12 @@ export default function MpesaPage() {
           </h2>
           <p className="mt-3 leading-relaxed text-ink-soft">
             If you allow SMS, LipaBill reads confirmation texts from the
-            wallets and banks you enable in Kenya — M-Pesa, Airtel
-            Money, KCB, and others — to show your balance and what you spent.
-            Tanzania, Uganda, and Rwanda are coming soon. Fuliza, savings, and
-            airtime sit in that same history on Kenya M-Pesa. Other
-            messages, including OTPs, are not kept. LipaBill does not send
-            SMS. If you turn SMS off, history stays empty.
+            wallets and banks you enable in Kenya, Tanzania, Uganda, and
+            Rwanda — M-Pesa, Airtel Money, MTN MoMo, KCB, and others — to show
+            your balance and what you spent. Fuliza, savings, and airtime sit
+            in that same history on Kenya M-Pesa. Other messages, including
+            OTPs, are not kept. LipaBill does not send SMS. If you turn SMS
+            off, history stays empty.
           </p>
         </section>
 

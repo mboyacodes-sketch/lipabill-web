@@ -58,9 +58,9 @@ export default function TermsPage() {
         <h2>Who may use it</h2>
         <p>
           You must be 18 or older and able to enter a contract under Kenyan
-          law. The app is built for Kenya on Google Play. Other East African
-          countries named on this site are planned, not a promise that every
-          wallet there works today.
+          law. The app is on Google Play for Kenya, Tanzania, Uganda, and
+          Rwanda. Ledgers there read confirmation SMS for the wallets and
+          banks you enable. Send and Pay still run on Kenya M-Pesa only.
         </p>
       </section>
 

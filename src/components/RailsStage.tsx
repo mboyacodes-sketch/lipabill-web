@@ -51,15 +51,15 @@ export function RailsStage() {
         <div className="mt-3 flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
           <div className="max-w-xl">
             <h2 className="text-[clamp(1.75rem,1.2rem+2vw,2.75rem)] font-semibold leading-[1.08] tracking-tight text-white">
-              Kenya is live.
+              Four countries.
               <br />
-              More countries soon.
+              One phone ledger.
             </h2>
             <p className="mt-4 text-[1.05rem] leading-relaxed text-sky/85">
               Wallets and banks already send confirmation texts. LipaBill
-              keeps the ones you choose in Kenya — encrypted here, not in a
-              cloud account. Tanzania, Uganda, and Rwanda are coming soon.
-              Send and Pay stay Kenya M-Pesa.
+              keeps the ones you choose in Kenya, Tanzania, Uganda, and
+              Rwanda — encrypted here, not in a cloud account. Send and Pay
+              stay Kenya M-Pesa.
             </p>
           </div>
           <p

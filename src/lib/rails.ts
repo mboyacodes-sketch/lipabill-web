@@ -24,7 +24,7 @@ export type RegionCatalog = {
   available: string;
   canSendPay: boolean;
   hasFuliza: boolean;
-  /** Live on Play today. Other East African countries stay in the catalog as coming soon. */
+  /** When true, the country picker shows Soon and dims the rail UI. */
   comingSoon: boolean;
   primaryWallet: string;
   rails: Rail[];
@@ -82,7 +82,7 @@ export const regions: RegionCatalog[] = [
     available: "186,400",
     canSendPay: false,
     hasFuliza: false,
-    comingSoon: true,
+    comingSoon: false,
     primaryWallet: "mpesa",
     rails: [
       w("mpesa", "M-Pesa"),
@@ -112,7 +112,7 @@ export const regions: RegionCatalog[] = [
     available: "412,000",
     canSendPay: false,
     hasFuliza: false,
-    comingSoon: true,
+    comingSoon: false,
     primaryWallet: "mtn",
     rails: [
       w("mtn", "MTN MoMo"),
@@ -139,7 +139,7 @@ export const regions: RegionCatalog[] = [
     available: "98,500",
     canSendPay: false,
     hasFuliza: false,
-    comingSoon: true,
+    comingSoon: false,
     primaryWallet: "mtn",
     rails: [
       w("mtn", "MTN MoMo"),

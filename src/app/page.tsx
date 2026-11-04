@@ -56,7 +56,7 @@ export default function Home() {
           <div className="mx-auto grid max-w-[90rem] items-center gap-12 px-5 pb-16 pt-6 sm:px-8 xl:grid-cols-[minmax(22rem,32rem)_minmax(0,1fr)] xl:gap-8 xl:px-10 xl:pb-16 xl:pt-4">
             <div className="relative z-20 mx-auto flex w-full max-w-xl flex-col items-center text-center lg:mx-0 lg:max-w-none lg:items-start lg:text-left">
               <p className="text-xs font-medium uppercase tracking-[0.18em] text-blue">
-                Local first · Kenya on Google Play
+                Local first · East Africa on Google Play
               </p>
               <h1 className="mt-3 text-[clamp(2.4rem,1.5rem+2.6vw,3.75rem)] font-semibold leading-[1.05] tracking-tight text-ink">
                 Your money has a story.
@@ -75,7 +75,7 @@ export default function Home() {
                 href="#rails"
                 className="mt-4 text-sm font-medium text-blue hover:underline"
               >
-                Kenya live · Tanzania, Uganda, Rwanda coming soon
+                Kenya · Tanzania · Uganda · Rwanda
               </a>
               <LaunchPromo className="mt-8" />
               <div id="notify" className="mt-6 w-full max-w-md scroll-mt-24">
@@ -278,14 +278,14 @@ export default function Home() {
             Every confirmation is rent, family, a till, a ticket. LipaBill
             puts that picture together on this phone so you can see what is
             shaping your money — then send, pay, or show the code from here.
-            It is not a bank. Kenya is live on Google Play. Tanzania, Uganda,
-            and Rwanda are coming soon. Send and Pay still run on M-Pesa.
+            It is not a bank. Kenya, Tanzania, Uganda, and Rwanda are live on
+            Google Play. Send and Pay still run on Kenya M-Pesa.
           </p>
           <div className="mt-14 grid gap-x-16 gap-y-12 sm:grid-cols-2">
             <Feature
               label="The picture"
               title="Where it actually went"
-              body="Built from confirmation texts for the wallets and banks you pick in Kenya — M-Pesa, Airtel Money, KCB, and others. Tanzania, Uganda, and Rwanda are coming soon. Balance and history stay on this phone, not in a LipaBill account."
+              body="Built from confirmation texts for the wallets and banks you pick in Kenya, Tanzania, Uganda, and Rwanda — M-Pesa, Airtel Money, MTN MoMo, KCB, and others. Balance and history stay on this phone, not in a LipaBill account."
               href="/mpesa"
             />
             <Feature

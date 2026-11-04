@@ -60,12 +60,11 @@ export default function PrivacyPage() {
         <h2>What stays on your device</h2>
         <p>
           With your permission, LipaBill reads confirmation SMS from the
-          wallets and banks you enable in Kenya — M-Pesa, Airtel Money, KCB,
-          and others — to build an encrypted history, available balance, and
-          spending overview on this phone. Tanzania, Uganda, and Rwanda are
-          coming soon. SMS content is processed and stored only on the
-          device. It is not uploaded to LipaBill and is not sent to Google
-          Firebase.
+          wallets and banks you enable in Kenya, Tanzania, Uganda, and Rwanda —
+          M-Pesa, Airtel Money, MTN MoMo, KCB, and others — to build an
+          encrypted history, available balance, and spending overview on this
+          phone. SMS content is processed and stored only on the device. It is
+          not uploaded to LipaBill and is not sent to Google Firebase.
         </p>
         <p>
           Tickets you add — photos, PDFs, passes, or booking details — stay

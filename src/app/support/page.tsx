@@ -60,7 +60,7 @@ export default function SupportPage() {
         <p className="mt-4 text-[1.05rem] leading-relaxed text-ink-soft">
           LipaBill brings your money picture together.{" "}
           {isPlayLive
-            ? "The Android app is on Google Play for Kenya."
+            ? "The Android app is on Google Play for Kenya, Tanzania, Uganda, and Rwanda."
             : "The Android app is on its way to Google Play."}{" "}
           Here’s how to reach us.
         </p>
@@ -75,7 +75,8 @@ export default function SupportPage() {
           <p className="mt-2 text-ink-soft">
             {isPlayLive ? (
               <>
-                Kenya is live. Tanzania, Uganda, and Rwanda are coming soon.
+                Kenya, Tanzania, Uganda, and Rwanda are live. Send and Pay
+                still run on Kenya M-Pesa.
                 <span className="mt-4 block">
                   <PlayStoreButton />
                 </span>
