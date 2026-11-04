@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 import { Montserrat } from "next/font/google";
 import { JsonLd } from "@/components/JsonLd";
-import { LiveBanner } from "@/components/LiveBanner";
+import { SiteDock } from "@/components/SiteDock";
 import { SiteNotice } from "@/components/SiteChrome";
+import { legal } from "@/lib/legal";
 import { absoluteUrl, isPlayLive, site } from "@/lib/site";
 import "./globals.css";
 
@@ -71,6 +72,13 @@ const identity = {
       url: site.url,
       logo: absoluteUrl("/icon-512.png"),
       email: site.email,
+      areaServed: legal.countryCode,
+      contactPoint: {
+        "@type": "ContactPoint",
+        email: site.email,
+        contactType: "customer support",
+        availableLanguage: ["en"],
+      },
       address: {
         "@type": "PostalAddress",
         addressCountry: "KE",
@@ -95,11 +103,16 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en-KE" className={`${sans.variable} h-full antialiased`}>
-      <body className="min-h-full flex flex-col font-sans text-ink">
+      <body className="flex min-h-full flex-col font-sans text-ink">
+        <a href="#main" className="skip-link">
+          Skip to content
+        </a>
         <JsonLd data={identity} />
         {isPlayLive ? null : <SiteNotice />}
-        {children}
-        {isPlayLive ? <LiveBanner /> : null}
+        <div id="main" className="flex flex-1 flex-col">
+          {children}
+        </div>
+        <SiteDock />
       </body>
     </html>
   );

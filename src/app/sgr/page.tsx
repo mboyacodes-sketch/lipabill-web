@@ -2,7 +2,8 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { JsonLd } from "@/components/JsonLd";
 import { SiteFooter, SiteHeader } from "@/components/SiteChrome";
-import { absoluteUrl, isPlayLive, playStore } from "@/lib/site";
+import { PlayStoreButton } from "@/components/PlayStoreButton";
+import { absoluteUrl, isPlayLive } from "@/lib/site";
 
 const title = "The trip you already paid for";
 const description =
@@ -55,7 +56,9 @@ export default function SgrPage() {
           The fare, the night out — that money already became something. LipaBill
           keeps the QR with the rest of the picture, so you can show it at the
           gate without another app or a data connection. Event tickets and SGR
-          / Madaraka Express are here now. Flight boarding is coming.
+          / Madaraka Express are here now. Flight boarding is coming. LipaBill
+          is not Kenya Railways, Madaraka Express, or an airline. Pass pictures
+          on this site are samples, not official tickets.
         </p>
 
         <section className="mt-12">
@@ -94,30 +97,26 @@ export default function SgrPage() {
           </p>
         </section>
 
-        <p className="mt-12 text-sm text-mute">
+        <div className="mt-12">
           {isPlayLive ? (
             <>
-              LipaBill is on Google Play for Android in Kenya.{" "}
-              <a
-                href={playStore.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="font-medium text-blue hover:underline"
-              >
-                Get the app
-              </a>
-              .
+              <p className="text-sm text-mute">
+                LipaBill is on Google Play for Android in Kenya.
+              </p>
+              <div className="mt-4">
+                <PlayStoreButton />
+              </div>
             </>
           ) : (
-            <>
+            <p className="text-sm text-mute">
               Android launch is coming.{" "}
               <Link href="/#notify" className="font-medium text-blue hover:underline">
                 Get early access
               </Link>
               .
-            </>
+            </p>
           )}
-        </p>
+        </div>
       </article>
 
       <SiteFooter />

@@ -371,9 +371,10 @@ function PhonePreview({
         </div>
       </div>
       <p className="mt-3 text-center text-xs leading-relaxed text-sky/55">
+        Illustrated sample — not a real account or a customer review.
         {region.comingSoon
-          ? `${region.name} is coming soon. Kenya is the country on Google Play today.`
-          : "Same first-run choice as the app. Change it later in Settings — the ledger refreshes from this inbox."}
+          ? ` ${region.name} is coming soon. Kenya is the country on Google Play today.`
+          : " Same first-run choice as the app. Change it later in Settings."}
       </p>
     </div>
   );

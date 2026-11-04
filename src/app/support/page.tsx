@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { JsonLd } from "@/components/JsonLd";
+import { PlayStoreButton } from "@/components/PlayStoreButton";
 import { SiteFooter, SiteHeader } from "@/components/SiteChrome";
 import {
   absoluteUrl,
   isPlayLive,
-  playStore,
   site,
   supportFaqs,
 } from "@/lib/site";
@@ -75,16 +75,10 @@ export default function SupportPage() {
           <p className="mt-2 text-ink-soft">
             {isPlayLive ? (
               <>
-                Kenya is live. Tanzania, Uganda, and Rwanda are coming soon.{" "}
-                <a
-                  href={playStore.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="font-medium text-blue hover:underline"
-                >
-                  Open the listing
-                </a>
-                .
+                Kenya is live. Tanzania, Uganda, and Rwanda are coming soon.
+                <span className="mt-4 block">
+                  <PlayStoreButton />
+                </span>
               </>
             ) : (
               "LipaBill isn’t on Google Play yet. We’ll share the download link here when it is."

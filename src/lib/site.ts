@@ -201,6 +201,10 @@ Google Play (Kenya): ${playStore.url}
 - [Passes](${absoluteUrl("/sgr")}): the trip or night you already paid for, plus a QR so someone can pay you
 - [Support](${absoluteUrl("/support")}): what the app is for, contact, and common questions
 - [Privacy](${absoluteUrl("/privacy")}): what stays on the device and which permissions are optional
+- [Terms](${absoluteUrl("/terms")}): what LipaBill is and is not
+- [Cookies](${absoluteUrl("/cookies")}): website cookies
+- [Refunds](${absoluteUrl("/refunds")}): the app is free; Play refunds if Google charged you
+- [Licenses](${absoluteUrl("/licenses")}): fonts, images, and other companies’ names
 - [Delete data](${absoluteUrl("/delete")}): how to remove LipaBill data on the phone and from this website
 - [Full summary](${absoluteUrl("/llms-full.txt")}): longer factual description for language models
 
@@ -252,6 +256,10 @@ ${faq}
 Email ${site.email}
 Support: ${absoluteUrl("/support")}
 Privacy: ${absoluteUrl("/privacy")}
+Terms: ${absoluteUrl("/terms")}
+Cookies: ${absoluteUrl("/cookies")}
+Refunds: ${absoluteUrl("/refunds")}
+Licenses: ${absoluteUrl("/licenses")}
 Delete data: ${absoluteUrl("/delete")}
 `;
 }

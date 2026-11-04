@@ -50,6 +50,36 @@ body {
   color: var(--ink);
 }
 
+:focus-visible {
+  outline: 2px solid var(--blue);
+  outline-offset: 3px;
+}
+
+.skip-link {
+  position: absolute;
+  left: 1rem;
+  top: -5rem;
+  z-index: 100;
+  border-radius: 0.75rem;
+  background: var(--blue);
+  color: #fff;
+  padding: 0.6rem 1rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+.skip-link:focus {
+  top: 1rem;
+}
+
+.cookie-banner {
+  pointer-events: auto;
+  border-top: 1px solid var(--line);
+  background: var(--paper);
+  box-shadow: 0 -18px 40px -24px rgba(15, 28, 51, 0.4);
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
 .hero-soft {
   background:
     radial-gradient(
@@ -308,4 +338,12 @@ body {
 .prose-lipa strong {
   color: var(--ink);
   font-weight: 600;
+}
+
+.prose-lipa code {
+  font-size: 0.9em;
+  background: var(--sky-soft);
+  color: var(--ink);
+  padding: 0.1em 0.35em;
+  border-radius: 0.3em;
 }

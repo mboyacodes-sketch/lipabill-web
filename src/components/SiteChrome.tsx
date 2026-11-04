@@ -1,11 +1,11 @@
 import Image from "next/image";
 import Link from "next/link";
+import { PlayStoreButton } from "@/components/PlayStoreButton";
 import {
   isPlayLive,
   launchCountdownPaused,
   launchDayLabel,
   launchPauseCopy,
-  playStore,
 } from "@/lib/site";
 
 export function SiteNotice() {
@@ -66,6 +66,7 @@ export function SiteHeader({ solid = false }: { solid?: boolean }) {
     >
       <Link
         href="/"
+        aria-label="LipaBill home"
         className="flex items-center gap-2.5 text-lg font-semibold tracking-tight text-ink"
       >
         <Image
@@ -78,25 +79,21 @@ export function SiteHeader({ solid = false }: { solid?: boolean }) {
         />
         LipaBill
       </Link>
-      <nav className="flex items-center gap-4 text-sm text-ink-soft sm:gap-6">
+      <nav className="flex items-center gap-4 text-sm text-ink-soft sm:gap-6" aria-label="Primary">
         <Link href="/#rails" className="hidden hover:text-ink sm:inline">
           Countries
         </Link>
         <Link href="/privacy" className="hidden hover:text-ink sm:inline">
           Privacy
         </Link>
+        <Link href="/terms" className="hidden hover:text-ink sm:inline">
+          Terms
+        </Link>
         <Link href="/support" className="hidden hover:text-ink sm:inline">
           Support
         </Link>
         {isPlayLive ? (
-          <a
-            href={playStore.url}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="whitespace-nowrap rounded-xl bg-blue px-3.5 py-2 text-sm font-medium text-white sm:px-4 sm:py-2.5"
-          >
-            Get the app
-          </a>
+          <PlayStoreButton />
         ) : (
           <Link
             href="/#notify"
@@ -124,14 +121,7 @@ export function SiteFooter() {
             </h2>
           </div>
           {isPlayLive ? (
-            <a
-              href={playStore.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex shrink-0 items-center justify-center rounded-xl bg-white px-6 py-3.5 text-sm font-medium text-bar"
-            >
-              Get it on Google Play
-            </a>
+            <PlayStoreButton tone="onDark" />
           ) : (
             <Link
               href="/#notify"
@@ -165,17 +155,41 @@ export function SiteFooter() {
             <Link href="/sgr" className="hover:text-white">
               Passes
             </Link>
+            <Link href="/support" className="hover:text-white">
+              Support
+            </Link>
             <Link href="/privacy" className="hover:text-white">
               Privacy
+            </Link>
+            <Link href="/terms" className="hover:text-white">
+              Terms
+            </Link>
+            <Link href="/cookies" className="hover:text-white">
+              Cookies
+            </Link>
+            <Link href="/refunds" className="hover:text-white">
+              Refunds
+            </Link>
+            <Link href="/licenses" className="hover:text-white">
+              Licenses
             </Link>
             <Link href="/delete" className="hover:text-white">
               Delete data
             </Link>
-            <Link href="/support" className="hover:text-white">
-              Support
-            </Link>
           </div>
-          <p className="text-sky/70">
+        </div>
+        <div className="mx-auto max-w-6xl px-5 pt-4 text-xs leading-relaxed text-sky/60 sm:px-8">
+          <p>
+            LipaBill is a Kenya product. Not a bank, not an e-money issuer, and
+            not a Central Bank of Kenya authorised payment service provider.
+            Not affiliated with Safaricom, M-Pesa, Airtel, KCB, Kenya Railways,
+            or Google. Contact{" "}
+            <a className="text-sky hover:text-white" href="mailto:support@lipabill.app">
+              support@lipabill.app
+            </a>
+            . Kenya.
+          </p>
+          <p className="mt-2 text-sky/70">
             © {new Date().getFullYear()} LipaBill.
           </p>
         </div>

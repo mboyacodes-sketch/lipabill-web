@@ -25,9 +25,33 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
     {
       url: absoluteUrl("/privacy"),
-      lastModified,
+      lastModified: new Date("2026-11-02"),
       changeFrequency: "yearly",
       priority: 0.4,
+    },
+    {
+      url: absoluteUrl("/terms"),
+      lastModified: new Date("2026-11-02"),
+      changeFrequency: "yearly",
+      priority: 0.4,
+    },
+    {
+      url: absoluteUrl("/cookies"),
+      lastModified: new Date("2026-11-02"),
+      changeFrequency: "yearly",
+      priority: 0.3,
+    },
+    {
+      url: absoluteUrl("/refunds"),
+      lastModified: new Date("2026-11-02"),
+      changeFrequency: "yearly",
+      priority: 0.3,
+    },
+    {
+      url: absoluteUrl("/licenses"),
+      lastModified: new Date("2026-11-02"),
+      changeFrequency: "yearly",
+      priority: 0.3,
     },
     {
       url: absoluteUrl("/delete"),

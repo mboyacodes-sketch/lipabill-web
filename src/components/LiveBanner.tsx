@@ -1,7 +1,8 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { launchLiveCopy, playStore } from "@/lib/site";
+import { PlayStoreButton } from "@/components/PlayStoreButton";
+import { launchLiveCopy } from "@/lib/site";
 
 const DISMISS_KEY = "lipabill-live-notice-v2";
 
@@ -16,14 +17,6 @@ export function LiveBanner() {
     }
   }, []);
 
-  useEffect(() => {
-    const previous = document.body.style.paddingBottom;
-    document.body.style.paddingBottom = open ? "9.5rem" : "";
-    return () => {
-      document.body.style.paddingBottom = previous;
-    };
-  }, [open]);
-
   if (!open) return null;
 
   function dismiss() {
@@ -36,7 +29,7 @@ export function LiveBanner() {
   }
 
   return (
-    <div className="pointer-events-none fixed inset-x-0 bottom-0 z-50 p-4 pb-[max(1rem,env(safe-area-inset-bottom))]">
+    <div className="pointer-events-none p-4 pb-2">
       <div
         role="status"
         className="pointer-events-auto mx-auto flex max-w-xl flex-col gap-3 overflow-hidden rounded-3xl bg-[#2f6bff] px-5 py-4 text-white shadow-[0_24px_60px_-16px_rgba(15,28,51,0.55)] sm:max-w-2xl sm:flex-row sm:items-center sm:gap-5 sm:px-6 sm:py-5"
@@ -52,15 +45,8 @@ export function LiveBanner() {
             {launchLiveCopy.detail}
           </p>
         </div>
-        <div className="flex shrink-0 items-center justify-center gap-3 sm:flex-col sm:items-stretch">
-          <a
-            href={playStore.url}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="whitespace-nowrap rounded-xl bg-[#0f1c33] px-4 py-2.5 text-center text-sm font-medium text-white hover:bg-black"
-          >
-            {launchLiveCopy.cta}
-          </a>
+        <div className="flex shrink-0 flex-col items-center justify-center gap-3 sm:items-stretch">
+          <PlayStoreButton tone="onDark" />
           <button
             type="button"
             onClick={dismiss}

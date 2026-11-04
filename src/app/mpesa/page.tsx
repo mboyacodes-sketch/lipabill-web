@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { JsonLd } from "@/components/JsonLd";
+import { PlayStoreButton } from "@/components/PlayStoreButton";
 import { RailsStage } from "@/components/RailsStage";
 import { SiteFooter, SiteHeader } from "@/components/SiteChrome";
-import { absoluteUrl, isPlayLive, playStore } from "@/lib/site";
+import { absoluteUrl, isPlayLive } from "@/lib/site";
 
 const title = "See the picture. Then move.";
 const description =
@@ -118,30 +119,26 @@ export default function MpesaPage() {
           </p>
         </section>
 
-        <p className="mt-12 text-sm text-mute">
+        <div className="mt-12">
           {isPlayLive ? (
             <>
-              LipaBill is on Google Play for Android in Kenya.{" "}
-              <a
-                href={playStore.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="font-medium text-blue hover:underline"
-              >
-                Get the app
-              </a>
-              .
+              <p className="text-sm text-mute">
+                LipaBill is on Google Play for Android in Kenya.
+              </p>
+              <div className="mt-4">
+                <PlayStoreButton />
+              </div>
             </>
           ) : (
-            <>
+            <p className="text-sm text-mute">
               Android launch is coming.{" "}
               <Link href="/#notify" className="font-medium text-blue hover:underline">
                 Get early access
               </Link>
               .
-            </>
+            </p>
           )}
-        </p>
+        </div>
       </article>
 
       <RailsStage />

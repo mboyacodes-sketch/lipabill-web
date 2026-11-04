@@ -31,7 +31,7 @@ export async function POST(request: Request) {
     );
   }
 
-  let body: { email?: unknown; company?: unknown };
+  let body: { email?: unknown; company?: unknown; consent?: unknown };
   try {
     body = await request.json();
   } catch {
@@ -40,6 +40,13 @@ export async function POST(request: Request) {
 
   if (typeof body.company === "string" && body.company.trim()) {
     return NextResponse.json({ ok: true });
+  }
+
+  if (body.consent !== true) {
+    return NextResponse.json(
+      { error: "Tick the box if you want product notes." },
+      { status: 400 },
+    );
   }
 
   const email = String(body.email ?? "").trim().toLowerCase();
