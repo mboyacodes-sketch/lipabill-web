@@ -23,37 +23,12 @@ export const site = {
   ],
 } as const;
 
-/** Close of 6 November 2026, East Africa Time. Eight days after 29 October. */
-export const launchAt = "2026-11-07T00:00:00+03:00";
+/** Public release date (schema.org / Play messaging). */
 export const launchDayIso = "2026-11-06";
-
-/** When true, the homepage clock does not tick and a pause banner sits on top. */
-export const launchCountdownPaused = true;
-
-export const launchPauseCopy = {
-  badge: "Paused",
-  line: "The launch clock is paused for a moment.",
-  detail: "We’re still lining up the picture.",
-} as const;
-
-/** Calendar day the countdown is counting down to, in East Africa Time. */
-export function launchDayLabel() {
-  const endOfLaunchDay = new Date(Date.parse(launchAt) - 1);
-  return new Intl.DateTimeFormat("en-GB", {
-    day: "numeric",
-    month: "long",
-    year: "numeric",
-    timeZone: "Africa/Nairobi",
-  }).format(endOfLaunchDay);
-}
 
 export const playStore = {
   url: "https://play.google.com/store/apps/details?id=com.lipabill.app",
-  enabled: true,
 } as const;
-
-/** True once the Play listing is public. Countdown and waitlist-as-hero yield to this. */
-export const isPlayLive = playStore.enabled;
 
 export const launchLiveCopy = {
   badge: "Live",
@@ -85,11 +60,8 @@ export const homeFaqs = [
   },
   {
     question: "When can I download it?",
-    answer: isPlayLive
-      ? "LipaBill is on Google Play for Android in Kenya, Tanzania, Uganda, and Rwanda. Open the listing from this site."
-      : launchCountdownPaused
-        ? "The launch clock is paused for a moment. Leave your email on this page and we’ll write when LipaBill is on Google Play."
-        : `LipaBill comes to Android on ${launchDayLabel()}. Leave your email on this page and we’ll write when it’s on Google Play.`,
+    answer:
+      "LipaBill is on Google Play for Android in Kenya, Tanzania, Uganda, and Rwanda. Open the listing from this site.",
   },
 ] as const;
 
@@ -118,9 +90,6 @@ export const supportFaqs = [
   },
 ] as const;
 
-/** @deprecated use homeFaqs or supportFaqs */
-export const faqs = homeFaqs;
-
 export function absoluteUrl(path = "/") {
   return new URL(path, site.url).toString();
 }
@@ -148,7 +117,7 @@ export function softwareApplicationJsonLd() {
     name: site.name,
     applicationCategory: "FinanceApplication",
     operatingSystem: "Android",
-    url: isPlayLive ? playStore.url : site.url,
+    url: playStore.url,
     description: site.description,
     image: absoluteUrl("/icon-512.png"),
     screenshot: [
@@ -174,10 +143,8 @@ export function softwareApplicationJsonLd() {
       "@type": "Offer",
       price: "0",
       priceCurrency: "KES",
-      availability: isPlayLive
-        ? "https://schema.org/InStock"
-        : "https://schema.org/PreOrder",
-      url: isPlayLive ? playStore.url : absoluteUrl("/#notify"),
+      availability: "https://schema.org/InStock",
+      url: playStore.url,
     },
     publisher: { "@id": absoluteUrl("/#organization") },
   };

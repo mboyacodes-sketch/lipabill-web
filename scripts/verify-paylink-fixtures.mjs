@@ -2,7 +2,7 @@
 /**
  * Asserts public/p/paylink.js decodes the same golden vectors as Kotlin PayLink.
  * Run: npm run verify:paylink
- * Source of truth for vectors also lives in lipa_bill/web/p/fixtures.json.
+ * Vectors live in scripts/paylink/fixtures.json (not served publicly).
  */
 import { readFileSync } from "node:fs";
 import { dirname, join } from "node:path";
@@ -10,9 +10,10 @@ import { fileURLToPath } from "node:url";
 import vm from "node:vm";
 
 const root = join(dirname(fileURLToPath(import.meta.url)), "..");
-const dir = join(root, "public", "p");
-const fixtures = JSON.parse(readFileSync(join(dir, "fixtures.json"), "utf8"));
-const code = readFileSync(join(dir, "paylink.js"), "utf8");
+const fixtures = JSON.parse(
+  readFileSync(join(root, "scripts", "paylink", "fixtures.json"), "utf8")
+);
+const code = readFileSync(join(root, "public", "p", "paylink.js"), "utf8");
 
 const sandbox = {
   module: { exports: {} },

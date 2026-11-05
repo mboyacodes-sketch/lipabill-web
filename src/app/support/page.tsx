@@ -1,14 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { JsonLd } from "@/components/JsonLd";
+import { PageShell } from "@/components/PageShell";
 import { PlayStoreButton } from "@/components/PlayStoreButton";
-import { SiteFooter, SiteHeader } from "@/components/SiteChrome";
-import {
-  absoluteUrl,
-  isPlayLive,
-  site,
-  supportFaqs,
-} from "@/lib/site";
+import { absoluteUrl, site, supportFaqs } from "@/lib/site";
 
 const description =
   "Get help with LipaBill — see your money story, then send, pay, or show the code. Contact, what the app is for, and common questions.";
@@ -29,27 +23,22 @@ export const metadata: Metadata = {
 
 export default function SupportPage() {
   return (
-    <main className="flex-1 bg-paper">
-      <div className="blob-field border-b border-line/70">
-        <SiteHeader solid />
-      </div>
-
-      <JsonLd
-        data={{
-          "@context": "https://schema.org",
-          "@type": "FAQPage",
-          url: absoluteUrl("/support"),
-          isPartOf: { "@id": absoluteUrl("/#website") },
-          mainEntity: supportFaqs.map((item) => ({
-            "@type": "Question",
-            name: item.question,
-            acceptedAnswer: {
-              "@type": "Answer",
-              text: item.answer,
-            },
-          })),
-        }}
-      />
+    <PageShell
+      jsonLd={{
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        url: absoluteUrl("/support"),
+        isPartOf: { "@id": absoluteUrl("/#website") },
+        mainEntity: supportFaqs.map((item) => ({
+          "@type": "Question",
+          name: item.question,
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: item.answer,
+          },
+        })),
+      }}
+    >
       <article className="mx-auto max-w-3xl px-5 py-14 sm:px-8 sm:py-16">
         <p className="text-xs font-medium uppercase tracking-[0.18em] text-blue">
           Support
@@ -58,32 +47,22 @@ export default function SupportPage() {
           We’re here to help
         </h1>
         <p className="mt-4 text-[1.05rem] leading-relaxed text-ink-soft">
-          LipaBill brings your money picture together.{" "}
-          {isPlayLive
-            ? "The Android app is on Google Play for Kenya, Tanzania, Uganda, and Rwanda."
-            : "The Android app is on its way to Google Play."}{" "}
-          Here’s how to reach us.
+          LipaBill brings your money picture together. The Android app is on
+          Google Play for Kenya, Tanzania, Uganda, and Rwanda. Here’s how to
+          reach us.
         </p>
 
         <section className="mt-12 rounded-2xl border border-line bg-sky-soft/50 p-6">
           <p className="text-xs font-medium uppercase tracking-[0.16em] text-blue">
             Status
           </p>
-          <p className="mt-2 text-xl font-semibold text-ink">
-            {isPlayLive ? "On Google Play" : "Not on Google Play yet"}
-          </p>
+          <p className="mt-2 text-xl font-semibold text-ink">On Google Play</p>
           <p className="mt-2 text-ink-soft">
-            {isPlayLive ? (
-              <>
-                Kenya, Tanzania, Uganda, and Rwanda are live. Send and Pay
-                still run on Kenya M-Pesa.
-                <span className="mt-4 block">
-                  <PlayStoreButton />
-                </span>
-              </>
-            ) : (
-              "LipaBill isn’t on Google Play yet. We’ll share the download link here when it is."
-            )}
+            Kenya, Tanzania, Uganda, and Rwanda are live. Send and Pay still run
+            on Kenya M-Pesa.
+            <span className="mt-4 block">
+              <PlayStoreButton />
+            </span>
           </p>
         </section>
 
@@ -110,38 +89,38 @@ export default function SupportPage() {
             <li>
               <strong className="text-ink">The picture</strong>
               <p className="mt-1">
-                Where your money went, from the wallets and banks you pick
-                for your country. Charts show what is shaping it. The ledger
-                stays on this phone.
+                Where your money went, from the wallets and banks you pick for
+                your country. Charts show what is shaping it. The ledger stays
+                on this phone.
               </p>
             </li>
             <li>
               <strong className="text-ink">The next move</strong>
               <p className="mt-1">
-                In Kenya, send to people; pay Paybill, till, or Pochi; repeat
-                a past payment on M-Pesa; or share a QR so someone can pay
-                you. You confirm before money leaves.
+                In Kenya, send to people; pay Paybill, till, or Pochi; repeat a
+                past payment on M-Pesa; or share a QR so someone can pay you.
+                You confirm before money leaves.
               </p>
             </li>
             <li>
               <strong className="text-ink">What it became</strong>
               <p className="mt-1">
-                A ticket is the trip or night you already paid for. A receive
-                QR is money on its way in. Event and SGR codes open offline,
-                with reminders before you travel. Flight boarding is coming
-                soon.
+                A ticket is the trip or night you already paid for. A receive QR
+                is money on its way in. Event and SGR codes open offline, with
+                reminders before you travel. Flight boarding is coming soon.
               </p>
             </li>
           </ul>
         </section>
 
         <section className="mt-12">
-          <h2 className="text-xl font-semibold text-ink">
-            Common questions
-          </h2>
+          <h2 className="text-xl font-semibold text-ink">Common questions</h2>
           <div className="mt-6 space-y-6">
             {supportFaqs.map((item) => (
-              <Faq key={item.question} q={item.question} a={item.answer} />
+              <div key={item.question}>
+                <h3 className="font-semibold text-ink">{item.question}</h3>
+                <p className="mt-2 leading-relaxed text-ink-soft">{item.answer}</p>
+              </div>
             ))}
           </div>
         </section>
@@ -158,17 +137,6 @@ export default function SupportPage() {
           .
         </p>
       </article>
-
-      <SiteFooter />
-    </main>
-  );
-}
-
-function Faq({ q, a }: { q: string; a: string }) {
-  return (
-    <div>
-      <h3 className="font-semibold text-ink">{q}</h3>
-      <p className="mt-2 leading-relaxed text-ink-soft">{a}</p>
-    </div>
+    </PageShell>
   );
 }

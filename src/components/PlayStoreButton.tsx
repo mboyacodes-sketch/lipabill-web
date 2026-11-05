@@ -10,26 +10,19 @@ export function PlayStoreButton({
   className = "",
   tone = "onLight",
 }: PlayStoreButtonProps) {
-  const live = playStore.enabled;
   const onDark = tone === "onDark";
 
   return (
     <a
       href={playStore.url}
-      aria-label={
-        live
-          ? "Get it on Google Play (opens in a new tab)"
-          : "Get it on Google Play, available on launch day"
-      }
-      aria-disabled={live ? undefined : true}
-      target={live ? "_blank" : undefined}
-      rel={live ? "noopener noreferrer" : undefined}
-      onClick={live ? undefined : (event) => event.preventDefault()}
+      aria-label="Get it on Google Play (opens in a new tab)"
+      target="_blank"
+      rel="noopener noreferrer"
       className={`inline-flex shrink-0 items-center gap-3 rounded-lg px-4 py-2 shadow-[0_10px_24px_-16px_rgba(0,0,0,0.8)] ${
         onDark
           ? "bg-white text-ink hover:bg-sky-soft"
           : "bg-black text-white hover:bg-neutral-900"
-      } ${live ? "" : "cursor-not-allowed"} ${className}`}
+      } ${className}`}
     >
       <PlayGlyph />
       <span className="text-left leading-none">
@@ -40,16 +33,23 @@ export function PlayStoreButton({
           Google Play
         </span>
       </span>
-      {live ? null : (
-        <span
-          className={`ml-1 rounded-md px-1.5 py-1 text-[0.62rem] font-semibold uppercase tracking-[0.12em] ${
-            onDark ? "bg-ink/10 text-ink-soft" : "bg-white/15 text-white/80"
-          }`}
-        >
-          Soon
-        </span>
-      )}
     </a>
+  );
+}
+
+/** Compact Play CTA used at the end of interior pages. */
+export function PlayStoreCta({
+  note = "LipaBill is on Google Play for Android in Kenya.",
+}: {
+  note?: string;
+}) {
+  return (
+    <div className="mt-12">
+      <p className="text-sm text-mute">{note}</p>
+      <div className="mt-4">
+        <PlayStoreButton />
+      </div>
+    </div>
   );
 }
 

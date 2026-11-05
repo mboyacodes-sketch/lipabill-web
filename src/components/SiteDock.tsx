@@ -3,7 +3,6 @@
 import { useEffect, useRef } from "react";
 import { CookieBanner } from "@/components/CookieBanner";
 import { LiveBanner } from "@/components/LiveBanner";
-import { isPlayLive } from "@/lib/site";
 
 /** Play live card sits above the cookie bar so it is never covered. */
 export function SiteDock() {
@@ -32,7 +31,7 @@ export function SiteDock() {
       ref={ref}
       className="pointer-events-none fixed inset-x-0 bottom-0 z-[100] flex flex-col"
     >
-      {isPlayLive ? <LiveBanner /> : null}
+      <LiveBanner />
       <CookieBanner />
     </div>
   );

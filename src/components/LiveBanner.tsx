@@ -1,32 +1,44 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useCallback, useSyncExternalStore } from "react";
 import { PlayStoreButton } from "@/components/PlayStoreButton";
 import { launchLiveCopy } from "@/lib/site";
 
 const DISMISS_KEY = "lipabill-live-notice-v2";
+const listeners = new Set<() => void>();
+
+function emit() {
+  listeners.forEach((listener) => listener());
+}
+
+function subscribe(onStoreChange: () => void) {
+  listeners.add(onStoreChange);
+  return () => {
+    listeners.delete(onStoreChange);
+  };
+}
+
+function isOpen() {
+  try {
+    return window.localStorage.getItem(DISMISS_KEY) !== "1";
+  } catch {
+    return true;
+  }
+}
 
 export function LiveBanner() {
-  const [open, setOpen] = useState(true);
+  const open = useSyncExternalStore(subscribe, isOpen, () => false);
 
-  useEffect(() => {
-    try {
-      if (window.localStorage.getItem(DISMISS_KEY) === "1") setOpen(false);
-    } catch {
-      /* private mode */
-    }
-  }, []);
-
-  if (!open) return null;
-
-  function dismiss() {
-    setOpen(false);
+  const dismiss = useCallback(() => {
     try {
       window.localStorage.setItem(DISMISS_KEY, "1");
     } catch {
       /* private mode */
     }
-  }
+    emit();
+  }, []);
+
+  if (!open) return null;
 
   return (
     <div className="pointer-events-none p-4 pb-2">

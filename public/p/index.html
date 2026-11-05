@@ -2,170 +2,387 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="theme-color" content="#0B1F3A" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#1B3B6E" />
+  <meta name="color-scheme" content="light" />
   <title>LipaBill link</title>
+  <link rel="icon" href="/brand/favicon.png" type="image/png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800&display=swap"
+    rel="stylesheet"
+  />
   <style>
     :root {
-      --ink: #0b1f3a;
-      --mute: #5b6b7c;
-      --accent: #1f6feb;
-      --on-accent: #ffffff;
-      --canvas: #f3f6fb;
+      /* LipaPalette.Light — match the Android app */
+      --canvas: #f6f7f9;
+      --soft-blue: #e8eef5;
+      --ink: #111827;
+      --mute: #6b7280;
+      --hairline: #e5e7eb;
       --card: #ffffff;
-      --soft: #d7e4f7;
-      --danger: #b42318;
+      --accent: #2f4a6e;
+      --accent-deep: #1b3b6e;
+      --on-accent: #ffffff;
+      --label: #9bb0c9;
+      --danger: #dc2626;
+      --income: #16a34a;
     }
+
     * { box-sizing: border-box; }
-    body {
+
+    html, body {
       margin: 0;
+      min-height: 100%;
+    }
+
+    body {
       min-height: 100vh;
-      font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+      min-height: 100dvh;
+      font-family: "Montserrat", system-ui, -apple-system, sans-serif;
       color: var(--ink);
       background:
-        radial-gradient(1200px 500px at 100% -10%, var(--soft), transparent 60%),
+        radial-gradient(ellipse 90% 70% at 50% -10%, rgba(47, 74, 110, 0.16), transparent 55%),
+        radial-gradient(ellipse 60% 50% at 100% 100%, rgba(155, 176, 201, 0.28), transparent 50%),
+        radial-gradient(ellipse 50% 40% at 0% 80%, rgba(232, 238, 245, 0.9), transparent 45%),
         var(--canvas);
+      -webkit-font-smoothing: antialiased;
       display: flex;
       justify-content: center;
-      padding: 28px 20px 40px;
+      padding:
+        max(28px, env(safe-area-inset-top))
+        20px
+        max(36px, env(safe-area-inset-bottom));
+      position: relative;
+      overflow-x: hidden;
     }
+
+    .watermark {
+      position: absolute;
+      left: 50%;
+      top: 8%;
+      transform: translateX(-50%);
+      font-size: clamp(4.5rem, 22vw, 9rem);
+      font-weight: 800;
+      letter-spacing: -0.06em;
+      line-height: 0.85;
+      color: color-mix(in srgb, var(--accent) 12%, transparent);
+      user-select: none;
+      pointer-events: none;
+      white-space: nowrap;
+    }
+
     main {
-      width: min(440px, 100%);
+      position: relative;
+      z-index: 1;
+      width: min(420px, 100%);
       display: flex;
       flex-direction: column;
-      gap: 20px;
+      gap: 22px;
+      animation: rise 0.55s cubic-bezier(0.22, 1, 0.36, 1) both;
     }
+
+    @keyframes rise {
+      from { opacity: 0; transform: translateY(18px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fade {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
     .brand {
-      font-size: 1.35rem;
-      font-weight: 700;
-      letter-spacing: -0.02em;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      color: var(--ink);
     }
-    .card {
-      background: var(--card);
-      border-radius: 20px;
-      padding: 22px 20px;
-      box-shadow: 0 10px 30px rgba(11, 31, 58, 0.06);
+
+    .brand img {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      box-shadow: 0 10px 24px -14px rgba(27, 59, 110, 0.55);
     }
-    h1 {
-      margin: 0 0 8px;
+
+    .brand-name {
       font-size: 1.45rem;
-      line-height: 1.25;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1;
     }
-    .mute {
+
+    .brand-tag {
+      margin-top: 4px;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--label);
+    }
+
+    .panel {
+      background: var(--card);
+      border: 1px solid var(--hairline);
+      border-radius: 28px;
+      padding: 26px 22px 22px;
+      box-shadow:
+        0 4px 6px -2px rgba(17, 24, 39, 0.04),
+        0 28px 48px -28px rgba(27, 59, 110, 0.35);
+      animation: rise 0.6s cubic-bezier(0.22, 1, 0.36, 1) 0.08s both;
+    }
+
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 11px;
+      border-radius: 999px;
+      background: var(--soft-blue);
+      color: var(--accent);
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .chip-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--accent);
+    }
+
+    h1 {
+      margin: 14px 0 0;
+      font-size: clamp(1.55rem, 1.2rem + 1.4vw, 1.9rem);
+      font-weight: 800;
+      letter-spacing: -0.035em;
+      line-height: 1.15;
+    }
+
+    .lede {
+      margin: 10px 0 0;
       color: var(--mute);
       font-size: 0.95rem;
-      line-height: 1.45;
-      margin: 0;
+      font-weight: 500;
+      line-height: 1.5;
     }
+
     .dest {
-      margin-top: 18px;
-      padding: 14px 16px;
-      border-radius: 14px;
-      background: var(--canvas);
-      border: 1px solid var(--soft);
+      margin-top: 22px;
+      padding: 18px 18px 16px;
+      border-radius: 20px;
+      background:
+        linear-gradient(180deg, #ffffff 0%, var(--soft-blue) 160%);
+      border: 1px solid color-mix(in srgb, var(--accent) 12%, var(--hairline));
     }
+
     .dest-label {
-      font-size: 0.78rem;
-      text-transform: uppercase;
-      letter-spacing: 0.04em;
-      color: var(--mute);
-      margin-bottom: 4px;
-    }
-    .dest-value {
-      font-size: 1.35rem;
+      font-size: 0.7rem;
       font-weight: 700;
-      word-break: break-all;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--label);
     }
+
+    .dest-value {
+      margin-top: 8px;
+      font-size: clamp(1.7rem, 1.3rem + 2vw, 2.15rem);
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      word-break: break-word;
+      line-height: 1.15;
+    }
+
     .amount {
-      margin-top: 10px;
-      font-weight: 600;
+      margin-top: 12px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: color-mix(in srgb, var(--income) 12%, white);
+      color: var(--income);
+      font-size: 0.92rem;
+      font-weight: 700;
     }
+
     .actions {
       display: flex;
       flex-direction: column;
       gap: 10px;
-      margin-top: 18px;
+      margin-top: 22px;
     }
-    button, a.btn {
+
+    button {
       appearance: none;
       border: 0;
-      border-radius: 999px;
-      min-height: 52px;
+      border-radius: 16px;
+      min-height: 54px;
       padding: 0 18px;
       font: inherit;
-      font-weight: 650;
-      text-align: center;
-      text-decoration: none;
+      font-weight: 700;
+      letter-spacing: -0.01em;
       display: flex;
       align-items: center;
       justify-content: center;
+      gap: 10px;
       cursor: pointer;
+      transition: transform 0.15s ease, background 0.15s ease, box-shadow 0.15s ease;
     }
+
+    button:active { transform: scale(0.985); }
+
     .primary {
-      background: var(--accent);
+      background: linear-gradient(180deg, #3a5b86 0%, var(--accent) 55%, var(--accent-deep) 100%);
       color: var(--on-accent);
+      box-shadow: 0 14px 28px -16px rgba(27, 59, 110, 0.75);
     }
+
+    .primary:hover {
+      background: linear-gradient(180deg, #456791 0%, #35547a 55%, var(--accent-deep) 100%);
+    }
+
     .secondary {
-      background: var(--canvas);
+      background: var(--soft-blue);
       color: var(--ink);
-      border: 1px solid var(--soft);
+      border: 1px solid color-mix(in srgb, var(--accent) 10%, var(--hairline));
     }
+
+    .secondary:hover { background: #dde5ef; }
+
     .ghost {
       background: transparent;
       color: var(--accent);
+      min-height: 44px;
+      font-weight: 650;
     }
+
+    .ghost:hover { background: color-mix(in srgb, var(--soft-blue) 70%, transparent); }
+
+    .loading-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      color: var(--mute);
+      font-weight: 600;
+    }
+
+    .spinner {
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      border: 2px solid var(--soft-blue);
+      border-top-color: var(--accent);
+      animation: spin 0.7s linear infinite;
+    }
+
+    @keyframes spin { to { transform: rotate(360deg); } }
+
     .error h1 { color: var(--danger); }
+
+    .foot {
+      text-align: center;
+      color: var(--mute);
+      font-size: 0.78rem;
+      font-weight: 500;
+      line-height: 1.45;
+      animation: fade 0.5s ease 0.25s both;
+    }
+
+    .foot a {
+      color: var(--accent);
+      font-weight: 700;
+      text-decoration: none;
+    }
+
     .toast {
       position: fixed;
       left: 50%;
-      bottom: 24px;
-      transform: translateX(-50%);
+      bottom: max(24px, env(safe-area-inset-bottom));
+      transform: translateX(-50%) translateY(12px);
       background: var(--ink);
       color: #fff;
-      padding: 10px 16px;
+      padding: 11px 16px;
       border-radius: 999px;
-      font-size: 0.9rem;
+      font-size: 0.88rem;
+      font-weight: 650;
       opacity: 0;
       pointer-events: none;
-      transition: opacity 0.2s ease;
+      transition: opacity 0.2s ease, transform 0.2s ease;
+      z-index: 20;
     }
-    .toast.show { opacity: 1; }
+
+    .toast.show {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+
     .hidden { display: none !important; }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation: none !important;
+        transition: none !important;
+      }
+    }
   </style>
 </head>
 <body>
+  <div class="watermark" aria-hidden="true">LipaBill</div>
   <main>
-    <div class="brand">LipaBill</div>
+    <a class="brand" href="https://lipabill.app/" aria-label="LipaBill home">
+      <img src="/brand/lipabill-logo.png" width="44" height="44" alt="" />
+      <span>
+        <span class="brand-name">LipaBill</span>
+        <span class="brand-tag">See, then move</span>
+      </span>
+    </a>
 
-    <section id="loading" class="card">
-      <p class="mute">Opening link…</p>
+    <section id="loading" class="panel">
+      <div class="loading-row">
+        <span class="spinner" aria-hidden="true"></span>
+        <p class="lede" style="margin:0">Opening your link…</p>
+      </div>
     </section>
 
-    <section id="ok" class="card hidden">
+    <section id="ok" class="panel hidden">
+      <span class="chip"><span class="chip-dot" aria-hidden="true"></span><span id="kindChip">Link</span></span>
       <h1 id="title">Here’s a LipaBill link</h1>
-      <p id="subtitle" class="mute"></p>
+      <p id="subtitle" class="lede"></p>
       <div class="dest">
         <div class="dest-label" id="destLabel">Destination</div>
         <div class="dest-value" id="destValue"></div>
         <div class="amount hidden" id="amountRow"></div>
       </div>
       <div class="actions">
-        <button type="button" class="primary" id="copyBtn">Copy details</button>
-        <button type="button" class="secondary" id="mpesaBtn">Open M-Pesa to complete this</button>
-        <button type="button" class="secondary" id="appBtn">Open in LipaBill</button>
-        <button type="button" class="ghost" id="storeBtn">Get LipaBill</button>
+        <button type="button" class="primary" id="appBtn">Open in LipaBill</button>
+        <button type="button" class="secondary" id="copyBtn">Copy details</button>
+        <button type="button" class="secondary" id="mpesaBtn">Open M-Pesa</button>
+        <button type="button" class="ghost" id="storeBtn">Get LipaBill on Google Play</button>
       </div>
     </section>
 
-    <section id="err" class="card error hidden">
+    <section id="err" class="panel error hidden">
+      <span class="chip"><span class="chip-dot" style="background:var(--danger)" aria-hidden="true"></span>Unavailable</span>
       <h1>This code isn’t valid anymore</h1>
-      <p class="mute">Ask for a fresh LipaBill link, or open M-Pesa and enter the details yourself.</p>
+      <p class="lede">Ask for a fresh LipaBill link, or open M-Pesa and enter the details yourself.</p>
       <div class="actions">
         <button type="button" class="secondary" id="errMpesaBtn">Open M-Pesa</button>
-        <button type="button" class="ghost" id="errStoreBtn">Get LipaBill</button>
+        <button type="button" class="ghost" id="errStoreBtn">Get LipaBill on Google Play</button>
       </div>
     </section>
+
+    <p class="foot">
+      Local-first money tracker ·
+      <a href="https://lipabill.app/">lipabill.app</a>
+    </p>
   </main>
+
   <div class="toast" id="toast" role="status"></div>
   <script src="/p/paylink.js"></script>
   <script>
@@ -205,22 +422,26 @@
         var destLabel = document.getElementById("destLabel");
         var destValue = document.getElementById("destValue");
         var amountRow = document.getElementById("amountRow");
+        var kindChip = document.getElementById("kindChip");
         var copyPayload = "";
 
         if (target.kind === "PHONE") {
-          title.textContent = "Here’s a LipaBill send-money link";
-          subtitle.textContent = "Copy the number, or continue in M-Pesa or LipaBill.";
-          destLabel.textContent = "Send money to";
+          kindChip.textContent = "Send money";
+          title.textContent = "Money on its way out";
+          subtitle.textContent = "Copy the number, finish in M-Pesa, or open LipaBill if you have it.";
+          destLabel.textContent = "Send to";
           destValue.textContent = target.identifier;
           copyPayload = target.identifier;
         } else if (target.kind === "TILL") {
-          title.textContent = "Here’s a LipaBill till link";
+          kindChip.textContent = "Buy goods";
+          title.textContent = "Pay this till";
           subtitle.textContent = "Use Buy Goods in M-Pesa, or open LipaBill if you have it.";
-          destLabel.textContent = "Till";
+          destLabel.textContent = "Till number";
           destValue.textContent = target.identifier;
           copyPayload = target.identifier;
         } else {
-          title.textContent = "Here’s a LipaBill paybill link";
+          kindChip.textContent = "Pay bill";
+          title.textContent = "Pay this bill";
           subtitle.textContent = "Use Pay Bill in M-Pesa, or open LipaBill if you have it.";
           destLabel.textContent = "Paybill · Account";
           destValue.textContent = target.identifier + " · " + target.account;
@@ -228,7 +449,7 @@
         }
 
         if (target.amountShillings) {
-          amountRow.textContent = "Amount · KES " + target.amountShillings.toLocaleString("en-KE");
+          amountRow.textContent = "KES " + target.amountShillings.toLocaleString("en-KE");
           amountRow.classList.remove("hidden");
           copyPayload += " KES " + target.amountShillings;
         }

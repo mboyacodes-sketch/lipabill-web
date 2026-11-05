@@ -1,69 +1,32 @@
 import Image from "next/image";
 import Link from "next/link";
 import { PlayStoreButton } from "@/components/PlayStoreButton";
-import {
-  isPlayLive,
-  launchCountdownPaused,
-  launchDayLabel,
-  launchPauseCopy,
-} from "@/lib/site";
+import { legalPaths } from "@/lib/legal";
+import { site } from "@/lib/site";
 
-export function SiteNotice() {
-  if (isPlayLive) return null;
-  if (launchCountdownPaused) return <PauseBanner />;
-  return <FreezeBanner />;
-}
+const navLinks = [
+  { href: "/#rails", label: "Countries", className: "hidden hover:text-ink sm:inline" },
+  { href: legalPaths.privacy, label: "Privacy", className: "hidden hover:text-ink sm:inline" },
+  { href: legalPaths.terms, label: "Terms", className: "hidden hover:text-ink sm:inline" },
+  { href: legalPaths.support, label: "Support", className: "hidden hover:text-ink sm:inline" },
+] as const;
 
-export function PauseBanner() {
+const footerLinks = [
+  { href: "/#rails", label: "Countries" },
+  { href: "/mpesa", label: "Payments" },
+  { href: "/sgr", label: "Passes" },
+  { href: legalPaths.support, label: "Support" },
+  { href: legalPaths.privacy, label: "Privacy" },
+  { href: legalPaths.terms, label: "Terms" },
+  { href: legalPaths.cookies, label: "Cookies" },
+  { href: legalPaths.refunds, label: "Refunds" },
+  { href: legalPaths.licenses, label: "Licenses" },
+  { href: legalPaths.delete, label: "Delete data" },
+] as const;
+
+export function SiteHeader() {
   return (
-    <div role="status" className="relative overflow-hidden bg-[#111]">
-      <div aria-hidden className="police-tape h-2.5 w-full" />
-      <div className="bg-[#f5c400] text-[#111]">
-        <div className="relative mx-auto flex max-w-[90rem] flex-col items-center gap-2 px-5 py-2.5 text-center sm:flex-row sm:justify-center sm:gap-3 sm:px-8 sm:py-3 sm:text-left">
-          <span className="shrink-0 rounded-full bg-[#111] px-2.5 py-1 text-[0.65rem] font-bold uppercase tracking-[0.16em] text-[#f5c400]">
-            {launchPauseCopy.badge}
-          </span>
-          <p className="text-sm font-semibold leading-snug sm:text-[0.95rem]">
-            {launchPauseCopy.line}
-            <span className="font-medium"> {launchPauseCopy.detail}</span>
-          </p>
-        </div>
-      </div>
-      <div aria-hidden className="police-tape h-2.5 w-full" />
-    </div>
-  );
-}
-
-export function FreezeBanner() {
-  return (
-    <div className="relative overflow-hidden bg-[linear-gradient(100deg,#ffe08a_0%,#ffb020_38%,#ff7a18_100%)] text-[#2a1600]">
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-y-0 -left-8 w-24 -skew-x-12 bg-white/35"
-      />
-      <div className="relative mx-auto flex max-w-[90rem] flex-col items-center gap-2 px-5 py-2.5 text-center sm:flex-row sm:justify-center sm:gap-3 sm:px-8 sm:py-3 sm:text-left">
-        <span className="shrink-0 rounded-full bg-[#2a1600] px-2.5 py-1 text-[0.65rem] font-bold uppercase tracking-[0.16em] text-[#ffe08a]">
-          Coming {launchDayLabel()}
-        </span>
-        <p className="text-sm font-semibold leading-snug sm:text-[0.95rem]">
-          LipaBill is on its way to Google Play.
-          <span className="font-medium">
-            {" "}
-            Leave your email and we’ll tell you when you can download it.
-          </span>
-        </p>
-      </div>
-    </div>
-  );
-}
-
-export function SiteHeader({ solid = false }: { solid?: boolean }) {
-  return (
-    <header
-      className={`mx-auto flex w-full max-w-[1600px] items-center justify-between px-5 py-4 sm:px-8 sm:py-5 lg:px-10 ${
-        solid ? "" : ""
-      }`}
-    >
+    <header className="mx-auto flex w-full max-w-[1600px] items-center justify-between px-5 py-4 sm:px-8 sm:py-5 lg:px-10">
       <Link
         href="/"
         aria-label="LipaBill home"
@@ -80,28 +43,12 @@ export function SiteHeader({ solid = false }: { solid?: boolean }) {
         LipaBill
       </Link>
       <nav className="flex items-center gap-4 text-sm text-ink-soft sm:gap-6" aria-label="Primary">
-        <Link href="/#rails" className="hidden hover:text-ink sm:inline">
-          Countries
-        </Link>
-        <Link href="/privacy" className="hidden hover:text-ink sm:inline">
-          Privacy
-        </Link>
-        <Link href="/terms" className="hidden hover:text-ink sm:inline">
-          Terms
-        </Link>
-        <Link href="/support" className="hidden hover:text-ink sm:inline">
-          Support
-        </Link>
-        {isPlayLive ? (
-          <PlayStoreButton />
-        ) : (
-          <Link
-            href="/#notify"
-            className="whitespace-nowrap rounded-xl bg-blue/10 px-3.5 py-2 text-sm font-medium text-blue sm:px-4 sm:py-2.5"
-          >
-            Get notified
+        {navLinks.map((item) => (
+          <Link key={item.href} href={item.href} className={item.className}>
+            {item.label}
           </Link>
-        )}
+        ))}
+        <PlayStoreButton />
       </nav>
     </header>
   );
@@ -120,16 +67,7 @@ export function SiteFooter() {
               Understand the picture. Then send, pay, or show the code.
             </h2>
           </div>
-          {isPlayLive ? (
-            <PlayStoreButton tone="onDark" />
-          ) : (
-            <Link
-              href="/#notify"
-              className="inline-flex shrink-0 items-center justify-center rounded-xl bg-white px-6 py-3.5 text-sm font-medium text-bar"
-            >
-              Get notified
-            </Link>
-          )}
+          <PlayStoreButton tone="onDark" />
         </div>
       </section>
 
@@ -146,36 +84,11 @@ export function SiteFooter() {
             LipaBill
           </p>
           <div className="flex flex-wrap gap-x-5 gap-y-2">
-            <Link href="/#rails" className="hover:text-white">
-              Countries
-            </Link>
-            <Link href="/mpesa" className="hover:text-white">
-              Payments
-            </Link>
-            <Link href="/sgr" className="hover:text-white">
-              Passes
-            </Link>
-            <Link href="/support" className="hover:text-white">
-              Support
-            </Link>
-            <Link href="/privacy" className="hover:text-white">
-              Privacy
-            </Link>
-            <Link href="/terms" className="hover:text-white">
-              Terms
-            </Link>
-            <Link href="/cookies" className="hover:text-white">
-              Cookies
-            </Link>
-            <Link href="/refunds" className="hover:text-white">
-              Refunds
-            </Link>
-            <Link href="/licenses" className="hover:text-white">
-              Licenses
-            </Link>
-            <Link href="/delete" className="hover:text-white">
-              Delete data
-            </Link>
+            {footerLinks.map((item) => (
+              <Link key={item.href} href={item.href} className="hover:text-white">
+                {item.label}
+              </Link>
+            ))}
           </div>
         </div>
         <div className="mx-auto max-w-6xl px-5 pt-4 text-xs leading-relaxed text-sky/60 sm:px-8">
@@ -184,8 +97,8 @@ export function SiteFooter() {
             not a Central Bank of Kenya authorised payment service provider.
             Not affiliated with Safaricom, M-Pesa, Airtel, KCB, Kenya Railways,
             or Google. Contact{" "}
-            <a className="text-sky hover:text-white" href="mailto:support@lipabill.app">
-              support@lipabill.app
+            <a className="text-sky hover:text-white" href={`mailto:${site.email}`}>
+              {site.email}
             </a>
             . Kenya.
           </p>

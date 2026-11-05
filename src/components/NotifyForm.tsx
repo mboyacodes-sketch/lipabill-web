@@ -31,7 +31,7 @@ export function NotifyForm({ className = "" }: { className?: string }) {
       const response = await fetch("/api/notify", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, consent: true }),
+        body: JSON.stringify({ email, consent: true, company: honeypot }),
       });
       const payload = (await response.json().catch(() => ({}))) as {
         error?: string;

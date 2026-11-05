@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { JsonLd } from "@/components/JsonLd";
-import { SiteFooter, SiteHeader } from "@/components/SiteChrome";
+import { PageShell } from "@/components/PageShell";
 import { absoluteUrl, deleteDataPath, site } from "@/lib/site";
 
 const description =
@@ -29,23 +28,18 @@ export const metadata: Metadata = {
 
 export default function DeleteDataPage() {
   return (
-    <main className="flex-1 bg-paper">
-      <div className="blob-field border-b border-line/70">
-        <SiteHeader solid />
-      </div>
-
-      <JsonLd
-        data={{
-          "@context": "https://schema.org",
-          "@type": "WebPage",
-          name: "Delete LipaBill data",
-          url: absoluteUrl(deleteDataPath),
-          description,
-          dateModified: "2026-10-28",
-          isPartOf: { "@id": absoluteUrl("/#website") },
-          about: { "@id": absoluteUrl("/#app") },
-        }}
-      />
+    <PageShell
+      jsonLd={{
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        name: "Delete LipaBill data",
+        url: absoluteUrl(deleteDataPath),
+        description,
+        dateModified: "2026-10-28",
+        isPartOf: { "@id": absoluteUrl("/#website") },
+        about: { "@id": absoluteUrl("/#app") },
+      }}
+    >
       <article className="mx-auto max-w-3xl px-5 py-14 sm:px-8 sm:py-16">
         <p className="text-xs font-medium uppercase tracking-[0.18em] text-blue">
           LipaBill
@@ -69,9 +63,9 @@ export default function DeleteDataPage() {
               <strong>On your phone (this removes almost everything).</strong>{" "}
               Uninstall LipaBill, or go to Android Settings → Apps → LipaBill →
               Storage → Clear storage. That deletes your on-device ledger,
-              confirmation history, tickets, settings, and app lock on
-              that device. LipaBill does not keep a copy. This is immediate —
-              there is no extra retention period.
+              confirmation history, tickets, settings, and app lock on that
+              device. LipaBill does not keep a copy. This is immediate — there
+              is no extra retention period.
             </li>
             <li>
               <strong>If you left an email on this website.</strong> Email{" "}
@@ -103,14 +97,14 @@ export default function DeleteDataPage() {
             <ul>
               <li>
                 <strong>On the phone, when you uninstall or clear storage:</strong>{" "}
-                encrypted ledger and balances, confirmation SMS LipaBill
-                stored, tickets and passes, Favourites, settings, and app lock.
-                Deleted immediately. Not kept by LipaBill.
+                encrypted ledger and balances, confirmation SMS LipaBill stored,
+                tickets and passes, Favourites, settings, and app lock. Deleted
+                immediately. Not kept by LipaBill.
               </li>
               <li>
-                <strong>On this website, when you email us:</strong> the launch-list
-                email address you left on lipabill.app. Removed from our Google
-                Sheet, usually within 7 days.
+                <strong>On this website, when you email us:</strong> the
+                launch-list email address you left on lipabill.app. Removed from
+                our Google Sheet, usually within 7 days.
               </li>
             </ul>
           </section>
@@ -121,10 +115,10 @@ export default function DeleteDataPage() {
               Product analytics and crash reports (for example which screens
               opened, whether SMS permission was granted, payment flow type such
               as send/pay/repeat, and crash stacks) go to Google Firebase. They
-              do not include your confirmation SMS bodies, amounts, recipients, or PIN.
-              LipaBill does not keep a named account we can look up. We cannot
-              delete a Google analytics profile we do not operate. Google’s own
-              retention applies to those reports.
+              do not include your confirmation SMS bodies, amounts, recipients,
+              or PIN. LipaBill does not keep a named account we can look up. We
+              cannot delete a Google analytics profile we do not operate.
+              Google’s own retention applies to those reports.
             </p>
           </section>
 
@@ -148,8 +142,6 @@ export default function DeleteDataPage() {
           </section>
         </div>
       </article>
-
-      <SiteFooter />
-    </main>
+    </PageShell>
   );
 }

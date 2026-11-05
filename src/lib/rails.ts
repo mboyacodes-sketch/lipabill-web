@@ -157,10 +157,6 @@ export const regions: RegionCatalog[] = [
   },
 ];
 
-export function regionById(id: RegionId): RegionCatalog {
-  return regions.find((region) => region.id === id) ?? regions[0];
-}
-
 export function starterIds(region: RegionCatalog): string[] {
   const extraWallet = region.rails.find(
     (rail) => rail.kind === "wallet" && rail.id !== region.primaryWallet

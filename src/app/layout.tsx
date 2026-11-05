@@ -2,9 +2,8 @@ import type { Metadata } from "next";
 import { Montserrat } from "next/font/google";
 import { JsonLd } from "@/components/JsonLd";
 import { SiteDock } from "@/components/SiteDock";
-import { SiteNotice } from "@/components/SiteChrome";
 import { legal } from "@/lib/legal";
-import { absoluteUrl, isPlayLive, site } from "@/lib/site";
+import { absoluteUrl, site } from "@/lib/site";
 import "./globals.css";
 
 const sans = Montserrat({
@@ -108,7 +107,6 @@ export default function RootLayout({
           Skip to content
         </a>
         <JsonLd data={identity} />
-        {isPlayLive ? null : <SiteNotice />}
         <div id="main" className="flex flex-1 flex-col">
           {children}
         </div>

@@ -1,10 +1,23 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useCallback, useSyncExternalStore } from "react";
 import { legal } from "@/lib/legal";
 
 type Choice = "essential" | "all";
+
+const listeners = new Set<() => void>();
+
+function emit() {
+  listeners.forEach((listener) => listener());
+}
+
+function subscribe(onStoreChange: () => void) {
+  listeners.add(onStoreChange);
+  return () => {
+    listeners.delete(onStoreChange);
+  };
+}
 
 function readChoice(): Choice | null {
   if (typeof document === "undefined") return null;
@@ -23,25 +36,29 @@ function readChoice(): Choice | null {
 
 function writeChoice(choice: Choice) {
   const maxAge = legal.cookieMaxAgeDays * 24 * 60 * 60;
-  document.cookie = `${legal.cookieName}=${choice}; Max-Age=${maxAge}; Path=/; SameSite=Lax`;
+  const secure =
+    typeof window !== "undefined" && window.location.protocol === "https:"
+      ? "; Secure"
+      : "";
+  document.cookie = `${legal.cookieName}=${choice}; Max-Age=${maxAge}; Path=/; SameSite=Lax${secure}`;
   try {
     localStorage.setItem(legal.cookieName, choice);
   } catch {
     /* private mode */
   }
+  emit();
 }
 
 export function CookieBanner() {
-  const [open, setOpen] = useState(false);
+  const open = useSyncExternalStore(
+    subscribe,
+    () => readChoice() === null,
+    () => false
+  );
 
-  useEffect(() => {
-    setOpen(readChoice() === null);
-  }, []);
-
-  function choose(choice: Choice) {
+  const choose = useCallback((choice: Choice) => {
     writeChoice(choice);
-    setOpen(false);
-  }
+  }, []);
 
   if (!open) return null;
 

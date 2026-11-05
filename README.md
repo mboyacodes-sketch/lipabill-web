@@ -21,11 +21,12 @@ Product screenshots live in `public/screenshots/` (source dump also in `screensh
 
 Shared pay QR/HTTPS links without the app open `public/p/index.html`. Client JS
 (`public/p/paylink.js`) decodes the token the same way as Android `PayLink.parse`,
-then offers Copy / Open M-Pesa / Open in LipaBill / Get LipaBill.
+then offers Open in LipaBill / Copy / Open M-Pesa / Get LipaBill.
 
 `public/.well-known/assetlinks.json` lists the Play release + debug certs for
 App Links (`https://lipabill.app/p/`). `next.config.ts` rewrites `/p/:token` to
-the landing page.
+the landing page. Golden decode vectors live in `scripts/paylink/fixtures.json`
+(not publicly served).
 
 ```bash
 npm run verify:paylink

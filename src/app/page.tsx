@@ -1,12 +1,12 @@
 import Image from "next/image";
 import Link from "next/link";
 import { ConnectorLines } from "@/components/ConnectorLines";
+import { JsonLd } from "@/components/JsonLd";
+import { LaunchPromo } from "@/components/LaunchPromo";
 import {
   OrbitScale,
   OrbitScaleProvider,
-} from "@/components/InverseBrowserZoom";
-import { JsonLd } from "@/components/JsonLd";
-import { LaunchPromo } from "@/components/LaunchCountdown";
+} from "@/components/OrbitScale";
 import { NotifyForm } from "@/components/NotifyForm";
 import { PassesShowcase } from "@/components/PassesShowcase";
 import { RailsStage } from "@/components/RailsStage";

@@ -33,10 +33,7 @@ function snapZoom(raw: number): number {
 
 /**
  * Browser page zoom (1 = 100%).
- *
  * Uses outerWidth / innerWidth: zoom changes innerWidth, not outerWidth.
- * Window resize changes both roughly together, so the ratio stays stable.
- * (DPR is NOT used — on Retina DPR=2 at 100% and was misread as 200% zoom.)
  */
 function readBrowserZoom(): number {
   if (typeof window === "undefined") return 1;
@@ -50,11 +47,7 @@ function readBrowserZoom(): number {
   return snapZoom(window.outerWidth / inner);
 }
 
-/**
- * Window size factor (1 = maximized / full).
- * Uses outerWidth vs screen — independent of browser zoom.
- * Full size → 1; shrink window → shrink (never above 1).
- */
+/** Window size factor (1 = maximized). Independent of browser zoom. */
 function readWindowSizeFactor(): number {
   if (typeof window === "undefined") return 1;
 
@@ -68,22 +61,12 @@ function readWindowSizeFactor(): number {
   return size;
 }
 
-/**
- * Combined:
- * - Browser zoom → inverse (out enlarges, in shrinks; 100% = unchanged)
- * - Window resize → direct (full = normal, shrink shrinks)
- * - Mobile / < xl → always 1 (stacked layout; scale breaks alignment)
- */
+/** Desktop orbit scale: inverse browser zoom × window size. Mobile always 1. */
 function readOrbitScale(): number {
   if (typeof window === "undefined") return 1;
-
-  // Desktop orbit only — compact mobile layout must stay unscaled.
   if (!window.matchMedia("(min-width: 1280px)").matches) return 1;
 
-  const invZoom = 1 / readBrowserZoom();
-  const windowSize = readWindowSizeFactor();
-  const next = invZoom * windowSize;
-
+  const next = (1 / readBrowserZoom()) * readWindowSizeFactor();
   if (!Number.isFinite(next)) return 1;
   if (Math.abs(next - 1) < 0.02) return 1;
   return next;
@@ -144,12 +127,4 @@ export function OrbitScale({
       {children}
     </div>
   );
-}
-
-export function InverseBrowserZoom(props: {
-  children: ReactNode;
-  className?: string;
-  style?: CSSProperties;
-}) {
-  return <OrbitScale {...props} />;
 }

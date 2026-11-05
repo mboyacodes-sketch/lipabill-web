@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { site } from "@/lib/site";
 
 const EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const WINDOW_MS = 60 * 60 * 1000;
@@ -23,7 +24,67 @@ function rateLimited(ip: string) {
   return false;
 }
 
+function trustedHost(hostname: string) {
+  if (
+    hostname === new URL(site.url).hostname ||
+    hostname === "localhost" ||
+    hostname === "127.0.0.1"
+  ) {
+    return true;
+  }
+  // This deployment only (set by Vercel) — never a blanket *.vercel.app allow.
+  const hosts = [
+    process.env.VERCEL_URL,
+    process.env.VERCEL_BRANCH_URL,
+    process.env.VERCEL_PROJECT_PRODUCTION_URL,
+  ]
+    .filter(Boolean)
+    .map((value) => String(value).replace(/^https?:\/\//, "").split("/")[0]);
+  return hosts.includes(hostname);
+}
+
+/** Reject cross-site POSTs (CSRF / drive-by list pollution). */
+function isTrustedBrowserRequest(request: Request) {
+  const origin = request.headers.get("origin");
+  if (origin) {
+    try {
+      return trustedHost(new URL(origin).hostname);
+    } catch {
+      return false;
+    }
+  }
+
+  const referer = request.headers.get("referer");
+  if (referer) {
+    try {
+      return trustedHost(new URL(referer).hostname);
+    } catch {
+      return false;
+    }
+  }
+
+  return false;
+}
+
+function isAllowedWebhook(url: string) {
+  try {
+    const parsed = new URL(url);
+    if (parsed.protocol !== "https:") return false;
+    return (
+      parsed.hostname === "script.google.com" ||
+      parsed.hostname.endsWith(".google.com") ||
+      parsed.hostname.endsWith(".googleusercontent.com")
+    );
+  } catch {
+    return false;
+  }
+}
+
 export async function POST(request: Request) {
+  if (!isTrustedBrowserRequest(request)) {
+    return NextResponse.json({ error: "Forbidden." }, { status: 403 });
+  }
+
   if (rateLimited(clientIp(request))) {
     return NextResponse.json(
       { error: "Too many tries. Wait a bit and try again." },
@@ -38,6 +99,7 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "Enter a valid email." }, { status: 400 });
   }
 
+  // Honeypot — filled fields look like success to bots.
   if (typeof body.company === "string" && body.company.trim()) {
     return NextResponse.json({ ok: true });
   }
@@ -55,7 +117,7 @@ export async function POST(request: Request) {
   }
 
   const webhook = process.env.GOOGLE_SHEETS_WEBHOOK_URL;
-  if (!webhook) {
+  if (!webhook || !isAllowedWebhook(webhook)) {
     return NextResponse.json(
       { error: "Signup isn't available yet." },
       { status: 503 },

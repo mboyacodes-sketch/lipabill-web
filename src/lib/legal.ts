@@ -1,4 +1,4 @@
-import { site } from "@/lib/site";
+import { playStore, site } from "@/lib/site";
 
 /** Public legal facts. Do not invent a company number, PIN, or street address here. */
 export const legal = {
@@ -10,7 +10,7 @@ export const legal = {
   countryCode: "KE",
   email: site.email,
   packageId: "com.lipabill.app",
-  playUrl: "https://play.google.com/store/apps/details?id=com.lipabill.app",
+  playUrl: playStore.url,
   governingLaw: "the laws of Kenya",
   odpc: "https://www.odpc.go.ke/",
   cookieName: "lb_consent",
