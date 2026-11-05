@@ -17,6 +17,20 @@ Open [http://localhost:3000](http://localhost:3000).
 
 Product screenshots live in `public/screenshots/` (source dump also in `screenshots/`).
 
+### Pay links (`/p/{token}`)
+
+Shared pay QR/HTTPS links without the app open `public/p/index.html`. Client JS
+(`public/p/paylink.js`) decodes the token the same way as Android `PayLink.parse`,
+then offers Copy / Open M-Pesa / Open in LipaBill / Get LipaBill.
+
+`public/.well-known/assetlinks.json` lists the Play release + debug certs for
+App Links (`https://lipabill.app/p/`). `next.config.ts` rewrites `/p/:token` to
+the landing page.
+
+```bash
+npm run verify:paylink
+```
+
 ## Docker
 
 ```bash
