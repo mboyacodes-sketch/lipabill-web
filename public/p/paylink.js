@@ -221,10 +221,10 @@
     if (!trimmed) return null;
     var lower = trimmed.toLowerCase();
     var body = null;
+    // http:// is rejected — cleartext links are not accepted.
     var markers = [
       "lipabill://p/",
-      "https://lipabill.app/p/",
-      "http://lipabill.app/p/"
+      "https://lipabill.app/p/"
     ];
     for (var m = 0; m < markers.length; m++) {
       if (lower.indexOf(markers[m]) === 0) {
@@ -277,23 +277,65 @@
     });
   }
 
-  // Official Safaricom M-PESA app on Play (Lifestyle).
+  // My OneApp (M-Pesa) — package + BROWSABLE custom scheme from its manifest.
   var MPESA_PACKAGE = "com.safaricom.mpesa.lifestyle";
+  var MPESA_SCHEME_URL = "fintechoneapp://open";
+  var MPESA_INTENT_URL =
+    "intent://open#Intent;scheme=fintechoneapp;package=" +
+    MPESA_PACKAGE +
+    ";end";
+  var MPESA_STORE_URL =
+    "https://play.google.com/store/apps/details?id=" + MPESA_PACKAGE;
 
+  /**
+   * Opens My OneApp when installed. Chrome only launches BROWSABLE deep links,
+   * so a bare package= intent was sending everyone to Play Store. We try the
+   * app’s fintechoneapp:// scheme first, and only fall back to Play if the
+   * page is still visible after a short wait.
+   */
   function openMpesa() {
-    var fallback =
-      "https://play.google.com/store/apps/details?id=" + MPESA_PACKAGE;
-    var intent =
-      "intent://#Intent;package=" +
-      MPESA_PACKAGE +
-      ";S.browser_fallback_url=" +
-      encodeURIComponent(fallback) +
-      ";end";
-    window.location.href = intent;
+    var store = MPESA_STORE_URL;
+    if (!/Android/i.test(navigator.userAgent || "")) {
+      window.location.href = store;
+      return;
+    }
+
+    var leftPage = false;
+    function markLeft() {
+      leftPage = true;
+    }
+    function onVisibility() {
+      if (document.hidden) markLeft();
+    }
+    document.addEventListener("visibilitychange", onVisibility);
+    window.addEventListener("pagehide", markLeft);
+    window.addEventListener("blur", markLeft);
+
+    // Prefer Chrome intent URL (pins package). No browser_fallback_url —
+    // that was forcing Play Store whenever the old intent failed to resolve.
+    window.location.href = MPESA_INTENT_URL;
+
+    setTimeout(function () {
+      if (leftPage || document.hidden) return;
+      // Some WebViews honour the bare custom scheme better.
+      window.location.href = MPESA_SCHEME_URL;
+    }, 350);
+
+    setTimeout(function () {
+      document.removeEventListener("visibilitychange", onVisibility);
+      window.removeEventListener("pagehide", markLeft);
+      window.removeEventListener("blur", markLeft);
+      if (leftPage || document.hidden) return;
+      window.location.href = store;
+    }, 1600);
   }
 
   function openLipaBill(token) {
-    window.location.href = "lipabill://p/" + token;
+    // Only ever open a validated base62 token — never concatenate raw query input.
+    var clean = tokenFrom(token);
+    if (!clean) return false;
+    window.location.href = "lipabill://p/" + clean;
+    return true;
   }
 
   function getLipaBill() {

@@ -38,4 +38,13 @@ export const thirdPartyMarks = [
   "Google Play",
   "Madaraka Express",
   "SGR",
+  "WhatsApp",
+  "Facebook",
+  "Instagram",
+  "TikTok",
+  "YouTube",
+  "X",
+  "Telegram",
+  "LinkedIn",
+  "Threads",
 ] as const;

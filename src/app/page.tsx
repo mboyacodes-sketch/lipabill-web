@@ -11,6 +11,7 @@ import { NotifyForm } from "@/components/NotifyForm";
 import { PassesShowcase } from "@/components/PassesShowcase";
 import { RailsStage } from "@/components/RailsStage";
 import { SiteFooter, SiteHeader } from "@/components/SiteChrome";
+import { SocialsShowcase } from "@/components/SocialsShowcase";
 import { faqJsonLd, homeFaqs, softwareApplicationJsonLd } from "@/lib/site";
 
 const steps = [
@@ -22,7 +23,7 @@ const steps = [
   {
     n: "02",
     title: "Do the next thing",
-    body: "Send, pay, or get paid. Even when data is weak.",
+    body: "Send, pay, get paid, or share a social code. Even when data is weak.",
   },
   {
     n: "03",
@@ -66,7 +67,8 @@ export default function Home() {
               <p className="mt-4 max-w-md text-lg leading-relaxed text-ink-soft">
                 Rent, family, a night out, the train you already booked.
                 LipaBill brings that picture together — then you can send,
-                pay, or show the code, even when data is weak.
+                pay, share a social code, or show a pass, even when data is
+                weak.
               </p>
               <p className="mt-3 max-w-md text-sm leading-relaxed text-mute">
                 The ledger stays on this phone. You pick the wallets.
@@ -143,10 +145,10 @@ export default function Home() {
                       <div className="mt-3 grid grid-cols-3 gap-1.5">
                         {(
                           [
-                            { label: "Send", href: "/#notify" },
-                            { label: "Pay", href: "/#notify" },
-                            { label: "Receive", href: "/#passes" },
-                            { label: "Passes", href: "/#passes" },
+                            { label: "Send", href: "/mpesa" },
+                            { label: "Pay", href: "/mpesa" },
+                            { label: "Socials", href: "/socials" },
+                            { label: "Passes", href: "/sgr" },
                           ] as const
                         ).map((item) => (
                           <Link
@@ -177,7 +179,7 @@ export default function Home() {
                         tilt="3deg"
                         n="2"
                         title="Do the next thing"
-                        body="Send, pay, or get paid — even when data is weak."
+                        body="Send, pay, get paid, or share a social code."
                       />
                       <StepCard
                         className="tilt tilt-slow"
@@ -306,6 +308,12 @@ export default function Home() {
               href="/#passes"
             />
             <Feature
+              label="Socials"
+              title="Share the handles you already use"
+              body="WhatsApp, Instagram, TikTok, and more on Request. Friends scan a code and land on your page — app if they have it, web if they don’t."
+              href="/socials"
+            />
+            <Feature
               label="What it became"
               title="The trip or night you already paid for"
               body="An SGR seat or an event stub is the money already spent. Open the QR at the gate even without data."
@@ -319,6 +327,8 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      <SocialsShowcase />
 
       <PassesShowcase />
 

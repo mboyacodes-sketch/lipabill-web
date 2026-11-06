@@ -15,18 +15,25 @@ npm run dev
 
 Open [http://localhost:3000](http://localhost:3000).
 
-Product screenshots live in `public/screenshots/` (source dump also in `screenshots/`).
+Product screenshots live in `public/screenshots/` — promo stills from
+`lipa_bill/promo/out/promo/takeScreenshot/` (Maestro demo ledger). Root
+`screenshots/` is a source dump only.
 
 ### Pay links (`/p/{token}`)
 
-Shared pay QR/HTTPS links without the app open `public/p/index.html`. Client JS
-(`public/p/paylink.js`) decodes the token the same way as Android `PayLink.parse`,
-then offers Open in LipaBill / Copy / Open M-Pesa / Get LipaBill.
+`src/app/p/[token]` is a React landing with **Open Graph / Twitter** tags and the
+same UX as before (copy → M-Pesa → LipaBill). Decode parity with Android stays in
+`public/p/paylink.js` (used by `paylink-parse.ts` + `npm run verify:paylink`).
+Cleartext `http://` pay URLs are rejected; only `https://` and `lipabill://`.
+
+### Social share links (`/s/{platform}/{handle}`)
+
+Request → Socials QRs share `https://lipabill.app/s/…` so chats get a LipaBill
+card; the landing continues to Instagram / WhatsApp / etc.
 
 `public/.well-known/assetlinks.json` lists the Play release + debug certs for
-App Links (`https://lipabill.app/p/`). `next.config.ts` rewrites `/p/:token` to
-the landing page. Golden decode vectors live in `scripts/paylink/fixtures.json`
-(not publicly served).
+App Links (`https://lipabill.app/p/`). Golden decode vectors live in
+`scripts/paylink/fixtures.json` (not publicly served).
 
 ```bash
 npm run verify:paylink

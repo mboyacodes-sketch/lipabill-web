@@ -179,6 +179,48 @@ body {
   }
 }
 
+/* Socials homepage orbit */
+@keyframes socials-orbit-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes socials-orbit-spin-reverse {
+  to {
+    transform: rotate(-360deg);
+  }
+}
+
+.socials-orbit {
+  --orbit-radius: clamp(6.4rem, 34vw, 8.4rem);
+}
+
+.socials-orbit-ring {
+  animation: socials-orbit-spin 32s linear infinite;
+}
+
+.socials-orbit-item {
+  /* Center the icon on the hub, place on the ring, then unwind upright. */
+  transform:
+    translate(-50%, -50%)
+    rotate(var(--orbit-angle))
+    translateY(calc(var(--orbit-radius) * -1))
+    rotate(calc(var(--orbit-angle) * -1));
+}
+
+.socials-orbit-face {
+  /* Counter the ring spin so icons stay readable. */
+  animation: socials-orbit-spin-reverse 32s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .socials-orbit-ring,
+  .socials-orbit-face {
+    animation: none !important;
+  }
+}
+
 .rails-stage {
   background:
     radial-gradient(

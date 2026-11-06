@@ -11,7 +11,10 @@ const baseSecurityHeaders = [
   },
 ];
 
-/** Static pay-link HTML/JS only — Next app routes need nonces for a site-wide CSP. */
+/**
+ * Pay-link route + legacy static /p/index.html.
+ * frame-ancestors 'none' — React landing is not iframed; blocks clickjacking.
+ */
 const paylinkCsp = [
   "default-src 'self'",
   "base-uri 'self'",
@@ -32,10 +35,9 @@ const nextConfig: NextConfig = {
     root: path.join(__dirname),
   },
   async rewrites() {
-    return [
-      { source: "/p", destination: "/p/index.html" },
-      { source: "/p/:token", destination: "/p/index.html" },
-    ];
+    // `/p/{token}` is the Next.js React landing (OG + UI).
+    // Keep `/p` → static index for empty path bookmarks only.
+    return [{ source: "/p", destination: "/p/index.html" }];
   },
   async headers() {
     return [

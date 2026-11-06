@@ -6,14 +6,15 @@ import { site } from "@/lib/site";
 
 const navLinks = [
   { href: "/#rails", label: "Countries", className: "hidden hover:text-ink sm:inline" },
+  { href: "/socials", label: "Socials", className: "hidden hover:text-ink sm:inline" },
   { href: legalPaths.privacy, label: "Privacy", className: "hidden hover:text-ink sm:inline" },
-  { href: legalPaths.terms, label: "Terms", className: "hidden hover:text-ink sm:inline" },
   { href: legalPaths.support, label: "Support", className: "hidden hover:text-ink sm:inline" },
 ] as const;
 
 const footerLinks = [
   { href: "/#rails", label: "Countries" },
   { href: "/mpesa", label: "Payments" },
+  { href: "/socials", label: "Socials" },
   { href: "/sgr", label: "Passes" },
   { href: legalPaths.support, label: "Support" },
   { href: legalPaths.privacy, label: "Privacy" },

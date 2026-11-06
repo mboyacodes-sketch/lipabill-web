@@ -21,6 +21,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.8,
     },
     {
+      url: absoluteUrl("/socials"),
+      lastModified: new Date("2026-11-06"),
+      changeFrequency: "weekly",
+      priority: 0.8,
+    },
+    {
       url: absoluteUrl(legalPaths.support),
       lastModified,
       changeFrequency: "monthly",

@@ -99,7 +99,8 @@ export default function SupportPage() {
               <p className="mt-1">
                 In Kenya, send to people; pay Paybill, till, or Pochi; repeat a
                 past payment on M-Pesa; or share a QR so someone can pay you.
-                You confirm before money leaves.
+                You confirm before money leaves. On Request → Socials, share a
+                code for WhatsApp, Instagram, TikTok, and more.
               </p>
             </li>
             <li>
