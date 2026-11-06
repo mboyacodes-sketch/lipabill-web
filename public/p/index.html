@@ -40,7 +40,7 @@
       --on-accent: #ffffff;
       --danger: #dc2626;
       --money: #0f1c33;
-      --radius: 22px;
+      --radius: 18px;
       --font: "Montserrat", system-ui, -apple-system, sans-serif;
     }
 
@@ -52,28 +52,58 @@
     }
 
     body {
+      position: relative;
+      overflow-x: hidden;
       min-height: 100vh;
       min-height: 100dvh;
       font-family: var(--font);
       color: var(--ink);
       background:
-        radial-gradient(ellipse 80% 50% at 50% -8%, rgba(47, 107, 255, 0.14), transparent 55%),
+        radial-gradient(
+          ellipse 70% 85% at 50% 52%,
+          rgba(47, 107, 255, 0.18) 0%,
+          rgba(47, 107, 255, 0.1) 28%,
+          rgba(180, 205, 255, 0.12) 48%,
+          transparent 72%
+        ),
+        radial-gradient(80% 55% at 50% 0%, #d9e8ff 0%, transparent 55%),
+        radial-gradient(50% 45% at 0% 100%, rgba(47, 107, 255, 0.06) 0%, transparent 55%),
+        radial-gradient(50% 45% at 100% 100%, rgba(47, 107, 255, 0.06) 0%, transparent 55%),
         var(--canvas);
       -webkit-font-smoothing: antialiased;
       display: flex;
       justify-content: center;
       align-items: flex-start;
       padding:
-        max(32px, env(safe-area-inset-top))
+        max(28px, env(safe-area-inset-top))
         20px
         max(28px, env(safe-area-inset-bottom));
     }
 
+    .watermark {
+      position: absolute;
+      inset-inline: 1rem;
+      top: max(1.25rem, env(safe-area-inset-top));
+      z-index: 0;
+      margin: 0;
+      text-align: center;
+      font-size: clamp(3rem, 16vw, 5.5rem);
+      font-weight: 600;
+      letter-spacing: -0.06em;
+      line-height: 0.85;
+      color: color-mix(in srgb, var(--accent) 26%, transparent);
+      user-select: none;
+      pointer-events: none;
+    }
+
     main {
+      position: relative;
+      z-index: 1;
       width: min(400px, 100%);
       display: flex;
       flex-direction: column;
-      gap: 20px;
+      gap: 16px;
+      padding-top: 2.5rem;
       animation: rise 0.45s cubic-bezier(0.22, 1, 0.36, 1) both;
     }
 
@@ -85,28 +115,28 @@
     .brand {
       display: inline-flex;
       align-items: center;
-      gap: 10px;
+      gap: 8px;
       align-self: flex-start;
       text-decoration: none;
       color: var(--ink);
     }
 
     .brand img {
-      width: 36px;
-      height: 36px;
-      border-radius: 10px;
+      width: 32px;
+      height: 32px;
+      border-radius: 9px;
     }
 
     .brand-name {
-      font-size: 1rem;
-      font-weight: 700;
+      font-size: 0.875rem;
+      font-weight: 600;
       letter-spacing: -0.02em;
       line-height: 1.1;
     }
 
     .brand-tag {
       margin-top: 2px;
-      font-size: 0.75rem;
+      font-size: 0.7rem;
       font-weight: 500;
       color: var(--mute);
       letter-spacing: 0;
@@ -114,18 +144,19 @@
     }
 
     .panel {
-      background: var(--card);
+      background: color-mix(in srgb, var(--card) 95%, transparent);
       border: 1px solid var(--line);
       border-radius: calc(var(--radius) + 6px);
-      padding: 24px 22px 20px;
+      padding: 20px 20px 16px;
       box-shadow: 0 18px 40px -28px rgba(15, 28, 51, 0.35);
+      backdrop-filter: blur(2px);
     }
 
     .eyebrow {
       display: inline-flex;
       align-items: center;
       gap: 6px;
-      font-size: 0.7rem;
+      font-size: 0.65rem;
       font-weight: 600;
       letter-spacing: 0.08em;
       text-transform: uppercase;
@@ -140,111 +171,130 @@
     }
 
     h1 {
-      margin: 10px 0 0;
-      font-size: 1.375rem;
-      font-weight: 700;
-      letter-spacing: -0.03em;
-      line-height: 1.25;
+      margin: 8px 0 0;
+      font-size: 1.125rem;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      line-height: 1.3;
     }
 
     .lede {
-      margin: 8px 0 0;
+      margin: 6px 0 0;
       color: var(--ink-soft);
-      font-size: 0.9375rem;
+      font-size: 0.875rem;
       font-weight: 500;
       line-height: 1.45;
     }
 
     .hero {
-      margin-top: 20px;
-      padding: 20px 18px;
+      margin-top: 16px;
       border-radius: var(--radius);
       background: var(--soft);
       border: 1px solid color-mix(in srgb, var(--accent) 14%, var(--line));
+      overflow: hidden;
     }
 
-    .hero-label {
-      font-size: 0.6875rem;
+    .copy-row {
+      width: 100%;
+      min-height: 0;
+      border-radius: 0;
+      border: 0;
+      border-top: 1px solid color-mix(in srgb, var(--line) 80%, transparent);
+      background: transparent;
+      color: inherit;
+      padding: 12px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      text-align: left;
+      box-shadow: none;
+      font: inherit;
+      cursor: pointer;
+      transition: background 0.12s ease, transform 0.12s ease;
+    }
+
+    .copy-row:first-child { border-top: 0; }
+
+    .copy-row:hover { background: color-mix(in srgb, #fff 55%, transparent); }
+
+    .copy-row:active { transform: scale(0.995); background: color-mix(in srgb, #fff 80%, transparent); }
+
+    .copy-row-body { min-width: 0; flex: 1; }
+
+    .copy-row-label {
+      display: block;
+      font-size: 0.625rem;
       font-weight: 600;
       letter-spacing: 0.08em;
       text-transform: uppercase;
       color: var(--mute);
     }
 
-    .hero-value {
-      margin-top: 6px;
-      font-size: clamp(1.625rem, 1.2rem + 2.2vw, 2rem);
-      font-weight: 700;
-      letter-spacing: -0.035em;
-      line-height: 1.15;
+    .copy-row-value {
+      display: block;
+      margin-top: 4px;
+      font-size: clamp(1.25rem, 1.05rem + 1.2vw, 1.45rem);
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      line-height: 1.2;
       word-break: break-word;
       font-variant-numeric: tabular-nums;
       color: var(--money);
     }
 
-    .hero-sub {
-      margin-top: 10px;
-      padding-top: 10px;
-      border-top: 1px solid color-mix(in srgb, var(--line) 80%, transparent);
-      display: none;
-    }
-
-    .hero-sub.show { display: block; }
-
-    .hero-sub-label {
-      font-size: 0.6875rem;
-      font-weight: 600;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: var(--mute);
-    }
-
-    .hero-sub-value {
-      margin-top: 4px;
-      font-size: 1.0625rem;
+    .copy-row-value.compact {
+      font-size: 0.9375rem;
       font-weight: 600;
       letter-spacing: -0.02em;
-      word-break: break-word;
+      color: var(--ink);
     }
 
-    .amount {
-      margin-top: 14px;
-      display: none;
+    .copy-row-value.amount {
+      display: flex;
       align-items: baseline;
       gap: 6px;
+      font-size: clamp(1.2rem, 1.05rem + 0.9vw, 1.35rem);
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      color: var(--ink);
     }
 
-    .amount.show { display: flex; }
-
     .amount-currency {
-      font-size: 0.875rem;
+      font-size: 0.75rem;
       font-weight: 600;
       color: var(--mute);
     }
 
-    .amount-value {
-      font-size: clamp(1.5rem, 1.15rem + 1.5vw, 1.75rem);
-      font-weight: 700;
-      letter-spacing: -0.03em;
-      font-variant-numeric: tabular-nums;
-      color: var(--ink);
+    .copy-chip {
+      flex-shrink: 0;
+      border-radius: 999px;
+      background: #fff;
+      color: var(--accent);
+      padding: 2px 8px;
+      font-size: 0.625rem;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      box-shadow: 0 1px 0 rgba(15, 28, 51, 0.04);
     }
+
+    .copy-row.hidden { display: none !important; }
 
     .actions {
       display: flex;
       flex-direction: column;
-      gap: 8px;
-      margin-top: 20px;
+      gap: 6px;
+      margin-top: 16px;
     }
 
     button {
       appearance: none;
       border: 0;
-      border-radius: 14px;
-      min-height: 52px;
+      border-radius: 12px;
+      min-height: 44px;
       padding: 0 16px;
       font: inherit;
-      font-size: 0.9375rem;
+      font-size: 0.875rem;
       font-weight: 600;
       letter-spacing: -0.01em;
       display: flex;
@@ -275,7 +325,7 @@
     .ghost {
       background: transparent;
       color: var(--accent);
-      min-height: 44px;
+      min-height: 40px;
       font-size: 0.875rem;
       font-weight: 600;
     }
@@ -285,7 +335,7 @@
     .hint {
       margin: 4px 0 0;
       text-align: center;
-      font-size: 0.75rem;
+      font-size: 0.7rem;
       font-weight: 500;
       color: var(--mute);
       line-height: 1.4;
@@ -318,7 +368,7 @@
     .foot {
       text-align: center;
       color: var(--mute);
-      font-size: 0.75rem;
+      font-size: 0.7rem;
       font-weight: 500;
       line-height: 1.45;
     }
@@ -362,6 +412,7 @@
   </style>
 </head>
 <body>
+  <p class="watermark" aria-hidden="true">LipaBill</p>
   <main>
     <a class="brand" href="https://lipabill.app/" aria-label="LipaBill home">
       <img src="/brand/lipabill-logo.png" width="36" height="36" alt="" />
@@ -387,25 +438,38 @@
       <p id="subtitle" class="lede"></p>
 
       <div class="hero">
-        <div class="hero-label" id="destLabel">Destination</div>
-        <div class="hero-value" id="destValue"></div>
-        <div class="hero-sub" id="accountRow">
-          <div class="hero-sub-label">Account</div>
-          <div class="hero-sub-value" id="accountValue"></div>
-        </div>
-        <div class="amount" id="amountRow">
-          <span class="amount-currency">KES</span>
-          <span class="amount-value" id="amountValue"></span>
-        </div>
+        <button type="button" class="copy-row" id="destRow" aria-label="Copy destination">
+          <span class="copy-row-body">
+            <span class="copy-row-label" id="destLabel">Destination</span>
+            <span class="copy-row-value" id="destValue"></span>
+          </span>
+          <span class="copy-chip">Copy</span>
+        </button>
+        <button type="button" class="copy-row hidden" id="accountRow" aria-label="Copy account">
+          <span class="copy-row-body">
+            <span class="copy-row-label">Account</span>
+            <span class="copy-row-value compact" id="accountValue"></span>
+          </span>
+          <span class="copy-chip">Copy</span>
+        </button>
+        <button type="button" class="copy-row hidden" id="amountRow" aria-label="Copy amount">
+          <span class="copy-row-body">
+            <span class="copy-row-label">Amount</span>
+            <span class="copy-row-value amount">
+              <span class="amount-currency">KES</span>
+              <span id="amountValue"></span>
+            </span>
+          </span>
+          <span class="copy-chip">Copy</span>
+        </button>
       </div>
 
       <div class="actions">
-        <button type="button" class="primary" id="copyBtn">Copy details</button>
-        <button type="button" class="secondary" id="mpesaBtn">Open M-Pesa</button>
+        <button type="button" class="primary" id="mpesaBtn">Open M-Pesa</button>
         <button type="button" class="ghost" id="appBtn">Open in LipaBill</button>
         <button type="button" class="ghost" id="storeBtn">Get LipaBill</button>
       </div>
-      <p class="hint" id="actionHint">Most people copy the details, then finish in M-Pesa.</p>
+      <p class="hint" id="actionHint">Tap each value to copy it, then finish in M-Pesa.</p>
     </section>
 
     <section id="err" class="panel error hidden">
@@ -465,54 +529,60 @@
         var subtitle = document.getElementById("subtitle");
         var destLabel = document.getElementById("destLabel");
         var destValue = document.getElementById("destValue");
+        var destRow = document.getElementById("destRow");
         var accountRow = document.getElementById("accountRow");
         var accountValue = document.getElementById("accountValue");
         var amountRow = document.getElementById("amountRow");
         var amountValue = document.getElementById("amountValue");
         var kindChip = document.getElementById("kindChip");
         var actionHint = document.getElementById("actionHint");
-        var copyPayload = "";
+
+        function bindCopy(row, label, value) {
+          row.setAttribute("aria-label", "Copy " + label + ": " + value);
+          row.onclick = function () {
+            PayLinkWeb.copyText(value).then(
+              function () { showToast("Copied " + label.toLowerCase()); },
+              function () { showToast("Couldn’t copy"); }
+            );
+          };
+        }
 
         if (target.kind === "PHONE") {
           kindChip.textContent = "Send money";
           title.textContent = "Send to this number";
-          subtitle.textContent = "Copy it, then finish the send in M-Pesa — or open LipaBill if you already have it.";
+          subtitle.textContent = "Tap the number to copy it, then finish in M-Pesa — or open LipaBill if you already have it.";
           destLabel.textContent = "Phone";
           destValue.textContent = target.identifier;
-          copyPayload = target.identifier;
-          actionHint.textContent = "Copy the number, then paste it in M-Pesa Send money.";
+          actionHint.textContent = "Tap each value to copy, then paste it in M-Pesa Send money.";
         } else if (target.kind === "TILL") {
           kindChip.textContent = "Buy goods";
           title.textContent = "Pay this till";
-          subtitle.textContent = "Copy the till, then use Buy Goods in M-Pesa — or open LipaBill if you already have it.";
+          subtitle.textContent = "Tap the till to copy it, then use Buy Goods in M-Pesa — or open LipaBill if you already have it.";
           destLabel.textContent = "Till";
           destValue.textContent = target.identifier;
-          copyPayload = target.identifier;
-          actionHint.textContent = "Copy the till, then paste it in M-Pesa Buy Goods.";
+          actionHint.textContent = "Tap each value to copy, then paste it in M-Pesa Buy Goods.";
         } else {
           kindChip.textContent = "Pay bill";
           title.textContent = "Pay this bill";
-          subtitle.textContent = "Copy business and account, then use Pay Bill in M-Pesa — or open LipaBill if you already have it.";
+          subtitle.textContent = "Tap business number and account separately to copy each one — then finish Pay Bill in M-Pesa.";
           destLabel.textContent = "Business number";
           destValue.textContent = target.identifier;
-          accountValue.textContent = target.account || "";
-          accountRow.classList.add("show");
-          copyPayload = target.identifier + " " + (target.account || "");
-          actionHint.textContent = "Copy both numbers, then paste them in M-Pesa Pay Bill.";
+          if (target.account) {
+            accountValue.textContent = target.account;
+            accountRow.classList.remove("hidden");
+            bindCopy(accountRow, "Account", target.account);
+          }
+          actionHint.textContent = "Tap each value to copy it on its own for M-Pesa Pay Bill.";
         }
+
+        bindCopy(destRow, destLabel.textContent, target.identifier);
 
         if (target.amountShillings) {
           amountValue.textContent = target.amountShillings.toLocaleString("en-KE");
-          amountRow.classList.add("show");
-          copyPayload += " KES " + target.amountShillings;
+          amountRow.classList.remove("hidden");
+          bindCopy(amountRow, "Amount", String(target.amountShillings));
         }
 
-        document.getElementById("copyBtn").onclick = function () {
-          PayLinkWeb.copyText(copyPayload).then(
-            function () { showToast("Copied — paste in M-Pesa"); },
-            function () { showToast("Couldn’t copy"); }
-          );
-        };
         document.getElementById("mpesaBtn").onclick = function () {
           PayLinkWeb.openMpesa();
         };
