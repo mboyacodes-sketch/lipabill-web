@@ -277,6 +277,32 @@
     });
   }
 
+  /** "0712345678" / "254712345678" → "07** *** 678" (display only). */
+  function maskPhone(phone) {
+    var digits = String(phone || "").replace(/\D/g, "");
+    var local =
+      digits.indexOf("254") === 0 && digits.length === 12
+        ? "0" + digits.slice(3)
+        : digits;
+    if (local.length < 7) return phone;
+    return local.slice(0, 2) + "** *** " + local.slice(-3);
+  }
+
+  /** Till, business number, or account — keep ends, star the middle. */
+  function maskCode(raw) {
+    var s = String(raw || "").trim();
+    if (s.length <= 2) return s;
+    if (s.length <= 4) {
+      return s.charAt(0) + new Array(s.length - 1).join("*") + s.charAt(s.length - 1);
+    }
+    var middle = s.length - 4;
+    return s.slice(0, 2) + new Array(middle + 1).join("*") + s.slice(-2);
+  }
+
+  function maskPayIdentifier(kind, value) {
+    return kind === "PHONE" ? maskPhone(value) : maskCode(value);
+  }
+
   // My OneApp (M-Pesa) — package + BROWSABLE custom scheme from its manifest.
   var MPESA_PACKAGE = "com.safaricom.mpesa.lifestyle";
   var MPESA_SCHEME_URL = "fintechoneapp://open";
@@ -347,6 +373,9 @@
     parse: parse,
     tokenFrom: tokenFrom,
     copyText: copyText,
+    maskPhone: maskPhone,
+    maskCode: maskCode,
+    maskPayIdentifier: maskPayIdentifier,
     openMpesa: openMpesa,
     openLipaBill: openLipaBill,
     getLipaBill: getLipaBill

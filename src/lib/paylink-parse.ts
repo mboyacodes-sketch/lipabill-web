@@ -1,6 +1,7 @@
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
 import vm from "node:vm";
+import { maskCode, maskPayIdentifier } from "@/lib/paylink-mask";
 
 export type PayLinkKind = "PHONE" | "TILL" | "PAYBILL";
 
@@ -63,20 +64,23 @@ export function payLinkPreview(target: PayLinkTarget | null): {
       ? ` · KES ${target.amountShillings.toLocaleString("en-KE")}`
       : "";
   if (target.kind === "PHONE") {
+    const phone = maskPayIdentifier("PHONE", target.identifier);
     return {
-      title: `Send to ${target.identifier}${amount} · LipaBill`,
-      description: `Copy ${target.identifier}${amount}, then finish in M-Pesa — or open LipaBill if you have it.`,
+      title: `Send to ${phone}${amount} · LipaBill`,
+      description: `Copy the number${amount}, then finish in M-Pesa — or open LipaBill if you have it.`,
     };
   }
   if (target.kind === "TILL") {
+    const till = maskPayIdentifier("TILL", target.identifier);
     return {
-      title: `Till ${target.identifier}${amount} · LipaBill`,
-      description: `Copy till ${target.identifier}${amount}, then finish Buy Goods in M-Pesa — or open LipaBill if you have it.`,
+      title: `Till ${till}${amount} · LipaBill`,
+      description: `Copy the till${amount}, then finish Buy Goods in M-Pesa — or open LipaBill if you have it.`,
     };
   }
-  const account = target.account ? ` · account ${target.account}` : "";
+  const business = maskPayIdentifier("PAYBILL", target.identifier);
+  const account = target.account ? ` · account ${maskCode(target.account)}` : "";
   return {
-    title: `Paybill ${target.identifier}${amount} · LipaBill`,
-    description: `Copy business ${target.identifier}${account}${amount}, then finish Pay Bill in M-Pesa — or open LipaBill if you have it.`,
+    title: `Paybill ${business}${amount} · LipaBill`,
+    description: `Copy business ${business}${account}${amount}, then finish Pay Bill in M-Pesa — or open LipaBill if you have it.`,
   };
 }

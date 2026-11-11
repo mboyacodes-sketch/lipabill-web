@@ -537,8 +537,8 @@
         var kindChip = document.getElementById("kindChip");
         var actionHint = document.getElementById("actionHint");
 
-        function bindCopy(row, label, value) {
-          row.setAttribute("aria-label", "Copy " + label + ": " + value);
+        function bindCopy(row, label, value, display) {
+          row.setAttribute("aria-label", "Copy " + label + ": " + (display || value));
           row.onclick = function () {
             PayLinkWeb.copyText(value).then(
               function () { showToast("Copied " + label.toLowerCase()); },
@@ -547,35 +547,40 @@
           };
         }
 
+        var destMasked;
         if (target.kind === "PHONE") {
           kindChip.textContent = "Send money";
           title.textContent = "Send to this number";
           subtitle.textContent = "Tap the number to copy it, then finish in M-Pesa — or open LipaBill if you already have it.";
           destLabel.textContent = "Phone";
-          destValue.textContent = target.identifier;
+          destMasked = PayLinkWeb.maskPayIdentifier("PHONE", target.identifier);
+          destValue.textContent = destMasked;
           actionHint.textContent = "Tap each value to copy, then paste it in M-Pesa Send money.";
         } else if (target.kind === "TILL") {
           kindChip.textContent = "Buy goods";
           title.textContent = "Pay this till";
           subtitle.textContent = "Tap the till to copy it, then use Buy Goods in M-Pesa — or open LipaBill if you already have it.";
           destLabel.textContent = "Till";
-          destValue.textContent = target.identifier;
+          destMasked = PayLinkWeb.maskPayIdentifier("TILL", target.identifier);
+          destValue.textContent = destMasked;
           actionHint.textContent = "Tap each value to copy, then paste it in M-Pesa Buy Goods.";
         } else {
           kindChip.textContent = "Pay bill";
           title.textContent = "Pay this bill";
           subtitle.textContent = "Tap business number and account separately to copy each one — then finish Pay Bill in M-Pesa.";
           destLabel.textContent = "Business number";
-          destValue.textContent = target.identifier;
+          destMasked = PayLinkWeb.maskPayIdentifier("PAYBILL", target.identifier);
+          destValue.textContent = destMasked;
           if (target.account) {
-            accountValue.textContent = target.account;
+            var accountMasked = PayLinkWeb.maskCode(target.account);
+            accountValue.textContent = accountMasked;
             accountRow.classList.remove("hidden");
-            bindCopy(accountRow, "Account", target.account);
+            bindCopy(accountRow, "Account", target.account, accountMasked);
           }
           actionHint.textContent = "Tap each value to copy it on its own for M-Pesa Pay Bill.";
         }
 
-        bindCopy(destRow, destLabel.textContent, target.identifier);
+        bindCopy(destRow, destLabel.textContent, target.identifier, destMasked);
 
         if (target.amountShillings) {
           amountValue.textContent = target.amountShillings.toLocaleString("en-KE");

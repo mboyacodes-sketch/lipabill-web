@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useCallback, useEffect, useState, type ReactNode } from "react";
 import { trackPayLink } from "@/lib/paylink-analytics";
+import { maskCode, maskPayIdentifier } from "@/lib/paylink-mask";
 import type { PayLinkTarget } from "@/lib/paylink-parse";
 import {
   copyText,
@@ -26,7 +27,9 @@ function viewModel(target: PayLinkTarget) {
         "Tap the number to copy it, then finish in M-Pesa — or open LipaBill if you already have it.",
       destLabel: "Phone",
       destValue: target.identifier,
+      destDisplay: maskPayIdentifier("PHONE", target.identifier),
       account: null as string | null,
+      accountDisplay: null as string | null,
       hint: "Tap each value to copy, then paste it in M-Pesa Send money.",
     };
   }
@@ -38,7 +41,9 @@ function viewModel(target: PayLinkTarget) {
         "Tap the till to copy it, then use Buy Goods in M-Pesa — or open LipaBill if you already have it.",
       destLabel: "Till",
       destValue: target.identifier,
+      destDisplay: maskPayIdentifier("TILL", target.identifier),
       account: null,
+      accountDisplay: null,
       hint: "Tap each value to copy, then paste it in M-Pesa Buy Goods.",
     };
   }
@@ -49,7 +54,9 @@ function viewModel(target: PayLinkTarget) {
       "Tap business number and account separately to copy each one — then finish Pay Bill in M-Pesa.",
     destLabel: "Business number",
     destValue: target.identifier,
+    destDisplay: maskPayIdentifier("PAYBILL", target.identifier),
     account: target.account,
+    accountDisplay: target.account ? maskCode(target.account) : null,
     hint: "Tap each value to copy it on its own for M-Pesa Pay Bill.",
   };
 }
@@ -144,13 +151,15 @@ export function PayLinkLanding({ token, target }: Props) {
           <CopyRow
             label={vm.destLabel}
             value={vm.destValue}
+            display={vm.destDisplay}
             valueClassName="text-[clamp(1.25rem,1.05rem+1.2vw,1.45rem)] font-semibold tracking-tight leading-[1.2] tabular-nums text-ink"
             onCopy={onCopyValue}
           />
-          {vm.account ? (
+          {vm.account && vm.accountDisplay ? (
             <CopyRow
               label="Account"
               value={vm.account}
+              display={vm.accountDisplay}
               bordered
               valueClassName="text-[0.9375rem] font-semibold tracking-tight text-ink"
               onCopy={onCopyValue}
@@ -229,6 +238,8 @@ function CopyRow({
   valueClassName?: string;
   onCopy: (label: string, value: string) => void | Promise<void>;
 }) {
+  const shown = display ?? value;
+  const ariaShown = typeof shown === "string" ? shown : value;
   return (
     <button
       type="button"
@@ -236,14 +247,14 @@ function CopyRow({
       className={`flex w-full items-center gap-3 px-4 py-3 text-left transition-colors hover:bg-white/55 active:bg-white/80 ${
         bordered ? "border-t border-line/80" : ""
       }`}
-      aria-label={`Copy ${label}: ${value}`}
+      aria-label={`Copy ${label}: ${ariaShown}`}
     >
       <span className="min-w-0 flex-1">
         <span className="block text-[0.625rem] font-semibold uppercase tracking-[0.08em] text-mute">
           {label}
         </span>
         <span className={`mt-1 block break-words ${valueClassName}`}>
-          {display ?? value}
+          {shown}
         </span>
       </span>
       <span className="shrink-0 rounded-full bg-white px-2 py-0.5 text-[0.625rem] font-semibold tracking-wide text-blue shadow-[0_1px_0_rgba(15,28,51,0.04)]">
