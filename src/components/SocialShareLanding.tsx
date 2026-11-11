@@ -88,9 +88,12 @@ export function SocialShareLanding({ platform, handle, profileUrl }: Props) {
         <div className="mt-4 overflow-hidden rounded-[18px] border border-line bg-sky-soft">
           <LinkLandingCopyRow
             label={handleLabel}
-            value={preview.displayHandle}
+            // Copy the real handle; WhatsApp phones are masked on screen / OG only.
+            value={handle}
             display={preview.displayHandle}
-            valueClassName="text-[clamp(1.25rem,1.05rem+1.2vw,1.45rem)] font-semibold tracking-tight leading-[1.2] text-ink"
+            valueClassName={`text-[clamp(1.25rem,1.05rem+1.2vw,1.45rem)] font-semibold tracking-tight leading-[1.2] text-ink${
+              platform === "whatsapp" ? " tabular-nums" : ""
+            }`}
             onCopy={onCopyValue}
           />
         </div>

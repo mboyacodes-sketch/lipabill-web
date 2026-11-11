@@ -1,3 +1,4 @@
+import { maskPhone } from "@/lib/paylink-mask";
 import { socialPlatforms } from "@/lib/socials";
 
 /** Matches Android SocialLink.Platform.storageKey values. */
@@ -108,7 +109,7 @@ export function socialSharePreview(
   const label = socialShareLabel(platform);
   const displayHandle =
     platform === "whatsapp"
-      ? handle
+      ? maskPhone(handle)
       : platform === "linkedin"
         ? handle
         : `@${handle.replace(/^@/, "")}`;
