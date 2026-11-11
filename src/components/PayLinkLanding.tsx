@@ -2,7 +2,8 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useCallback, useState, type ReactNode } from "react";
+import { useCallback, useEffect, useState, type ReactNode } from "react";
+import { trackPayLink } from "@/lib/paylink-analytics";
 import type { PayLinkTarget } from "@/lib/paylink-parse";
 import {
   copyText,
@@ -55,6 +56,11 @@ function viewModel(target: PayLinkTarget) {
 
 export function PayLinkLanding({ token, target }: Props) {
   const [toast, setToast] = useState<string | null>(null);
+  const kind = target?.kind ?? "invalid";
+
+  useEffect(() => {
+    trackPayLink("paylink_view", { kind });
+  }, [kind]);
 
   const showToast = useCallback((msg: string) => {
     setToast(msg);
@@ -65,12 +71,16 @@ export function PayLinkLanding({ token, target }: Props) {
     async (label: string, value: string) => {
       try {
         await copyText(value);
+        trackPayLink("paylink_copy", {
+          kind,
+          field: label.toLowerCase(),
+        });
         showToast(`Copied ${label.toLowerCase()}`);
       } catch {
         showToast("Couldn’t copy");
       }
     },
-    [showToast],
+    [kind, showToast],
   );
 
   if (!target) {
@@ -89,14 +99,20 @@ export function PayLinkLanding({ token, target }: Props) {
           <div className="mt-4 flex flex-col gap-2">
             <button
               type="button"
-              onClick={openMpesa}
+              onClick={() => {
+                trackPayLink("paylink_open_mpesa", { kind: "invalid" });
+                openMpesa();
+              }}
               className="flex min-h-11 items-center justify-center rounded-xl border border-line bg-paper px-4 text-sm font-semibold tracking-tight text-ink"
             >
               Open M-Pesa
             </button>
             <button
               type="button"
-              onClick={openPlayStore}
+              onClick={() => {
+                trackPayLink("paylink_open_store", { kind: "invalid" });
+                openPlayStore();
+              }}
               className="flex min-h-10 items-center justify-center rounded-xl px-4 text-sm font-semibold text-blue"
             >
               Get LipaBill
@@ -161,21 +177,30 @@ export function PayLinkLanding({ token, target }: Props) {
         <div className="mt-4 flex flex-col gap-1.5">
           <button
             type="button"
-            onClick={openMpesa}
+            onClick={() => {
+              trackPayLink("paylink_open_mpesa", { kind });
+              openMpesa();
+            }}
             className="flex min-h-11 items-center justify-center rounded-xl bg-blue px-4 text-sm font-semibold tracking-tight text-white shadow-[0_10px_22px_-14px_rgba(26,63,156,0.85)]"
           >
             Open M-Pesa
           </button>
           <button
             type="button"
-            onClick={() => openLipaBill(token)}
+            onClick={() => {
+              trackPayLink("paylink_open_app", { kind });
+              openLipaBill(token);
+            }}
             className="flex min-h-10 items-center justify-center rounded-xl px-4 text-sm font-semibold text-blue"
           >
             Open in LipaBill
           </button>
           <button
             type="button"
-            onClick={openPlayStore}
+            onClick={() => {
+              trackPayLink("paylink_open_store", { kind });
+              openPlayStore();
+            }}
             className="flex min-h-10 items-center justify-center rounded-xl px-4 text-sm font-semibold text-blue"
           >
             Get LipaBill

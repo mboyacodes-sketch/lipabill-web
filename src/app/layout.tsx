@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Montserrat } from "next/font/google";
+import { Analytics } from "@/components/Analytics";
 import { JsonLd } from "@/components/JsonLd";
 import { SiteDock } from "@/components/SiteDock";
 import { legal } from "@/lib/legal";
@@ -111,6 +112,7 @@ export default function RootLayout({
           {children}
         </div>
         <SiteDock />
+        <Analytics />
       </body>
     </html>
   );

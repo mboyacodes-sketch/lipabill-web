@@ -130,7 +130,12 @@ export default function PrivacyPage() {
           address in a Google Sheet so we can send product notes. We do not
           use it for ads. You can refuse and still browse. Email{" "}
           <a href={`mailto:${legal.email}`}>{legal.email}</a> to be removed.
-          Cookies: see the <Link href="/cookies">cookie policy</Link>.
+        </p>
+        <p>
+          The site uses cookieless Vercel Web Analytics for anonymous page
+          views and pay-link events (opened, copy, open M-Pesa / app). Pay-link
+          tokens and payment details are not recorded. Cookies: see the{" "}
+          <Link href="/cookies">cookie policy</Link>.
         </p>
       </section>
 
@@ -154,9 +159,10 @@ export default function PrivacyPage() {
         <p>
           The ledger stays on your phone in Kenya (or wherever you take the
           phone). Emails and Firebase reports are processed by Google, which
-          may store them outside Kenya, including in the United States. That
-          is a cross-border transfer. We do not sell the data. Google’s terms
-          apply to those services.
+          may store them outside Kenya, including in the United States.
+          Anonymous website analytics are processed by Vercel. Those are
+          cross-border transfers. We do not sell the data. Google’s and
+          Vercel’s terms apply to those services.
         </p>
       </section>
 

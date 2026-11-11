@@ -31,9 +31,24 @@ export default function CookiesPage() {
       <section>
         <h2>What we use today</h2>
         <p>
-          This website does not run advertising, remarketing, or a third-party
-          analytics pixel. Montserrat is loaded with Next.js self-hosted font
-          files, so visiting the site does not set a Google Fonts cookie.
+          This website does not run advertising, remarketing, or Google
+          Analytics. Montserrat is loaded with Next.js self-hosted font files,
+          so visiting the site does not set a Google Fonts cookie.
+        </p>
+        <p>
+          We use{" "}
+          <a
+            href="https://vercel.com/docs/analytics/privacy-policy"
+            rel="noopener noreferrer"
+            target="_blank"
+          >
+            Vercel Web Analytics
+          </a>{" "}
+          for anonymous page views and pay-link product events (for example
+          that a link was opened, or that someone tapped Copy / Open M-Pesa).
+          It does not use cookies, does not identify a person, and we strip
+          pay-link tokens and social handles from paths before they are
+          recorded. Payment numbers and amounts are never sent.
         </p>
         <p>
           If you answer the cookie banner, we store one first-party preference
@@ -51,6 +66,7 @@ export default function CookiesPage() {
           There are no optional marketing cookies to turn on. Choosing
           “Accept” or “Essential only” currently has the same effect: we only
           store that preference. We still ask, so the choice is recorded.
+          Vercel Web Analytics runs either way because it is cookieless.
         </p>
       </section>
 
