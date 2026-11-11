@@ -2,7 +2,7 @@ import type { MetadataRoute } from "next";
 import { absoluteUrl } from "@/lib/site";
 
 const allow = {
-  allow: "/",
+  allow: ["/", "/.well-known/"],
   disallow: ["/api/", "/up"],
 };
 
