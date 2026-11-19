@@ -7,7 +7,7 @@ export const site = {
   description:
     "Rent, family, a night out, the train you already booked. LipaBill is a local-first money tracker for Kenya, Tanzania, Uganda, and Rwanda on Google Play — the ledger stays on this phone, then you can send, pay, or show the code even when data is weak. Send and Pay still run on Kenya M-Pesa.",
   shortDescription:
-    "No LipaBill account — use the wallets and banks you already have. See where the money went, then send, pay, or show a pass.",
+    "Your money has a story. See it clearly — then send, pay, share a social code, or show a pass. No account — use what you already have.",
   keywords: [
     "LipaBill",
     "East Africa money tracker",
