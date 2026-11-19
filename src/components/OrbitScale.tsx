@@ -66,10 +66,13 @@ function readOrbitScale(): number {
   if (typeof window === "undefined") return 1;
   if (!window.matchMedia("(min-width: 1280px)").matches) return 1;
 
+  // Keep the hero composition readable: shrink together on zoom-in,
+  // grow together on zoom-out, without blowing past layout bounds.
   const next = (1 / readBrowserZoom()) * readWindowSizeFactor();
   if (!Number.isFinite(next)) return 1;
-  if (Math.abs(next - 1) < 0.02) return 1;
-  return next;
+  const clamped = Math.min(1.12, Math.max(0.62, next));
+  if (Math.abs(clamped - 1) < 0.02) return 1;
+  return clamped;
 }
 
 const OrbitScaleContext = createContext(1);
@@ -122,9 +125,26 @@ export function OrbitScale({
         ...style,
         transform: scale === 1 ? undefined : `scale(${scale})`,
         transformOrigin: "center center",
+        // Avoid layout jump: reserve the same box while the visual scales.
+        willChange: scale === 1 ? undefined : "transform",
       }}
     >
       {children}
     </div>
+  );
+}
+
+/** Scale the whole orbit (hub + spokes + lines) as one unit so spacing holds. */
+export function OrbitStageScale({
+  children,
+  className,
+}: {
+  children: ReactNode;
+  className?: string;
+}) {
+  return (
+    <OrbitScale className={className} style={{ width: "100%", height: "100%" }}>
+      {children}
+    </OrbitScale>
   );
 }

@@ -4,8 +4,8 @@ import { ConnectorLines } from "@/components/ConnectorLines";
 import { JsonLd } from "@/components/JsonLd";
 import { LaunchPromo } from "@/components/LaunchPromo";
 import {
-  OrbitScale,
   OrbitScaleProvider,
+  OrbitStageScale,
 } from "@/components/OrbitScale";
 import { NotifyForm } from "@/components/NotifyForm";
 import { PassesShowcase } from "@/components/PassesShowcase";
@@ -96,146 +96,144 @@ export default function Home() {
 
               <div
                 id="orbit-wide"
-                className="relative hidden h-[42rem] xl:block"
+                className="relative hidden h-[min(44rem,72vh)] min-h-[36rem] xl:block"
               >
-                <ConnectorLines stageId="orbit-wide" />
-                <div
-                  aria-hidden
-                  className="bg-halo !top-1/2 !h-[42rem] !w-[42rem]"
-                />
-
-                <div
-                  data-orbit-hub
-                  className="absolute left-1/2 top-1/2 z-20 w-[min(100%,24rem)] -translate-x-1/2 -translate-y-1/2"
-                >
-                  <OrbitScale>
-                    <PhoneFan />
-                  </OrbitScale>
-                </div>
-
-                <div className="absolute left-2 top-[5%] z-30 w-[12.25rem]">
-                  <OrbitScale>
+                <OrbitStageScale className="relative h-full w-full">
+                  <div
+                    id="orbit-stage"
+                    className="relative h-full w-full"
+                  >
+                    <ConnectorLines stageId="orbit-stage" />
                     <div
-                      data-orbit-spoke
-                      className="float-card tilt p-4"
-                      style={{ ["--tilt" as string]: "-7deg" }}
-                    >
-                      <p className="text-[0.7rem] font-medium uppercase tracking-wide text-mute">
-                        The whole picture
-                      </p>
-                      <div className="mt-3 flex items-center gap-3">
-                        <div
-                          className="h-14 w-14 shrink-0 rounded-full"
-                          style={{
-                            background:
-                              "conic-gradient(#2f6bff 0 52%, #9cbcff 52% 78%, #e8eef8 78% 100%)",
-                          }}
-                        />
-                        <div className="min-w-0 flex-1 space-y-2">
-                          <div className="h-2 rounded-full bg-sky" />
-                          <div className="h-2 w-[80%] rounded-full bg-sky/70" />
-                          <div className="h-2 w-[55%] rounded-full bg-sky/50" />
+                      aria-hidden
+                      className="bg-halo !top-1/2 !h-[min(40rem,70%)] !w-[min(40rem,70%)]"
+                    />
+
+                    {/* Spoke cards sit behind the phone fan */}
+                    <div className="absolute left-0 top-[4%] z-[8] w-[11.5rem]">
+                      <div
+                        data-orbit-spoke
+                        className="float-card tilt p-4"
+                        style={{ ["--tilt" as string]: "-7deg" }}
+                      >
+                        <p className="text-[0.7rem] font-medium uppercase tracking-wide text-mute">
+                          The whole picture
+                        </p>
+                        <div className="mt-3 flex items-center gap-3">
+                          <div
+                            className="h-14 w-14 shrink-0 rounded-full"
+                            style={{
+                              background:
+                                "conic-gradient(#2f6bff 0 52%, #9cbcff 52% 78%, #e8eef8 78% 100%)",
+                            }}
+                          />
+                          <div className="min-w-0 flex-1 space-y-2">
+                            <div className="h-2 rounded-full bg-sky" />
+                            <div className="h-2 w-[80%] rounded-full bg-sky/70" />
+                            <div className="h-2 w-[55%] rounded-full bg-sky/50" />
+                          </div>
+                        </div>
+                        <div className="mt-3 grid grid-cols-3 gap-1.5">
+                          {(
+                            [
+                              { label: "Send", href: "/mpesa" },
+                              { label: "Pay", href: "/mpesa" },
+                              { label: "Socials", href: "/socials" },
+                              { label: "Passes", href: "/sgr" },
+                            ] as const
+                          ).map((item) => (
+                            <Link
+                              key={item.label}
+                              href={item.href}
+                              className="rounded-lg bg-sky-soft px-1 py-2 text-center text-[0.55rem] font-medium text-blue-deep hover:bg-sky"
+                            >
+                              {item.label}
+                            </Link>
+                          ))}
                         </div>
                       </div>
-                      <div className="mt-3 grid grid-cols-3 gap-1.5">
-                        {(
-                          [
-                            { label: "Send", href: "/mpesa" },
-                            { label: "Pay", href: "/mpesa" },
-                            { label: "Socials", href: "/socials" },
-                            { label: "Passes", href: "/sgr" },
-                          ] as const
-                        ).map((item) => (
-                          <Link
-                            key={item.label}
-                            href={item.href}
-                            className="rounded-lg bg-sky-soft px-1 py-2 text-center text-[0.55rem] font-medium text-blue-deep hover:bg-sky"
-                          >
-                            {item.label}
-                          </Link>
-                        ))}
+                    </div>
+
+                    <div className="absolute bottom-[3%] left-0 z-[8] w-[12.75rem]">
+                      <div data-orbit-spoke className="flex flex-col gap-2.5">
+                        <StepCard
+                          className="tilt tilt-delay"
+                          tilt="-4deg"
+                          n="1"
+                          title="See the story"
+                          body="Where it went, from the wallets you already use."
+                        />
+                        <StepCard
+                          className="tilt"
+                          tilt="3deg"
+                          n="2"
+                          title="Do the next thing"
+                          body="Send, pay, get paid, or share a social code."
+                        />
+                        <StepCard
+                          className="tilt tilt-slow"
+                          tilt="-5deg"
+                          n="3"
+                          title="What it became"
+                          body="The trip, the night out, money on its way in."
+                        />
                       </div>
                     </div>
-                  </OrbitScale>
-                </div>
 
-                <div className="absolute bottom-[4%] left-2 z-30 w-[13.5rem]">
-                  <OrbitScale>
-                    <div data-orbit-spoke className="flex flex-col gap-2.5">
-                      <StepCard
-                        className="tilt tilt-delay"
-                        tilt="-4deg"
-                        n="1"
-                        title="See the story"
-                        body="Where it went, from the wallets you already use."
-                      />
-                      <StepCard
-                        className="tilt"
-                        tilt="3deg"
-                        n="2"
-                        title="Do the next thing"
-                        body="Send, pay, get paid, or share a social code."
-                      />
-                      <StepCard
-                        className="tilt tilt-slow"
-                        tilt="-5deg"
-                        n="3"
-                        title="What it became"
-                        body="The trip, the night out, money on its way in."
-                      />
-                    </div>
-                  </OrbitScale>
-                </div>
-
-                <div className="absolute right-3 top-[6%] z-30 w-[12.25rem]">
-                  <OrbitScale>
-                    <div
-                      data-orbit-spoke
-                      className="float-card tilt tilt-delay p-4"
-                      style={{ ["--tilt" as string]: "6deg" }}
-                    >
-                      <div className="flex items-center justify-between">
-                        <p className="text-[0.7rem] font-medium uppercase tracking-wide text-mute">
-                          Clarity
+                    <div className="absolute right-0 top-[4%] z-[8] w-[11.5rem]">
+                      <div
+                        data-orbit-spoke
+                        className="float-card tilt tilt-delay p-4"
+                        style={{ ["--tilt" as string]: "6deg" }}
+                      >
+                        <div className="flex items-center justify-between">
+                          <p className="text-[0.7rem] font-medium uppercase tracking-wide text-mute">
+                            Clarity
+                          </p>
+                          <span className="rounded-md bg-sky px-2 py-0.5 text-[0.65rem] font-medium text-blue-deep">
+                            Insights
+                          </span>
+                        </div>
+                        <div className="mt-4 flex h-20 items-end gap-1.5">
+                          {[35, 55, 42, 70, 48, 85, 62, 90, 58].map((h, i) => (
+                            <span
+                              key={i}
+                              className="flex-1 rounded-t-md bg-blue/85"
+                              style={{ height: `${h}%` }}
+                            />
+                          ))}
+                        </div>
+                        <p className="mt-3 text-xs text-ink-soft">
+                          What is shaping your money
                         </p>
-                        <span className="rounded-md bg-sky px-2 py-0.5 text-[0.65rem] font-medium text-blue-deep">
-                          Insights
-                        </span>
                       </div>
-                      <div className="mt-4 flex h-20 items-end gap-1.5">
-                        {[35, 55, 42, 70, 48, 85, 62, 90, 58].map((h, i) => (
-                          <span
-                            key={i}
-                            className="flex-1 rounded-t-md bg-blue/85"
-                            style={{ height: `${h}%` }}
-                          />
-                        ))}
-                      </div>
-                      <p className="mt-3 text-xs text-ink-soft">
-                        What is shaping your money
-                      </p>
                     </div>
-                  </OrbitScale>
-                </div>
 
-                <div className="absolute bottom-[5%] right-3 z-30 w-[14rem]">
-                  <OrbitScale>
-                    <div
-                      data-orbit-spoke
-                      className="float-card tilt p-4"
-                      style={{ ["--tilt" as string]: "5deg" }}
-                    >
-                      <p className="text-base font-semibold text-ink">
-                        What the money became
-                      </p>
-                      <p className="mt-1.5 text-sm leading-relaxed text-mute">
-                        The trip you booked. A night out. A QR so someone can
-                        pay you. Open either without data.
-                      </p>
-                      <TicketIllustration />
+                    <div className="absolute bottom-[3%] right-0 z-[8] w-[13rem]">
+                      <div
+                        data-orbit-spoke
+                        className="float-card tilt p-4"
+                        style={{ ["--tilt" as string]: "5deg" }}
+                      >
+                        <p className="text-base font-semibold text-ink">
+                          What the money became
+                        </p>
+                        <p className="mt-1.5 text-sm leading-relaxed text-mute">
+                          The trip you booked. A night out. A QR so someone can
+                          pay you. Open either without data.
+                        </p>
+                        <TicketIllustration />
+                      </div>
                     </div>
-                  </OrbitScale>
-                </div>
+
+                    <div
+                      data-orbit-hub
+                      className="absolute left-1/2 top-1/2 z-30 w-[min(100%,22rem)] -translate-x-1/2 -translate-y-1/2"
+                    >
+                      <PhoneFan />
+                    </div>
+                  </div>
+                </OrbitStageScale>
               </div>
             </div>
           </div>
