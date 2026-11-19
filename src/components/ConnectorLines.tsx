@@ -187,7 +187,7 @@ export function ConnectorLines({ stageId }: { stageId: string }) {
     <svg
       ref={svgRef}
       aria-hidden
-      className="pointer-events-none absolute inset-0 z-[5] h-full w-full overflow-visible"
+      className="pointer-events-none absolute inset-0 z-[15] h-full w-full overflow-visible"
     />
   );
 }
