@@ -131,34 +131,34 @@ const text = Buffer.from(`
       .url { font-family: ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif; font-weight: 600; fill: #b6cbff; font-size: 22px; }
     </style>
     <text x="152" y="96" class="brand">LipaBill</text>
-    <text x="56" y="220" class="h1">Your money</text>
-    <text x="56" y="290" class="h1">has a story.</text>
-    <text x="56" y="352" class="sub">See it clearly — then send,</text>
-    <text x="56" y="384" class="sub">pay, or show the code.</text>
+    <text x="56" y="208" class="h1">Your money</text>
+    <text x="56" y="278" class="h1">has a story.</text>
+    <text x="56" y="340" class="sub">No account to create — use the</text>
+    <text x="56" y="372" class="sub">wallets and banks you already have.</text>
+    <!-- No account -->
+    <rect x="56" y="420" width="148" height="40" rx="20" fill="rgba(255,255,255,0.12)" stroke="rgba(255,255,255,0.28)"/>
+    <g transform="translate(70,429)" fill="none" stroke="#ffffff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="9" cy="6" r="3.2"/>
+      <path d="M2.5 17.5c1.4-3.2 3.8-4.8 6.5-4.8s5.1 1.6 6.5 4.8"/>
+      <path d="M2 3.5l14 14"/>
+    </g>
+    <text x="139" y="446" text-anchor="middle" class="pill">No account</text>
     <!-- On device -->
-    <rect x="56" y="432" width="148" height="40" rx="20" fill="rgba(255,255,255,0.12)" stroke="rgba(255,255,255,0.28)"/>
-    <g transform="translate(72,442)" fill="none" stroke="#ffffff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="216" y="420" width="136" height="40" rx="20" fill="rgba(255,255,255,0.12)" stroke="rgba(255,255,255,0.28)"/>
+    <g transform="translate(230,430)" fill="none" stroke="#ffffff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
       <rect x="3.5" y="0.5" width="11" height="18" rx="2.2"/>
       <path d="M7.5 15.5h3"/>
     </g>
-    <text x="138" y="458" text-anchor="middle" class="pill">On device</text>
-    <!-- East Africa -->
-    <rect x="216" y="432" width="158" height="40" rx="20" fill="rgba(255,255,255,0.12)" stroke="rgba(255,255,255,0.28)"/>
-    <g transform="translate(232,441)" fill="none" stroke="#ffffff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-      <path d="M9 1.5c-3.6 0-6.5 2.8-6.5 6.3 0 4.7 6.5 11.2 6.5 11.2s6.5-6.5 6.5-11.2c0-3.5-2.9-6.3-6.5-6.3z"/>
-      <circle cx="9" cy="7.8" r="2.2"/>
-    </g>
-    <text x="306" y="458" text-anchor="middle" class="pill">East Africa</text>
+    <text x="295" y="446" text-anchor="middle" class="pill">On device</text>
     <!-- Google Play — official multicolor triangle mark -->
-    <rect x="386" y="432" width="160" height="40" rx="20" fill="rgba(255,255,255,0.12)" stroke="rgba(255,255,255,0.28)"/>
-    <g transform="translate(401.5,441) scale(0.75)">
-      <!-- viewBox-ish 0 0 24 24 paths -->
+    <rect x="364" y="420" width="160" height="40" rx="20" fill="rgba(255,255,255,0.12)" stroke="rgba(255,255,255,0.28)"/>
+    <g transform="translate(379.5,429) scale(0.75)">
       <path fill="#00A0FF" d="M3 20.5V3.5c0-.59.34-1.11.84-1.35L13.69 12 3.84 21.85c-.5-.24-.84-.76-.84-1.35z"/>
       <path fill="#FFD500" d="M16.81 15.12 6.05 21.34l8.49-8.49 2.27 2.27z"/>
       <path fill="#FF3A44" d="M16.81 8.88 14.54 11.15 6.05 2.66l10.76 6.22z"/>
       <path fill="#00A757" d="M20.16 10.81c.34.27.59.69.59 1.19s-.25.92-.59 1.19l-2.27 1.31-2.5-2.5 2.5-2.5 2.27 1.31z"/>
     </g>
-    <text x="478" y="458" text-anchor="middle" class="pill">Google Play</text>
+    <text x="456" y="446" text-anchor="middle" class="pill">Google Play</text>
     <text x="56" y="562" class="url">lipabill.app</text>
   </svg>`);
 
