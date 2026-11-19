@@ -417,8 +417,8 @@ function PhoneShot() {
     <div className="overflow-hidden rounded-[2.4rem] border-[0.4rem] border-[#1a1a1a] bg-[#1a1a1a] shadow-[0_32px_70px_-24px_rgba(15,28,51,0.45)]">
       <div className="relative aspect-[9/19.2]">
         <Image
-          src="/screenshots/homepage.png"
-          alt="LipaBill home — where your money went, send, pay, and what it became"
+          src="/screenshots/home-ledger.jpg"
+          alt="LipaBill home — M-Pesa card, send, pay, insights, and passes on this phone"
           fill
           priority
           className="object-cover object-top"
